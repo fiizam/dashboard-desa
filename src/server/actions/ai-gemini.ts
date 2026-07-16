@@ -4,12 +4,16 @@ import prisma from '@/lib/prisma'
 import { getSession } from '@/lib/session'
 import { GoogleGenAI } from '@google/genai'
 
-// Initialize Google Gemini AI with the API key from environment variables
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || 'dummy_key' })
-
 export async function generateFinancialInsights() {
   const session = await getSession()
   if (session?.role !== 'Admin') throw new Error('Unauthorized')
+
+  const apiKey = process.env.GEMINI_API_KEY
+  if (!apiKey || apiKey === 'masukkan_api_key_anda_di_sini') {
+    return { response: "⚠️ **Konfigurasi API Key Belum Lengkap.** \n\nSistem mendeteksi bahwa `GEMINI_API_KEY` belum terpasang atau masih kosong. Harap isi API Key di file `.env` dan **RESTART terminal (npm run dev)** Anda." }
+  }
+
+  const ai = new GoogleGenAI({ apiKey })
 
   // Get APBDes and transactions
   const apbdes = await prisma.apbdes.findFirst({
@@ -53,6 +57,6 @@ Tugas Anda:
     return { response: response.text }
   } catch (error: any) {
     console.error("AI Error:", error)
-    return { response: "⚠️ **Koneksi AI Gagal.** \n\nPastikan Anda telah mengisi `GEMINI_API_KEY` yang valid di dalam file `.env` sistem ini. Anda bisa mendapatkannya secara gratis di [Google AI Studio](https://aistudio.google.com/)." }
+    return { response: `⚠️ **Koneksi AI Gagal.** \n\n${error.message || 'Terjadi kesalahan tidak terduga.'}\n\nPastikan Anda telah mengisi \`GEMINI_API_KEY\` yang valid di dalam file \`.env\` dan **MERESTART server Anda (matikan terminal lalu jalankan npm run dev kembali)**.` }
   }
 }
