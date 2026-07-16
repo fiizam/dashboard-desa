@@ -35,7 +35,7 @@ export function KeuanganInteractive({ initialApbdes, initialTransactions, userRo
   })
 
   const approveMutation = useMutation({
-    mutationFn: ({ id, type }: { id: number, type: 'in'|'out' }) => approveTransaction(id, type),
+    mutationFn: ({ id, type }: { id: string, type: 'in'|'out' }) => approveTransaction(id, type),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['keuangan'] })
       queryClient.invalidateQueries({ queryKey: ['dashboard'] })

@@ -40,6 +40,7 @@ export async function addUser(data: { name: string, email: string, roleId: strin
   await prisma.user.create({
     data: {
       name: data.name,
+      username: data.email.split('@')[0], // Generate username from email
       email: data.email,
       password: 'hashed_password', // Mock
       roleId: data.roleId,

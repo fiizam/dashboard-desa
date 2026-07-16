@@ -55,7 +55,8 @@ export async function addTransaction(data: { type: 'in' | 'out', amount: number,
         jumlah: data.amount,
         keterangan: data.description,
         tanggal: new Date(),
-        status: 'PENDING'
+        status: 'PENDING',
+        createdBy: 'system'
       }
     })
   } else {
@@ -65,7 +66,9 @@ export async function addTransaction(data: { type: 'in' | 'out', amount: number,
         jumlah: data.amount,
         keterangan: data.description,
         tanggal: new Date(),
-        status: 'PENDING'
+        status: 'PENDING',
+        penerima: '-',
+        createdBy: 'system'
       }
     })
   }

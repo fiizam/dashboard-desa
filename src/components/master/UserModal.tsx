@@ -65,7 +65,7 @@ export function UserModal({ onClose }: { onClose: () => void }) {
           </button>
         </div>
 
-        <form onSubmit={handleSubmit((d) => mutation.mutate(d))} className="p-6 space-y-4">
+        <form onSubmit={handleSubmit((d: any) => mutation.mutate(d))} className="p-6 space-y-4">
           <div className="space-y-2">
             <label className="text-sm font-medium">Nama Lengkap</label>
             <input 
