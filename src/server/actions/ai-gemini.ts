@@ -2,7 +2,7 @@
 
 import prisma from '@/lib/prisma'
 import { getSession } from '@/lib/session'
-import { GoogleGenAI } from '@google/genai'
+import { GoogleGenerativeAI } from '@google/generative-ai'
 
 export async function generateFinancialInsights() {
   const session = await getSession()
@@ -13,7 +13,8 @@ export async function generateFinancialInsights() {
     return { response: "⚠️ **Konfigurasi API Key Belum Lengkap.** \n\nSistem mendeteksi bahwa `GEMINI_API_KEY` belum terpasang atau masih kosong. Harap isi API Key di file `.env` dan **RESTART terminal (npm run dev)** Anda." }
   }
 
-  const ai = new GoogleGenAI({ apiKey })
+  const genAI = new GoogleGenerativeAI(apiKey)
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" })
 
   // Get APBDes and transactions
   const apbdes = await prisma.apbdes.findFirst({
@@ -49,14 +50,12 @@ Tugas Anda:
 `
 
   try {
-    const response = await ai.models.generateContent({
-      model: 'gemini-1.5-flash',
-      contents: prompt,
-    })
-    
-    return { response: response.text }
+    const result = await model.generateContent(prompt)
+    const response = await result.response
+    return { response: response.text() }
   } catch (error: any) {
     console.error("AI Error:", error)
-    return { response: `⚠️ **Koneksi AI Gagal.** \n\n${error.message || 'Terjadi kesalahan tidak terduga.'}\n\nPastikan Anda telah mengisi \`GEMINI_API_KEY\` yang valid di dalam file \`.env\` dan **MERESTART server Anda (matikan terminal lalu jalankan npm run dev kembali)**.` }
+    return { response: \`⚠️ **Koneksi AI Gagal.** \n\n\${error.message || 'Terjadi kesalahan tidak terduga.'}\n\nPastikan Anda telah mengisi \`GEMINI_API_KEY\` yang valid di dalam file \`.env\` dan **MERESTART server Anda (matikan terminal lalu jalankan npm run dev kembali)**.\` }
   }
 }
+
