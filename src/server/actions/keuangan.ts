@@ -47,7 +47,7 @@ export async function getRecentTransactions() {
   return { incomes, expenses }
 }
 
-export async function addTransaction(data: { type: 'in' | 'out', amount: number, description: string, posId: number }) {
+export async function addTransaction(data: { type: 'in' | 'out', amount: number, description: string, posId: string }) {
   if (data.type === 'in') {
     await prisma.transaksiPendapatan.create({
       data: {
@@ -73,14 +73,14 @@ export async function addTransaction(data: { type: 'in' | 'out', amount: number,
   return { success: true }
 }
 
-export async function approveTransaction(id: number, type: 'in' | 'out') {
+export async function approveTransaction(id: string, type: 'in' | 'out') {
   if (type === 'in') {
     const tx = await prisma.transaksiPendapatan.update({
       where: { id },
       data: { status: 'APPROVED' }
     })
     // Update realisasi
-    await prisma.posPendapatan.update({
+    await prisma.pendapatan.update({
       where: { id: tx.pendapatanId },
       data: { realisasi: { increment: tx.jumlah } }
     })
@@ -90,7 +90,7 @@ export async function approveTransaction(id: number, type: 'in' | 'out') {
       data: { status: 'APPROVED' }
     })
     // Update realisasi
-    await prisma.posBelanja.update({
+    await prisma.belanja.update({
       where: { id: tx.belanjaId },
       data: { realisasi: { increment: tx.jumlah } }
     })

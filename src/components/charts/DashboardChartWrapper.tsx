@@ -61,7 +61,7 @@ export function DashboardChartWrapper({ data }: { data: ChartData[] }) {
           <Tooltip 
             contentStyle={{ backgroundColor: '#1f2937', borderColor: '#374151', borderRadius: '8px' }}
             itemStyle={{ color: '#e5e7eb' }}
-            formatter={(value: number) => `Rp ${value.toLocaleString('id-ID')}`}
+            formatter={(value: any) => `Rp ${Number(value).toLocaleString('id-ID')}`}
           />
           <Area
             type="monotone"

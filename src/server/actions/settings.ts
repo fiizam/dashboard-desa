@@ -12,10 +12,11 @@ export async function generateBackup() {
 
   try {
     const users = await prisma.user.findMany({ select: { id: true, name: true, username: true, roleId: true } })
-    const apbdes = await prisma.aPBDes.findMany()
+    const apbdes = await prisma.apbdes.findMany()
     const pendapatan = await prisma.pendapatan.findMany()
     const belanja = await prisma.belanja.findMany()
-    const transaksi = await prisma.transaksi.findMany()
+    const transaksiPendapatan = await prisma.transaksiPendapatan.findMany()
+    const transaksiBelanja = await prisma.transaksiBelanja.findMany()
     const log = await prisma.logAktivitas.findMany()
 
     const backupData = {
@@ -26,7 +27,8 @@ export async function generateBackup() {
         apbdes,
         pendapatan,
         belanja,
-        transaksi,
+        transaksiPendapatan,
+        transaksiBelanja,
         log
       }
     }

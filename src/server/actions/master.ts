@@ -36,7 +36,7 @@ export async function getDesa() {
   return await prisma.desa.findMany()
 }
 
-export async function addUser(data: { name: string, email: string, roleId: number, desaId?: number | null, isActive: boolean }) {
+export async function addUser(data: { name: string, email: string, roleId: string, desaId?: string | null, isActive: boolean }) {
   await prisma.user.create({
     data: {
       name: data.name,

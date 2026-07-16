@@ -13,8 +13,8 @@ import { X, Loader2 } from 'lucide-react'
 const schema = z.object({
   name: z.string().min(2, 'Nama minimal 2 karakter'),
   email: z.string().email('Format email tidak valid'),
-  roleId: z.string().min(1, 'Role wajib dipilih').transform(Number),
-  desaId: z.string().optional().transform(v => v ? Number(v) : null),
+  roleId: z.string().min(1, 'Role wajib dipilih'),
+  desaId: z.string().optional(),
   isActive: z.boolean().default(true),
 })
 

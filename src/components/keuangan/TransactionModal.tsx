@@ -12,9 +12,9 @@ import { X, Loader2 } from 'lucide-react'
 
 const schema = z.object({
   type: z.enum(['in', 'out']),
-  amount: z.string().min(1, 'Jumlah wajib diisi').transform(Number),
+  amount: z.coerce.number().min(1, 'Jumlah wajib diisi'),
   description: z.string().min(5, 'Keterangan minimal 5 karakter'),
-  posId: z.string().min(1, 'Pos anggaran wajib dipilih').transform(Number),
+  posId: z.string().min(1, 'Pos anggaran wajib dipilih'),
 })
 
 type FormData = z.infer<typeof schema>
