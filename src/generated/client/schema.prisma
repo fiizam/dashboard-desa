@@ -1,0 +1,207 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/client"
+}
+
+// User & Role Management
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  username  String   @unique
+  email     String   @unique
+  password  String
+  roleId    String
+  role      Role     @relation(fields: [roleId], references: [id])
+  desaId    String?
+  desa      Desa?    @relation(fields: [desaId], references: [id])
+  avatarUrl String?
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  logs LogAktivitas[]
+}
+
+model Role {
+  id          String @id @default(cuid())
+  name        String @unique // Super Admin, Admin Keuangan, Kepala Desa, dll.
+  permissions String // JSON string of permissions
+  users       User[]
+}
+
+// Wilayah & Desa
+model Provinsi {
+  id         String      @id @default(cuid())
+  name       String
+  kabupatens Kabupaten[]
+}
+
+model Kabupaten {
+  id         String      @id @default(cuid())
+  name       String
+  provinsiId String
+  provinsi   Provinsi    @relation(fields: [provinsiId], references: [id])
+  kecamatans Kecamatan[]
+}
+
+model Kecamatan {
+  id          String    @id @default(cuid())
+  name        String
+  kabupatenId String
+  kabupaten   Kabupaten @relation(fields: [kabupatenId], references: [id])
+  desas       Desa[]
+}
+
+model Desa {
+  id          String    @id @default(cuid())
+  name        String
+  kepalaDesa  String
+  nip         String?
+  alamat      String
+  kecamatanId String
+  kecamatan   Kecamatan @relation(fields: [kecamatanId], references: [id])
+  users       User[]
+  apbdes      Apbdes[]
+}
+
+// Keuangan & APBDes
+model Apbdes {
+  id     String @id @default(cuid())
+  tahun  Int
+  status String @default("DRAFT") // DRAFT, REVIEW, APPROVED, ACTIVE, CLOSED
+  desaId String
+  desa   Desa   @relation(fields: [desaId], references: [id])
+
+  pendapatans Pendapatan[]
+  belanjas    Belanja[]
+  pembiayaans Pembiayaan[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SumberDana {
+  id          String       @id @default(cuid())
+  kode        String       @unique
+  name        String // ADD, DD, PADes, PBH, dll
+  keterangan  String?
+  pendapatans Pendapatan[]
+  belanjas    Belanja[]
+}
+
+model KategoriPendapatan {
+  id          String       @id @default(cuid())
+  kode        String       @unique
+  name        String
+  pendapatans Pendapatan[]
+}
+
+model Pendapatan {
+  id           String             @id @default(cuid())
+  apbdesId     String
+  apbdes       Apbdes             @relation(fields: [apbdesId], references: [id])
+  kategoriId   String
+  kategori     KategoriPendapatan @relation(fields: [kategoriId], references: [id])
+  sumberDanaId String
+  sumberDana   SumberDana         @relation(fields: [sumberDanaId], references: [id])
+  uraian       String
+  anggaran     Float
+  realisasi    Float              @default(0)
+
+  transaksis TransaksiPendapatan[]
+}
+
+model KategoriBelanja {
+  id       String    @id @default(cuid())
+  kode     String    @unique
+  name     String
+  belanjas Belanja[]
+}
+
+model Bidang {
+  id        String     @id @default(cuid())
+  kode      String     @unique
+  name      String
+  kegiatans Kegiatan[]
+}
+
+model Kegiatan {
+  id       String    @id @default(cuid())
+  kode     String    @unique
+  name     String
+  bidangId String
+  bidang   Bidang    @relation(fields: [bidangId], references: [id])
+  belanjas Belanja[]
+}
+
+model Belanja {
+  id           String          @id @default(cuid())
+  apbdesId     String
+  apbdes       Apbdes          @relation(fields: [apbdesId], references: [id])
+  kegiatanId   String
+  kegiatan     Kegiatan        @relation(fields: [kegiatanId], references: [id])
+  kategoriId   String
+  kategori     KategoriBelanja @relation(fields: [kategoriId], references: [id])
+  sumberDanaId String
+  sumberDana   SumberDana      @relation(fields: [sumberDanaId], references: [id])
+  uraian       String
+  anggaran     Float
+  realisasi    Float           @default(0)
+
+  transaksis TransaksiBelanja[]
+}
+
+model Pembiayaan {
+  id        String @id @default(cuid())
+  apbdesId  String
+  apbdes    Apbdes @relation(fields: [apbdesId], references: [id])
+  jenis     String // PENERIMAAN, PENGELUARAN
+  uraian    String
+  anggaran  Float
+  realisasi Float  @default(0)
+}
+
+// Transaksi (Realisasi)
+model TransaksiPendapatan {
+  id           String     @id @default(cuid())
+  pendapatanId String
+  pendapatan   Pendapatan @relation(fields: [pendapatanId], references: [id])
+  tanggal      DateTime
+  jumlah       Float
+  keterangan   String?
+  buktiUrl     String?
+  status       String     @default("PENDING") // PENDING, APPROVED, REJECTED
+  createdBy    String
+  createdAt    DateTime   @default(now())
+}
+
+model TransaksiBelanja {
+  id         String   @id @default(cuid())
+  belanjaId  String
+  belanja    Belanja  @relation(fields: [belanjaId], references: [id])
+  tanggal    DateTime
+  jumlah     Float
+  penerima   String
+  keterangan String?
+  buktiUrl   String?
+  status     String   @default("PENDING") // PENDING, APPROVED, REJECTED
+  createdBy  String
+  createdAt  DateTime @default(now())
+}
+
+// Log & Audit
+model LogAktivitas {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  action    String
+  entity    String
+  entityId  String?
+  details   String? // JSON string
+  createdAt DateTime @default(now())
+}
