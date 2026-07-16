@@ -55,7 +55,7 @@ Tugas Anda:
     return { response: response.text() }
   } catch (error: any) {
     console.error("AI Error:", error)
-    return { response: \`⚠️ **Koneksi AI Gagal.** \n\n\${error.message || 'Terjadi kesalahan tidak terduga.'}\n\nPastikan Anda telah mengisi \`GEMINI_API_KEY\` yang valid di dalam file \`.env\` dan **MERESTART server Anda (matikan terminal lalu jalankan npm run dev kembali)**.\` }
+    return { response: `⚠️ **Koneksi AI Gagal.** \n\n${error.message || 'Terjadi kesalahan tidak terduga.'}\n\nPastikan Anda telah mengisi \`GEMINI_API_KEY\` yang valid di dalam file \`.env\` dan **MERESTART server Anda (matikan terminal lalu jalankan npm run dev kembali)**.` }
   }
 }
 
