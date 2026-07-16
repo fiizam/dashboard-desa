@@ -39,7 +39,7 @@ export async function getDesa() {
 
 export async function addUser(data: { name: string, email: string, roleId: string, desaId?: string | null, isActive: boolean }) {
   const session = await getSession()
-  if (session?.role !== 'ADMIN') throw new Error('Unauthorized')
+  if (session?.role !== 'Admin') throw new Error('Unauthorized')
 
   await prisma.user.create({
     data: {
@@ -58,7 +58,7 @@ export async function addUser(data: { name: string, email: string, roleId: strin
 
 export async function toggleUserStatus(id: string, currentStatus: boolean) {
   const session = await getSession()
-  if (session?.role !== 'ADMIN') throw new Error('Unauthorized')
+  if (session?.role !== 'Admin') throw new Error('Unauthorized')
 
   await prisma.user.update({
     where: { id },
@@ -70,7 +70,7 @@ export async function toggleUserStatus(id: string, currentStatus: boolean) {
 
 export async function deleteUser(id: string) {
   const session = await getSession()
-  if (session?.role !== 'ADMIN') throw new Error('Unauthorized')
+  if (session?.role !== 'Admin') throw new Error('Unauthorized')
 
   await prisma.user.delete({
     where: { id }

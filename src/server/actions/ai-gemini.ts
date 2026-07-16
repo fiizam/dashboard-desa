@@ -9,7 +9,7 @@ const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || 'dummy_key' }
 
 export async function generateFinancialInsights() {
   const session = await getSession()
-  if (session?.role !== 'ADMIN') throw new Error('Unauthorized')
+  if (session?.role !== 'Admin') throw new Error('Unauthorized')
 
   // Get APBDes and transactions
   const apbdes = await prisma.apbdes.findFirst({

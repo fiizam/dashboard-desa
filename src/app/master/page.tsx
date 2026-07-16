@@ -6,7 +6,7 @@ import { redirect } from 'next/navigation'
 export default async function MasterDataPage() {
   const session = await getSession()
 
-  if (session?.role !== 'ADMIN') {
+  if (session?.role !== 'Admin') {
     redirect('/')
   }
 
