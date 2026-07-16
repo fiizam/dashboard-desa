@@ -2,6 +2,7 @@
 
 import prisma from '@/lib/prisma'
 import { revalidatePath } from 'next/cache'
+import { getSession } from '@/lib/session'
 
 export async function getUsers() {
   const users = await prisma.user.findMany({
@@ -37,6 +38,9 @@ export async function getDesa() {
 }
 
 export async function addUser(data: { name: string, email: string, roleId: string, desaId?: string | null, isActive: boolean }) {
+  const session = await getSession()
+  if (session?.role !== 'ADMIN') throw new Error('Unauthorized')
+
   await prisma.user.create({
     data: {
       name: data.name,
@@ -53,6 +57,9 @@ export async function addUser(data: { name: string, email: string, roleId: strin
 }
 
 export async function toggleUserStatus(id: string, currentStatus: boolean) {
+  const session = await getSession()
+  if (session?.role !== 'ADMIN') throw new Error('Unauthorized')
+
   await prisma.user.update({
     where: { id },
     data: { isActive: !currentStatus }
@@ -62,6 +69,9 @@ export async function toggleUserStatus(id: string, currentStatus: boolean) {
 }
 
 export async function deleteUser(id: string) {
+  const session = await getSession()
+  if (session?.role !== 'ADMIN') throw new Error('Unauthorized')
+
   await prisma.user.delete({
     where: { id }
   })

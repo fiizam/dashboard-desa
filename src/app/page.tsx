@@ -1,5 +1,6 @@
 import { DashboardLayout } from '@/components/layout/DashboardLayout'
 import { SoftTopCards } from '@/components/dashboard/SoftTopCards'
+import { AiFinancialAdvisor } from '@/components/dashboard/AiFinancialAdvisor'
 import { SoftTransactionsTable } from '@/components/dashboard/SoftTransactionsTable'
 import { SoftCommunication } from '@/components/dashboard/SoftCommunication'
 import { SoftBreakdown } from '@/components/dashboard/SoftBreakdown'
@@ -16,6 +17,7 @@ export default async function Home() {
         
         {/* Main Left Area (approx 70%) */}
         <div className="flex-1 w-full flex flex-col gap-6 min-w-0">
+          {role === 'ADMIN' && <AiFinancialAdvisor />}
           <SoftTopCards role={role} />
           <SoftTransactionsTable />
           <SoftCommunication />
