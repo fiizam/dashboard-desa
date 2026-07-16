@@ -25,7 +25,7 @@ export function SoftTopCards({ role }: { role: string }) {
         <div className="absolute top-6 right-6 text-emerald-500 font-bold text-sm bg-emerald-500/10 px-2.5 py-1 rounded-xl border border-emerald-500/20">
           +14,88%
         </div>
-        <div className="h-16 w-32 absolute bottom-4 right-6">
+        <div className="h-12 w-24 absolute bottom-6 right-6 opacity-80">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={dataGreen}>
               <Line type="monotone" dataKey="v" stroke="#10b981" strokeWidth={3} dot={false} />
@@ -44,7 +44,7 @@ export function SoftTopCards({ role }: { role: string }) {
         <div className="absolute top-6 right-6 text-rose-500 font-bold text-sm bg-rose-500/10 px-2.5 py-1 rounded-xl border border-rose-500/20">
           -5,67%
         </div>
-        <div className="h-16 w-32 absolute bottom-4 right-6">
+        <div className="h-12 w-24 absolute bottom-6 right-6 opacity-80">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={dataRed}>
               <Line type="monotone" dataKey="v" stroke="#f43f5e" strokeWidth={3} dot={false} />
