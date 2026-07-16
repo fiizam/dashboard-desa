@@ -28,7 +28,7 @@ export function TransactionModal({
 }) {
   const queryClient = useQueryClient()
   
-  const { register, handleSubmit, watch, formState: { errors } } = useForm<FormData>({
+  const { register, handleSubmit, watch, formState: { errors } } = useForm({
     resolver: zodResolver(schema),
     defaultValues: { type: 'out' }
   })

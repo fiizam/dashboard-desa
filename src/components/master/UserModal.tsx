@@ -26,7 +26,7 @@ export function UserModal({ onClose }: { onClose: () => void }) {
   const { data: roles = [] } = useQuery({ queryKey: ['roles'], queryFn: () => getRoles() })
   const { data: desas = [] } = useQuery({ queryKey: ['desas'], queryFn: () => getDesa() })
 
-  const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
+  const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: zodResolver(schema),
   })
 
