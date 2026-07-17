@@ -36,14 +36,22 @@ export async function login(data: FormData) {
 
 export async function register(data: any) {
   try {
-    const { name, username, password } = data
+    const { name, username, email, password } = data
 
-    const existingUser = await prisma.user.findUnique({
+    const existingUsername = await prisma.user.findUnique({
       where: { username }
     })
 
-    if (existingUser) {
+    if (existingUsername) {
       return { error: 'Username sudah digunakan' }
+    }
+
+    const existingEmail = await prisma.user.findUnique({
+      where: { email }
+    })
+
+    if (existingEmail) {
+      return { error: 'Email sudah terdaftar, silakan gunakan email lain.' }
     }
 
     // Assign "User" role by default
@@ -61,7 +69,7 @@ export async function register(data: any) {
       data: {
         name,
         username,
-        email: `${username}@desa.com`, // Dummy email since it's required but user asked for username login
+        email,
         password: hashedPassword,
         roleId: userRole.id
       }
