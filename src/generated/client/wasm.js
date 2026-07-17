@@ -132,6 +132,8 @@ exports.Prisma.UserScalarFieldEnum = {
   desaId: 'desaId',
   avatarUrl: 'avatarUrl',
   isActive: 'isActive',
+  resetToken: 'resetToken',
+  resetTokenExpires: 'resetTokenExpires',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

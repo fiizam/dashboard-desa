@@ -2794,6 +2794,8 @@ export namespace Prisma {
     desaId: string | null
     avatarUrl: string | null
     isActive: boolean | null
+    resetToken: string | null
+    resetTokenExpires: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2808,6 +2810,8 @@ export namespace Prisma {
     desaId: string | null
     avatarUrl: string | null
     isActive: boolean | null
+    resetToken: string | null
+    resetTokenExpires: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2822,6 +2826,8 @@ export namespace Prisma {
     desaId: number
     avatarUrl: number
     isActive: number
+    resetToken: number
+    resetTokenExpires: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -2838,6 +2844,8 @@ export namespace Prisma {
     desaId?: true
     avatarUrl?: true
     isActive?: true
+    resetToken?: true
+    resetTokenExpires?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2852,6 +2860,8 @@ export namespace Prisma {
     desaId?: true
     avatarUrl?: true
     isActive?: true
+    resetToken?: true
+    resetTokenExpires?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2866,6 +2876,8 @@ export namespace Prisma {
     desaId?: true
     avatarUrl?: true
     isActive?: true
+    resetToken?: true
+    resetTokenExpires?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -2953,6 +2965,8 @@ export namespace Prisma {
     desaId: string | null
     avatarUrl: string | null
     isActive: boolean
+    resetToken: string | null
+    resetTokenExpires: Date | null
     createdAt: Date
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
@@ -2984,6 +2998,8 @@ export namespace Prisma {
     desaId?: boolean
     avatarUrl?: boolean
     isActive?: boolean
+    resetToken?: boolean
+    resetTokenExpires?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     role?: boolean | RoleDefaultArgs<ExtArgs>
@@ -3002,6 +3018,8 @@ export namespace Prisma {
     desaId?: boolean
     avatarUrl?: boolean
     isActive?: boolean
+    resetToken?: boolean
+    resetTokenExpires?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     role?: boolean | RoleDefaultArgs<ExtArgs>
@@ -3018,6 +3036,8 @@ export namespace Prisma {
     desaId?: boolean
     avatarUrl?: boolean
     isActive?: boolean
+    resetToken?: boolean
+    resetTokenExpires?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
@@ -3050,6 +3070,8 @@ export namespace Prisma {
       desaId: string | null
       avatarUrl: string | null
       isActive: boolean
+      resetToken: string | null
+      resetTokenExpires: Date | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["user"]>
@@ -3457,6 +3479,8 @@ export namespace Prisma {
     readonly desaId: FieldRef<"User", 'String'>
     readonly avatarUrl: FieldRef<"User", 'String'>
     readonly isActive: FieldRef<"User", 'Boolean'>
+    readonly resetToken: FieldRef<"User", 'String'>
+    readonly resetTokenExpires: FieldRef<"User", 'DateTime'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
@@ -20349,6 +20373,8 @@ export namespace Prisma {
     desaId: 'desaId',
     avatarUrl: 'avatarUrl',
     isActive: 'isActive',
+    resetToken: 'resetToken',
+    resetTokenExpires: 'resetTokenExpires',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -20653,6 +20679,8 @@ export namespace Prisma {
     desaId?: StringNullableFilter<"User"> | string | null
     avatarUrl?: StringNullableFilter<"User"> | string | null
     isActive?: BoolFilter<"User"> | boolean
+    resetToken?: StringNullableFilter<"User"> | string | null
+    resetTokenExpires?: DateTimeNullableFilter<"User"> | Date | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     role?: XOR<RoleRelationFilter, RoleWhereInput>
@@ -20670,6 +20698,8 @@ export namespace Prisma {
     desaId?: SortOrderInput | SortOrder
     avatarUrl?: SortOrderInput | SortOrder
     isActive?: SortOrder
+    resetToken?: SortOrderInput | SortOrder
+    resetTokenExpires?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     role?: RoleOrderByWithRelationInput
@@ -20690,6 +20720,8 @@ export namespace Prisma {
     desaId?: StringNullableFilter<"User"> | string | null
     avatarUrl?: StringNullableFilter<"User"> | string | null
     isActive?: BoolFilter<"User"> | boolean
+    resetToken?: StringNullableFilter<"User"> | string | null
+    resetTokenExpires?: DateTimeNullableFilter<"User"> | Date | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     role?: XOR<RoleRelationFilter, RoleWhereInput>
@@ -20707,6 +20739,8 @@ export namespace Prisma {
     desaId?: SortOrderInput | SortOrder
     avatarUrl?: SortOrderInput | SortOrder
     isActive?: SortOrder
+    resetToken?: SortOrderInput | SortOrder
+    resetTokenExpires?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -20727,6 +20761,8 @@ export namespace Prisma {
     desaId?: StringNullableWithAggregatesFilter<"User"> | string | null
     avatarUrl?: StringNullableWithAggregatesFilter<"User"> | string | null
     isActive?: BoolWithAggregatesFilter<"User"> | boolean
+    resetToken?: StringNullableWithAggregatesFilter<"User"> | string | null
+    resetTokenExpires?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
@@ -21744,6 +21780,8 @@ export namespace Prisma {
     password: string
     avatarUrl?: string | null
     isActive?: boolean
+    resetToken?: string | null
+    resetTokenExpires?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     role: RoleCreateNestedOneWithoutUsersInput
@@ -21761,6 +21799,8 @@ export namespace Prisma {
     desaId?: string | null
     avatarUrl?: string | null
     isActive?: boolean
+    resetToken?: string | null
+    resetTokenExpires?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     logs?: LogAktivitasUncheckedCreateNestedManyWithoutUserInput
@@ -21774,6 +21814,8 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: RoleUpdateOneRequiredWithoutUsersNestedInput
@@ -21791,6 +21833,8 @@ export namespace Prisma {
     desaId?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logs?: LogAktivitasUncheckedUpdateManyWithoutUserNestedInput
@@ -21806,6 +21850,8 @@ export namespace Prisma {
     desaId?: string | null
     avatarUrl?: string | null
     isActive?: boolean
+    resetToken?: string | null
+    resetTokenExpires?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -21818,6 +21864,8 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -21832,6 +21880,8 @@ export namespace Prisma {
     desaId?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -22889,6 +22939,17 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -22935,6 +22996,8 @@ export namespace Prisma {
     desaId?: SortOrder
     avatarUrl?: SortOrder
     isActive?: SortOrder
+    resetToken?: SortOrder
+    resetTokenExpires?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -22949,6 +23012,8 @@ export namespace Prisma {
     desaId?: SortOrder
     avatarUrl?: SortOrder
     isActive?: SortOrder
+    resetToken?: SortOrder
+    resetTokenExpires?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -22963,6 +23028,8 @@ export namespace Prisma {
     desaId?: SortOrder
     avatarUrl?: SortOrder
     isActive?: SortOrder
+    resetToken?: SortOrder
+    resetTokenExpires?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -23009,6 +23076,20 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -23758,6 +23839,10 @@ export namespace Prisma {
 
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -24797,6 +24882,17 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -24870,6 +24966,20 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -25090,6 +25200,8 @@ export namespace Prisma {
     password: string
     avatarUrl?: string | null
     isActive?: boolean
+    resetToken?: string | null
+    resetTokenExpires?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     desa?: DesaCreateNestedOneWithoutUsersInput
@@ -25105,6 +25217,8 @@ export namespace Prisma {
     desaId?: string | null
     avatarUrl?: string | null
     isActive?: boolean
+    resetToken?: string | null
+    resetTokenExpires?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     logs?: LogAktivitasUncheckedCreateNestedManyWithoutUserInput
@@ -25149,6 +25263,8 @@ export namespace Prisma {
     desaId?: StringNullableFilter<"User"> | string | null
     avatarUrl?: StringNullableFilter<"User"> | string | null
     isActive?: BoolFilter<"User"> | boolean
+    resetToken?: StringNullableFilter<"User"> | string | null
+    resetTokenExpires?: DateTimeNullableFilter<"User"> | Date | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
   }
@@ -25406,6 +25522,8 @@ export namespace Prisma {
     password: string
     avatarUrl?: string | null
     isActive?: boolean
+    resetToken?: string | null
+    resetTokenExpires?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     role: RoleCreateNestedOneWithoutUsersInput
@@ -25421,6 +25539,8 @@ export namespace Prisma {
     roleId: string
     avatarUrl?: string | null
     isActive?: boolean
+    resetToken?: string | null
+    resetTokenExpires?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     logs?: LogAktivitasUncheckedCreateNestedManyWithoutUserInput
@@ -26745,6 +26865,8 @@ export namespace Prisma {
     password: string
     avatarUrl?: string | null
     isActive?: boolean
+    resetToken?: string | null
+    resetTokenExpires?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     role: RoleCreateNestedOneWithoutUsersInput
@@ -26761,6 +26883,8 @@ export namespace Prisma {
     desaId?: string | null
     avatarUrl?: string | null
     isActive?: boolean
+    resetToken?: string | null
+    resetTokenExpires?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -26789,6 +26913,8 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: RoleUpdateOneRequiredWithoutUsersNestedInput
@@ -26805,6 +26931,8 @@ export namespace Prisma {
     desaId?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -26854,6 +26982,8 @@ export namespace Prisma {
     desaId?: string | null
     avatarUrl?: string | null
     isActive?: boolean
+    resetToken?: string | null
+    resetTokenExpires?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -26866,6 +26996,8 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     desa?: DesaUpdateOneWithoutUsersNestedInput
@@ -26881,6 +27013,8 @@ export namespace Prisma {
     desaId?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logs?: LogAktivitasUncheckedUpdateManyWithoutUserNestedInput
@@ -26895,6 +27029,8 @@ export namespace Prisma {
     desaId?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -26988,6 +27124,8 @@ export namespace Prisma {
     roleId: string
     avatarUrl?: string | null
     isActive?: boolean
+    resetToken?: string | null
+    resetTokenExpires?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -27008,6 +27146,8 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: RoleUpdateOneRequiredWithoutUsersNestedInput
@@ -27023,6 +27163,8 @@ export namespace Prisma {
     roleId?: StringFieldUpdateOperationsInput | string
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     logs?: LogAktivitasUncheckedUpdateManyWithoutUserNestedInput
@@ -27037,6 +27179,8 @@ export namespace Prisma {
     roleId?: StringFieldUpdateOperationsInput | string
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetTokenExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

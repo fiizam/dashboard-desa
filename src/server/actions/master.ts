@@ -38,7 +38,7 @@ export async function getDesa() {
   return await prisma.desa.findMany()
 }
 
-export async function addUser(data: { name: string, email: string, password?: string, roleId: string, desaId?: string | null, isActive: boolean }) {
+export async function addUser(data: { name: string, username: string, email: string, password?: string, roleId: string, desaId?: string | null, isActive: boolean }) {
   const session = await getSession()
   if (session?.role !== 'Admin') throw new Error('Unauthorized')
 
@@ -47,7 +47,7 @@ export async function addUser(data: { name: string, email: string, password?: st
   await prisma.user.create({
     data: {
       name: data.name,
-      username: data.email.split('@')[0], // Generate username from email
+      username: data.username,
       email: data.email,
       password: hashedPassword,
       roleId: data.roleId,

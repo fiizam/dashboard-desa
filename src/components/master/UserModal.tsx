@@ -12,6 +12,7 @@ import { X, Loader2, Eye, EyeOff } from 'lucide-react'
 
 const schema = z.object({
   name: z.string().min(2, 'Nama minimal 2 karakter'),
+  username: z.string().min(3, 'Username minimal 3 karakter').regex(/^[a-zA-Z0-9_]+$/, 'Hanya huruf, angka, dan underscore'),
   email: z.string().email('Format email tidak valid'),
   password: z.string().min(6, 'Password minimal 6 karakter'),
   roleId: z.string().min(1, 'Role wajib dipilih'),
@@ -76,6 +77,16 @@ export function UserModal({ onClose }: { onClose: () => void }) {
               placeholder="Masukkan nama pengguna"
             />
             {errors.name && <p className="text-xs text-rose-500">{errors.name.message}</p>}
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-sm font-medium">Username</label>
+            <input 
+              {...register('username')}
+              className="w-full bg-background border border-border/50 rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-primary/20"
+              placeholder="contoh: admin_desa"
+            />
+            {errors.username && <p className="text-xs text-rose-500">{errors.username.message}</p>}
           </div>
 
           <div className="space-y-2">
