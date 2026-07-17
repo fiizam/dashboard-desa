@@ -8,11 +8,12 @@ import { z } from 'zod'
 import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query'
 import { addUser, getRoles, getDesa } from '@/server/actions/master'
 import { motion } from 'framer-motion'
-import { X, Loader2 } from 'lucide-react'
+import { X, Loader2, Eye, EyeOff } from 'lucide-react'
 
 const schema = z.object({
   name: z.string().min(2, 'Nama minimal 2 karakter'),
   email: z.string().email('Format email tidak valid'),
+  password: z.string().min(6, 'Password minimal 6 karakter'),
   roleId: z.string().min(1, 'Role wajib dipilih'),
   desaId: z.string().optional(),
   isActive: z.boolean().default(true),
@@ -30,6 +31,7 @@ export function UserModal({ onClose }: { onClose: () => void }) {
     resolver: zodResolver(schema),
   })
 
+  const [showPassword, setShowPassword] = useState(false)
   const [mounted, setMounted] = useState(false)
   useEffect(() => setMounted(true), [])
 
@@ -84,6 +86,26 @@ export function UserModal({ onClose }: { onClose: () => void }) {
               placeholder="admin@desa.id"
             />
             {errors.email && <p className="text-xs text-rose-500">{errors.email.message}</p>}
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-sm font-medium">Password</label>
+            <div className="relative">
+              <input 
+                type={showPassword ? "text" : "password"}
+                {...register('password')}
+                className="w-full bg-background border border-border/50 rounded-xl pl-4 pr-10 py-2.5 text-sm outline-none focus:ring-2 focus:ring-primary/20"
+                placeholder="••••••••"
+              />
+              <button 
+                type="button" 
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              </button>
+            </div>
+            {errors.password && <p className="text-xs text-rose-500">{errors.password.message}</p>}
           </div>
 
           <div className="grid grid-cols-2 gap-4">

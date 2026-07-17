@@ -79,8 +79,21 @@ export function AiFinancialAdvisor() {
                   <p className="text-sm font-medium text-slate-500 animate-pulse">AI sedang membaca triliunan data APBDes...</p>
                 </div>
               ) : (
-                <div className="prose prose-sm dark:prose-invert max-w-none prose-headings:text-indigo-900 dark:prose-headings:text-indigo-300 prose-a:text-indigo-600 leading-relaxed">
-                  <ReactMarkdown>{insight || ''}</ReactMarkdown>
+                <div className="max-w-none text-sm md:text-base max-h-[500px] overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-indigo-500/20 scrollbar-track-transparent">
+                  <ReactMarkdown
+                    components={{
+                      h1: ({node, ...props}) => <h1 className="text-xl font-bold text-indigo-400 mt-6 mb-3" {...props} />,
+                      h2: ({node, ...props}) => <h2 className="text-lg font-bold text-indigo-400 mt-6 mb-3" {...props} />,
+                      h3: ({node, ...props}) => <h3 className="text-base font-bold text-indigo-300 mt-5 mb-2" {...props} />,
+                      p: ({node, ...props}) => <p className="text-slate-600 dark:text-slate-300 mb-4 leading-relaxed" {...props} />,
+                      ul: ({node, ...props}) => <ul className="list-disc list-outside pl-5 mb-4 text-slate-600 dark:text-slate-300 space-y-2" {...props} />,
+                      ol: ({node, ...props}) => <ol className="list-decimal list-outside pl-5 mb-4 text-slate-600 dark:text-slate-300 space-y-2" {...props} />,
+                      li: ({node, ...props}) => <li className="pl-1" {...props} />,
+                      strong: ({node, ...props}) => <strong className="font-semibold text-slate-900 dark:text-white" {...props} />,
+                    }}
+                  >
+                    {insight || ''}
+                  </ReactMarkdown>
                 </div>
               )}
             </div>

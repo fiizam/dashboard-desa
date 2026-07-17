@@ -3,6 +3,7 @@
 import prisma from '@/lib/prisma'
 import { revalidatePath } from 'next/cache'
 import { getSession } from '@/lib/session'
+import bcrypt from 'bcryptjs'
 
 export async function getUsers() {
   const users = await prisma.user.findMany({
@@ -37,16 +38,18 @@ export async function getDesa() {
   return await prisma.desa.findMany()
 }
 
-export async function addUser(data: { name: string, email: string, roleId: string, desaId?: string | null, isActive: boolean }) {
+export async function addUser(data: { name: string, email: string, password?: string, roleId: string, desaId?: string | null, isActive: boolean }) {
   const session = await getSession()
   if (session?.role !== 'Admin') throw new Error('Unauthorized')
+
+  const hashedPassword = data.password ? await bcrypt.hash(data.password, 10) : 'hashed_password'
 
   await prisma.user.create({
     data: {
       name: data.name,
       username: data.email.split('@')[0], // Generate username from email
       email: data.email,
-      password: 'hashed_password', // Mock
+      password: hashedPassword,
       roleId: data.roleId,
       desaId: data.desaId || null,
       isActive: data.isActive

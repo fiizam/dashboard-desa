@@ -9,12 +9,12 @@ export async function generateFinancialInsights() {
   if (session?.role !== 'Admin') throw new Error('Unauthorized')
 
   const apiKey = process.env.GEMINI_API_KEY
-  if (!apiKey || apiKey === 'masukkan_api_key_anda_di_sini') {
+  if (!apiKey) {
     return { response: "⚠️ **Konfigurasi API Key Belum Lengkap.** \n\nSistem mendeteksi bahwa `GEMINI_API_KEY` belum terpasang atau masih kosong. Harap isi API Key di file `.env` dan **RESTART terminal (npm run dev)** Anda." }
   }
 
   const genAI = new GoogleGenerativeAI(apiKey)
-  const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" })
+  const model = genAI.getGenerativeModel({ model: "gemini-3.1-flash-lite" })
 
   // Get APBDes and transactions
   const apbdes = await prisma.apbdes.findFirst({
@@ -40,7 +40,7 @@ Berikut adalah data keuangan (APBDes) desa saat ini:
 - Total Realisasi Belanja (dana terpakai): Rp ${totalRealisasiBelanja.toLocaleString('id-ID')}
 
 Detail Pos Belanja:
-${apbdes.belanjas.map(b => `- ${b.kodeRekening}: Anggaran Rp ${b.anggaran.toLocaleString('id-ID')}, Realisasi Rp ${b.realisasi.toLocaleString('id-ID')}`).join('\n')}
+${apbdes.belanjas.map(b => `- ${b.uraian}: Anggaran Rp ${b.anggaran.toLocaleString('id-ID')}, Realisasi Rp ${b.realisasi.toLocaleString('id-ID')}`).join('\n')}
 
 Tugas Anda:
 1. Analisis kesehatan keuangan desa secara singkat berdasarkan angka di atas.
@@ -55,7 +55,15 @@ Tugas Anda:
     return { response: response.text() }
   } catch (error: any) {
     console.error("AI Error:", error)
-    return { response: `⚠️ **Koneksi AI Gagal.** \n\n${error.message || 'Terjadi kesalahan tidak terduga.'}\n\nPastikan Anda telah mengisi \`GEMINI_API_KEY\` yang valid di dalam file \`.env\` dan **MERESTART server Anda (matikan terminal lalu jalankan npm run dev kembali)**.` }
+    const errorMsg = error.message || 'Terjadi kesalahan tidak terduga.'
+    
+    if (errorMsg.includes('503') || errorMsg.includes('high demand')) {
+      return { response: `⚠️ **Server AI Sedang Sibuk (503).** \n\nServer Google Gemini saat ini sedang mengalami permintaan yang sangat tinggi dan tidak dapat melayani permintaan kita. Ini murni masalah dari server Google, bukan dari kode Anda. Silakan coba lagi dalam beberapa menit.` }
+    } else if (errorMsg.includes('429') || errorMsg.includes('Quota')) {
+      return { response: `⚠️ **Kuota API Habis (429).** \n\nKuota penggunaan API Key Anda telah habis atau dibatasi oleh Google. Silakan periksa akun Google Cloud / AI Studio Anda.` }
+    }
+
+    return { response: `⚠️ **Koneksi AI Gagal.** \n\nError: ${errorMsg}\n\n(Jika ini error konfigurasi, pastikan API Key benar dan Anda telah merestart npm run dev).` }
   }
 }
 
