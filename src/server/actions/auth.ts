@@ -75,7 +75,6 @@ export async function register(data: any) {
       }
     })
 
-    await createSession(newUser.id, userRole.name)
     return { success: true }
   } catch (error) {
     return { error: 'Terjadi kesalahan saat registrasi' }

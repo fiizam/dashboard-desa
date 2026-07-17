@@ -1,10 +1,23 @@
 "use client"
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useState, Suspense } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { Loader2, Lock, User, Eye, EyeOff } from 'lucide-react'
 import { login } from '@/server/actions/auth'
+
+function SuccessMessage() {
+  const searchParams = useSearchParams()
+  const isRegistered = searchParams.get('registered')
+
+  if (!isRegistered) return null
+
+  return (
+    <div className="mb-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 text-sm font-medium leading-relaxed text-center">
+      Akun berhasil dibuat! Silakan login menggunakan username dan password Anda.
+    </div>
+  )
+}
 
 export default function LoginPage() {
   const router = useRouter()
@@ -42,6 +55,10 @@ export default function LoginPage() {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
+            <Suspense fallback={null}>
+              <SuccessMessage />
+            </Suspense>
+
             {error && (
               <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-600 text-sm font-medium">
                 {error}

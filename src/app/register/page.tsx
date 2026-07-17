@@ -55,15 +55,14 @@ export default function RegisterPage() {
       setError(res.error)
       setIsLoading(false)
     } else if (res?.success) {
-      router.push('/')
-      router.refresh()
+      router.push('/login?registered=true')
     }
   }
 
   return (
     <div className="h-screen w-full bg-background flex overflow-hidden">
       {/* Left side - Decorative/Branding */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -74,19 +73,19 @@ export default function RegisterPage() {
           <div className="w-16 h-16 rounded-2xl bg-primary flex items-center justify-center text-primary-foreground font-bold shadow-lg shadow-primary/30 mb-8 text-3xl">
             D
           </div>
-          <h2 className="text-5xl font-extrabold mb-6 leading-tight tracking-tight">Mulai Perjalanan<br/>Digital Desa.</h2>
+          <h2 className="text-5xl font-extrabold mb-6 leading-tight tracking-tight">Mulai Perjalanan<br />Digital Desa.</h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
             Bergabunglah dengan platform enterprise modern kami untuk mengelola administrasi keuangan dan tata kelola secara cerdas.
           </p>
         </div>
-        
+
         {/* Abstract animated shapes */}
-        <motion.div 
+        <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 100, repeat: Infinity, ease: "linear" }}
           className="absolute -top-1/4 -right-1/4 w-[800px] h-[800px] bg-gradient-to-br from-primary/5 to-primary/10 rounded-full blur-3xl opacity-50 pointer-events-none"
         />
-        <motion.div 
+        <motion.div
           animate={{ rotate: -360 }}
           transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
           className="absolute -bottom-1/4 -left-1/4 w-[600px] h-[600px] bg-gradient-to-tr from-primary/10 to-transparent rounded-full blur-3xl opacity-40 pointer-events-none"
@@ -95,7 +94,7 @@ export default function RegisterPage() {
 
       {/* Right side - Form */}
       <div className="flex-1 flex flex-col justify-center px-4 sm:px-6 lg:px-20 xl:px-24 h-full overflow-y-auto">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -108,7 +107,7 @@ export default function RegisterPage() {
 
           <form onSubmit={handleSubmit} className="space-y-4 lg:space-y-5">
             {error && (
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-600 text-sm font-medium"
@@ -116,13 +115,13 @@ export default function RegisterPage() {
                 {error}
               </motion.div>
             )}
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-5">
               <div className="space-y-1.5">
                 <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Nama Lengkap</label>
                 <div className="relative group">
                   <UserCircle className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
-                  <input 
+                  <input
                     name="name"
                     required
                     className="w-full bg-background border border-border/50 rounded-xl pl-9 pr-3 py-2 text-sm outline-none focus:ring-2 focus:ring-primary/30 transition-all shadow-sm hover:border-border"
@@ -135,7 +134,7 @@ export default function RegisterPage() {
                 <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Username</label>
                 <div className="relative group">
                   <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
-                  <input 
+                  <input
                     name="username"
                     required
                     className="w-full bg-background border border-border/50 rounded-xl pl-9 pr-3 py-2 text-sm outline-none focus:ring-2 focus:ring-primary/30 transition-all shadow-sm hover:border-border"
@@ -146,15 +145,15 @@ export default function RegisterPage() {
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Email Terdaftar</label>
+              <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Email</label>
               <div className="relative group">
                 <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
-                <input 
+                <input
                   type="email"
                   name="email"
                   required
                   className="w-full bg-background border border-border/50 rounded-xl pl-9 pr-3 py-2 text-sm outline-none focus:ring-2 focus:ring-primary/30 transition-all shadow-sm hover:border-border"
-                  placeholder="Alamat email aktif Anda"
+                  placeholder="Alamat email anda"
                 />
               </div>
             </div>
@@ -163,7 +162,7 @@ export default function RegisterPage() {
               <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Password</label>
               <div className="relative group">
                 <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
-                <input 
+                <input
                   type={showPassword ? "text" : "password"}
                   name="password"
                   required
@@ -172,15 +171,15 @@ export default function RegisterPage() {
                   className="w-full bg-background border border-border/50 rounded-xl pl-9 pr-10 py-2 text-sm outline-none focus:ring-2 focus:ring-primary/30 transition-all shadow-sm hover:border-border"
                   placeholder="••••••••"
                 />
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
               </div>
-              
+
               <div className="pt-2 grid grid-cols-2 gap-1.5 bg-secondary/20 p-2.5 rounded-lg border border-border/30 mt-2">
                 <div className={`flex items-center gap-1.5 text-[11px] font-medium transition-colors ${validations.length ? 'text-emerald-500' : 'text-muted-foreground/70'}`}>
                   {validations.length ? <CheckCircle2 className="w-3.5 h-3.5" /> : <XCircle className="w-3.5 h-3.5" />} Min. 10 Characters
@@ -197,7 +196,7 @@ export default function RegisterPage() {
               </div>
             </div>
 
-            <motion.button 
+            <motion.button
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.98 }}
               type="submit"
