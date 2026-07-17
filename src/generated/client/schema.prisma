@@ -11,21 +11,25 @@ generator client {
 
 // User & Role Management
 model User {
-  id        String   @id @default(cuid())
-  name      String
-  username  String   @unique
-  email     String   @unique
-  password  String
-  roleId    String
-  role      Role     @relation(fields: [roleId], references: [id])
-  desaId    String?
-  desa      Desa?    @relation(fields: [desaId], references: [id])
-  avatarUrl String?
-  isActive  Boolean  @default(true)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id                String    @id @default(cuid())
+  name              String
+  username          String    @unique
+  email             String    @unique
+  password          String
+  roleId            String
+  role              Role      @relation(fields: [roleId], references: [id])
+  desaId            String?
+  desa              Desa?     @relation(fields: [desaId], references: [id])
+  alamat            String?
+  avatarUrl         String?
+  isActive          Boolean   @default(true)
+  resetToken        String?
+  resetTokenExpires DateTime?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
 
-  logs LogAktivitas[]
+  logs          LogAktivitas[]
+  notifications Notification[]
 }
 
 model Role {
@@ -199,10 +203,21 @@ model TransaksiBelanja {
 model LogAktivitas {
   id        String   @id @default(cuid())
   userId    String
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   action    String
   entity    String
   entityId  String?
   details   String? // JSON string
+  createdAt DateTime @default(now())
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  message   String
+  isRead    Boolean  @default(false)
+  link      String?
   createdAt DateTime @default(now())
 }

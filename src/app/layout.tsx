@@ -4,6 +4,7 @@ import "./globals.css";
 import QueryProvider from "@/components/providers/QueryProvider";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import NextTopLoader from "nextjs-toploader";
+import { Toaster } from 'sonner';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,6 +26,7 @@ export default function RootLayout({
         <QueryProvider>
           {children}
         </QueryProvider>
+        <Toaster position="top-center" richColors closeButton />
       </body>
     </html>
   );

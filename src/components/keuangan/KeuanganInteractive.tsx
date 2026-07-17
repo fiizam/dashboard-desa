@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Plus, Download, ArrowUpRight, ArrowDownRight, CheckCircle2, Clock } from 'lucide-react'
 import { TransactionModal } from './TransactionModal'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { getApbdesData, getRecentTransactions, approveTransaction } from '@/server/actions/keuangan'
+import { getApbdesData, getRecentTransactions, processTransaction } from '@/server/actions/keuangan'
 import jsPDF from 'jspdf'
 import autoTable from 'jspdf-autotable'
 
@@ -35,7 +35,7 @@ export function KeuanganInteractive({ initialApbdes, initialTransactions, userRo
   })
 
   const approveMutation = useMutation({
-    mutationFn: ({ id, type }: { id: string, type: 'in'|'out' }) => approveTransaction(id, type),
+    mutationFn: ({ id, type }: { id: string, type: 'in'|'out' }) => processTransaction(id, type, 'APPROVE'),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['keuangan'] })
       queryClient.invalidateQueries({ queryKey: ['dashboard'] })

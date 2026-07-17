@@ -29,6 +29,7 @@ model User {
   updatedAt DateTime @updatedAt
   
   logs      LogAktivitas[]
+  notifications Notification[]
 }
 
 model Role {
@@ -208,4 +209,15 @@ model LogAktivitas {
   entityId    String?
   details     String? // JSON string
   createdAt   DateTime @default(now())
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  message   String
+  isRead    Boolean  @default(false)
+  link      String?
+  createdAt DateTime @default(now())
 }

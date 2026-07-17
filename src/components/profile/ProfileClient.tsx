@@ -1,13 +1,14 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
-import { Shield, Mail, User, MapPin, Calendar, Edit2, KeyRound, Loader2, Save, X } from 'lucide-react'
+import { Shield, Mail, User, MapPin, Calendar, Edit2, KeyRound, Loader2, Save, X, Camera } from 'lucide-react'
 import { updateProfile, updateProfilePassword } from '@/server/actions/profile'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+import { toast } from 'sonner'
 
 const profileSchema = z.object({
   name: z.string().min(2, 'Nama minimal 2 karakter'),
@@ -29,8 +30,9 @@ export function ProfileClient({ user, desas }: { user: any, desas: any[] }) {
   const [isEditing, setIsEditing] = useState(false)
   const [isResetPassword, setIsResetPassword] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
-  const { register, handleSubmit, formState: { errors } } = useForm<ProfileFormData>({
+  const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm<ProfileFormData>({
     resolver: zodResolver(profileSchema),
     defaultValues: {
       name: user.name,
@@ -45,16 +47,38 @@ export function ProfileClient({ user, desas }: { user: any, desas: any[] }) {
     resolver: zodResolver(passwordSchema)
   })
 
+  const formAvatarUrl = watch('avatarUrl')
+  const displayAvatar = isEditing ? formAvatarUrl : user.avatarUrl
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      if (file.size > 2 * 1024 * 1024) {
+        alert("Ukuran file maksimal 2MB")
+        return
+      }
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        const base64String = reader.result as string
+        setValue('avatarUrl', base64String, { shouldDirty: true })
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
   const onSubmitProfile = async (data: ProfileFormData) => {
     setIsSubmitting(true)
     try {
       const res = await updateProfile(data)
       if (res.success) {
         setIsEditing(false)
+        toast.success("Profil berhasil diperbarui")
         router.refresh()
+      } else if (res.error) {
+        toast.error(res.error)
       }
-    } catch (err) {
-      alert("Gagal menyimpan profil")
+    } catch (err: any) {
+      toast.error(err.message || "Gagal menyimpan profil")
     } finally {
       setIsSubmitting(false)
     }
@@ -66,10 +90,12 @@ export function ProfileClient({ user, desas }: { user: any, desas: any[] }) {
       const res = await updateProfilePassword(data.password)
       if (res.success) {
         setIsResetPassword(false)
-        alert("Password berhasil diubah")
+        toast.success("Password berhasil diubah")
+      } else if (res.error) {
+        toast.error(res.error)
       }
-    } catch (err) {
-      alert("Gagal mengubah password")
+    } catch (err: any) {
+      toast.error(err.message || "Gagal mengubah password")
     } finally {
       setIsSubmitting(false)
     }
@@ -105,19 +131,38 @@ export function ProfileClient({ user, desas }: { user: any, desas: any[] }) {
         <div className="px-6 pb-8 sm:px-10">
           <div className="relative flex flex-col sm:flex-row items-center sm:items-end gap-6 -mt-12 sm:-mt-16 mb-8">
             <div className="relative group">
-              {user.avatarUrl ? (
-                <Image 
-                  src={user.avatarUrl} 
-                  alt={user.name} 
-                  width={120} 
-                  height={120} 
-                  className="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl object-cover border-4 border-card shadow-lg bg-card"
-                />
-              ) : (
-                <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl bg-primary/10 border-4 border-card text-primary flex items-center justify-center font-bold text-4xl shadow-lg">
-                  {user.name.charAt(0)}
-                </div>
-              )}
+              <input 
+                type="file" 
+                ref={fileInputRef} 
+                className="hidden" 
+                accept="image/png, image/jpeg, image/jpg, image/webp" 
+                onChange={handleFileChange} 
+              />
+              <div 
+                onClick={() => isEditing && fileInputRef.current?.click()}
+                className={`relative rounded-2xl border-4 border-card shadow-lg bg-card overflow-hidden w-24 h-24 sm:w-32 sm:h-32 ${isEditing ? 'cursor-pointer' : ''}`}
+              >
+                {displayAvatar ? (
+                  <Image 
+                    src={displayAvatar} 
+                    alt={user.name} 
+                    width={128} 
+                    height={128} 
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-primary/10 text-primary flex items-center justify-center font-bold text-4xl">
+                    {user.name.charAt(0)}
+                  </div>
+                )}
+
+                {isEditing && (
+                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white">
+                    <Camera className="w-6 h-6 sm:w-8 sm:h-8 mb-1" />
+                    <span className="text-[10px] sm:text-xs font-medium">Ubah Foto</span>
+                  </div>
+                )}
+              </div>
             </div>
             
             <div className="text-center sm:text-left flex-1 pb-2">
@@ -137,7 +182,10 @@ export function ProfileClient({ user, desas }: { user: any, desas: any[] }) {
             <form onSubmit={handleSubmit(onSubmitProfile)} className="bg-secondary/20 p-6 rounded-2xl border border-border/50">
               <div className="flex items-center justify-between mb-4 border-b border-border/50 pb-4">
                 <h3 className="font-semibold text-lg">Edit Profil</h3>
-                <button type="button" onClick={() => setIsEditing(false)} className="p-2 hover:bg-secondary rounded-full">
+                <button type="button" onClick={() => {
+                  setIsEditing(false)
+                  setValue('avatarUrl', user.avatarUrl)
+                }} className="p-2 hover:bg-secondary rounded-full">
                   <X className="w-5 h-5 text-muted-foreground" />
                 </button>
               </div>
@@ -174,11 +222,6 @@ export function ProfileClient({ user, desas }: { user: any, desas: any[] }) {
                       <option key={d.id} value={d.id}>{d.name}</option>
                     ))}
                   </select>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">URL Avatar</label>
-                  <input {...register('avatarUrl')} className="w-full bg-background border border-border/50 rounded-xl px-4 py-2.5 text-sm" placeholder="https://..." />
                 </div>
               </div>
 

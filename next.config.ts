@@ -5,15 +5,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'cdn.jsdelivr.net',
-      },
-      {
-        protocol: 'https',
-        hostname: 'avatars.githubusercontent.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'cloudflare-ipfs.com',
+        hostname: '**',
       },
     ],
   },
@@ -22,7 +14,10 @@ const nextConfig: NextConfig = {
   },
   typescript: {
     ignoreBuildErrors: true,
-  }
+  },
+  serverActions: {
+    bodySizeLimit: '5mb',
+  },
 };
 
 export default nextConfig;

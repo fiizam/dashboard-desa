@@ -1,9 +1,10 @@
 "use client"
 
-import { FileText, Download, Printer, BarChart3, PieChart, FileSpreadsheet, Loader2 } from 'lucide-react'
+import { FileText, Download, Printer, BarChart3, PieChart, FileSpreadsheet, Loader2, FileCheck } from 'lucide-react'
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { getExportData } from '@/server/actions/laporan'
+import { toast } from 'sonner'
 
 export function LaporanInteractive() {
   const [isExporting, setIsExporting] = useState(false)
@@ -14,29 +15,74 @@ export function LaporanInteractive() {
     queryFn: () => getExportData()
   })
 
-  const handleExportCSV = async () => {
+  const handleExportPDF = async () => {
     if (!data) return
     setIsExporting(true)
     
     try {
-      let csvContent = "data:text/csv;charset=utf-8,"
-      csvContent += "Tanggal,Jenis,Pos Anggaran,Keterangan,Status,Jumlah\n"
+      const { jsPDF } = await import("jspdf")
+      const autoTable = (await import("jspdf-autotable")).default
 
+      const doc = new jsPDF()
+
+      // Header
+      doc.setFontSize(16)
+      doc.setFont("helvetica", "bold")
+      doc.text("PEMERINTAH DESA SUKAMAJU", 105, 15, { align: "center" })
+      doc.setFontSize(14)
+      doc.text(`BUKU KAS UMUM (${reportType.toUpperCase()})`, 105, 22, { align: "center" })
+      doc.setFontSize(10)
+      doc.setFont("helvetica", "normal")
+      doc.text("Tahun Anggaran 2026", 105, 28, { align: "center" })
+      
+      doc.line(14, 32, 196, 32)
+      doc.line(14, 33, 196, 33)
+
+      const tableData: any[] = []
+      
       data.incomes.forEach((t: any) => {
-        csvContent += `${new Date(t.tanggal).toISOString().split('T')[0]},Pendapatan,${t.pendapatan?.uraian},${t.keterangan},${t.status},${t.jumlah}\n`
+        tableData.push([
+          new Date(t.tanggal).toLocaleDateString('id-ID'),
+          t.keterangan || t.pendapatan?.uraian,
+          `Rp ${t.jumlah.toLocaleString('id-ID')}`,
+          '-'
+        ])
       })
 
       data.expenses.forEach((t: any) => {
-        csvContent += `${new Date(t.tanggal).toISOString().split('T')[0]},Belanja,${t.belanja?.uraian},${t.keterangan},${t.status},${t.jumlah}\n`
+        tableData.push([
+          new Date(t.tanggal).toLocaleDateString('id-ID'),
+          t.keterangan || t.belanja?.uraian,
+          '-',
+          `Rp ${t.jumlah.toLocaleString('id-ID')}`
+        ])
       })
 
-      const encodedUri = encodeURI(csvContent)
-      const link = document.createElement("a")
-      link.setAttribute("href", encodedUri)
-      link.setAttribute("download", `Laporan_Keuangan_Desa_${new Date().getTime()}.csv`)
-      document.body.appendChild(link)
-      link.click()
-      document.body.removeChild(link)
+      autoTable(doc, {
+        startY: 40,
+        head: [['Tanggal', 'Uraian', 'Penerimaan', 'Pengeluaran']],
+        body: tableData,
+        theme: 'grid',
+        headStyles: { fillColor: [41, 128, 185], halign: 'center' },
+        styles: { fontSize: 9 },
+        columnStyles: {
+          0: { cellWidth: 30 },
+          2: { halign: 'right' },
+          3: { halign: 'right' }
+        }
+      })
+
+      // Footer / Tanda Tangan
+      const finalY = (doc as any).lastAutoTable.finalY || 40
+      doc.text("Mengetahui,", 150, finalY + 20)
+      doc.text("Kepala Desa Sukamaju", 150, finalY + 25)
+      doc.text("________________________", 150, finalY + 45)
+      doc.text("NIP. 19800101 201001 1 001", 150, finalY + 50)
+
+      doc.save(`Laporan_Keuangan_Desa_${new Date().getTime()}.pdf`)
+      toast.success("Laporan PDF berhasil diunduh")
+    } catch (err) {
+      toast.error("Gagal mencetak laporan PDF")
     } finally {
       setIsExporting(false)
     }
@@ -84,9 +130,9 @@ export function LaporanInteractive() {
               
               <div className="flex items-center justify-between pt-4 border-t border-border/50 mt-auto">
                 <span className="text-xs font-medium text-muted-foreground bg-secondary px-2 py-1 rounded-md">{report.date}</span>
-                <button onClick={handleExportCSV} className="flex items-center gap-1.5 text-sm font-medium text-primary hover:underline">
+                <button onClick={handleExportPDF} className="flex items-center gap-1.5 text-sm font-medium text-primary hover:underline">
                   <Download className="w-4 h-4" />
-                  CSV
+                  PDF
                 </button>
               </div>
             </div>
@@ -120,12 +166,12 @@ export function LaporanInteractive() {
          </div>
          <div className="mt-6 flex justify-end print:hidden">
            <button 
-             onClick={handleExportCSV}
+             onClick={handleExportPDF}
              disabled={isExporting}
              className="px-6 py-2.5 bg-primary text-primary-foreground font-medium rounded-xl hover:bg-primary/90 transition-colors shadow-sm shadow-primary/25 flex items-center gap-2"
            >
-             {isExporting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
-             Export CSV Laporan
+             {isExporting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Printer className="w-4 h-4" />}
+             Export PDF Laporan Resmi
            </button>
          </div>
 

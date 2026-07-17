@@ -12,6 +12,30 @@ import { Bell, Search, Menu } from 'lucide-react'
 import { TopBarProfile } from './TopBarProfile'
 import { useQuery } from '@tanstack/react-query'
 import { getProfile } from '@/server/actions/profile'
+import { getNotifications } from '@/server/actions/notifications'
+
+function NotificationBell() {
+  const setNotificationDrawerOpen = useAppStore(s => s.setNotificationDrawerOpen)
+  const { data: notifications = [] } = useQuery({
+    queryKey: ['notifications'],
+    queryFn: () => getNotifications(),
+    refetchInterval: 10000
+  })
+
+  const unreadCount = notifications.filter((n:any) => !n.isRead).length
+
+  return (
+    <button 
+      onClick={() => setNotificationDrawerOpen(true)}
+      className="p-2 text-slate-500 dark:text-muted-foreground hover:bg-white/50 dark:hover:bg-secondary rounded-full transition-colors relative"
+    >
+      <Bell className="w-5 h-5" />
+      {unreadCount > 0 && (
+        <span className="absolute top-1.5 right-1.5 w-2.5 h-2.5 rounded-full bg-rose-500 ring-2 ring-[#FDF8F3] dark:ring-background" />
+      )}
+    </button>
+  )
+}
 
 export function DashboardLayout({ children, userRole }: { children: ReactNode, userRole: string }) {
   const pathname = usePathname()
@@ -75,13 +99,7 @@ export function DashboardLayout({ children, userRole }: { children: ReactNode, u
           </div>
           
           <div className="flex items-center gap-3 sm:gap-6 shrink-0">
-            <button 
-              onClick={() => setNotificationDrawerOpen(true)}
-              className="p-2 text-slate-500 dark:text-muted-foreground hover:bg-white/50 dark:hover:bg-secondary rounded-full transition-colors relative"
-            >
-              <Bell className="w-5 h-5" />
-              <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-rose-500 ring-2 ring-[#FDF8F3] dark:ring-background" />
-            </button>
+            <NotificationBell />
             <TopBarProfile isDashboard={false} />
           </div>
         </header>

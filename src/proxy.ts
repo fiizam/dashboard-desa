@@ -2,8 +2,8 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { decrypt } from '@/lib/session-edge'
 
-const protectedRoutes = ['/', '/keuangan', '/master', '/laporan']
-const publicRoutes = ['/login', '/register']
+const protectedRoutes = ['/', '/keuangan', '/master', '/laporan', '/referensi']
+const publicRoutes = ['/login', '/register', '/forgot-password', '/reset-password']
 
 export async function proxy(req: NextRequest) {
   const path = req.nextUrl.pathname
@@ -21,10 +21,29 @@ export async function proxy(req: NextRequest) {
     return NextResponse.redirect(new URL('/', req.nextUrl))
   }
 
-  // RBAC: If User role, block /master and /laporan
-  if (session && session.role === 'User') {
-    if (path.startsWith('/master') || path.startsWith('/laporan')) {
+  // RBAC Checks
+  if (session) {
+    const role = session.role as string
+
+    // 1. Audit Log: Only Super Admin and Admin
+    if (path.startsWith('/master/audit') && !['Super Admin', 'Admin'].includes(role)) {
       return NextResponse.redirect(new URL('/', req.nextUrl))
+    }
+
+    // 2. Master & Referensi: Super Admin, Admin Keuangan, Admin
+    if ((path.startsWith('/master') || path.startsWith('/referensi') || path.startsWith('/settings')) && 
+        !['Super Admin', 'Admin Keuangan', 'Admin', 'User'].includes(role) && !path.startsWith('/master/audit')) { 
+      return NextResponse.redirect(new URL('/', req.nextUrl))
+    }
+
+    // Specifically block User from Master and Referensi
+    if ((path.startsWith('/master') || path.startsWith('/referensi')) && role === 'User') {
+       return NextResponse.redirect(new URL('/', req.nextUrl))
+    }
+
+    // 3. Approval: Only Kepala Desa
+    if (path.startsWith('/keuangan/approval') && role !== 'Kepala Desa') {
+      return NextResponse.redirect(new URL('/keuangan', req.nextUrl))
     }
   }
 

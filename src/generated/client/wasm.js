@@ -277,6 +277,16 @@ exports.Prisma.LogAktivitasScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.NotificationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  title: 'title',
+  message: 'message',
+  isRead: 'isRead',
+  link: 'link',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -311,7 +321,8 @@ exports.Prisma.ModelName = {
   Pembiayaan: 'Pembiayaan',
   TransaksiPendapatan: 'TransaksiPendapatan',
   TransaksiBelanja: 'TransaksiBelanja',
-  LogAktivitas: 'LogAktivitas'
+  LogAktivitas: 'LogAktivitas',
+  Notification: 'Notification'
 };
 
 /**

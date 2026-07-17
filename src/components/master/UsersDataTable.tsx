@@ -11,7 +11,7 @@ import { UserModal } from './UserModal'
 export function UsersDataTable() {
   const queryClient = useQueryClient()
   const [search, setSearch] = useState('')
-  const [modalMode, setModalMode] = useState<'add' | 'edit' | 'reset'>('add')
+  const [modalMode, setModalMode] = useState<'add' | 'edit' | 'reset' | null>(null)
   const [selectedUser, setSelectedUser] = useState<any>(null)
 
   const [activeMenuId, setActiveMenuId] = useState<string | null>(null)
@@ -158,66 +158,79 @@ export function UsersDataTable() {
                       </td>
                       <td className="px-4 py-4 text-muted-foreground">{user.desa}</td>
                       <td className="px-4 py-4">
-                        <button 
-                          onClick={() => toggleStatusMutation.mutate({ id: user.id, status: user.isActive })}
-                          className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium transition-all hover:opacity-80 ${user.isActive ? 'bg-emerald-500/10 text-emerald-600' : 'bg-rose-500/10 text-rose-600'}`}
-                        >
-                          <div className={`w-1.5 h-1.5 rounded-full ${user.isActive ? 'bg-emerald-500' : 'bg-rose-500'}`} />
-                          {user.isActive ? 'Aktif' : 'Nonaktif'}
-                        </button>
+                        {(user.role === 'Admin' || user.role === 'Super Admin') ? (
+                          <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium ${user.isActive ? 'bg-emerald-500/10 text-emerald-600' : 'bg-rose-500/10 text-rose-600'}`}>
+                            <div className={`w-1.5 h-1.5 rounded-full ${user.isActive ? 'bg-emerald-500' : 'bg-rose-500'}`} />
+                            {user.isActive ? 'Aktif' : 'Nonaktif'}
+                          </span>
+                        ) : (
+                          <button 
+                            onClick={() => toggleStatusMutation.mutate({ id: user.id, status: user.isActive })}
+                            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium transition-all hover:opacity-80 ${user.isActive ? 'bg-emerald-500/10 text-emerald-600' : 'bg-rose-500/10 text-rose-600'}`}
+                          >
+                            <div className={`w-1.5 h-1.5 rounded-full ${user.isActive ? 'bg-emerald-500' : 'bg-rose-500'}`} />
+                            {user.isActive ? 'Aktif' : 'Nonaktif'}
+                          </button>
+                        )}
                       </td>
                       <td className="px-4 py-4 text-right relative">
-                        <button 
-                          onClick={() => setActiveMenuId(activeMenuId === user.id ? null : user.id)}
-                          className="p-2 rounded-lg hover:bg-secondary transition-colors focus:outline-none"
-                        >
-                          <MoreVertical className="w-4 h-4 text-muted-foreground" />
-                        </button>
+                        {user.role !== 'Admin' && user.role !== 'Super Admin' ? (
+                          <>
+                            <button 
+                              onClick={() => setActiveMenuId(activeMenuId === user.id ? null : user.id)}
+                              className="p-2 rounded-lg hover:bg-secondary transition-colors focus:outline-none"
+                            >
+                              <MoreVertical className="w-4 h-4 text-muted-foreground" />
+                            </button>
 
-                        <AnimatePresence>
-                          {activeMenuId === user.id && (
-                            <>
-                              <div className="fixed inset-0 z-40" onClick={() => setActiveMenuId(null)} />
-                              <motion.div
-                                initial={{ opacity: 0, scale: 0.95, y: 10 }}
-                                animate={{ opacity: 1, scale: 1, y: 0 }}
-                                exit={{ opacity: 0, scale: 0.95, y: 10 }}
-                                className="absolute right-8 top-10 w-48 bg-card border border-border shadow-xl rounded-xl overflow-hidden z-50 text-left"
-                              >
-                                <button 
-                                  onClick={() => {
-                                    setSelectedUser(user)
-                                    setModalMode('edit')
-                                    setActiveMenuId(null)
-                                  }}
-                                  className="w-full flex items-center gap-2 px-4 py-2.5 hover:bg-secondary text-sm transition-colors"
-                                >
-                                  <Edit2 className="w-4 h-4 text-muted-foreground" /> Edit Data
-                                </button>
-                                <button 
-                                  onClick={() => {
-                                    setSelectedUser(user)
-                                    setModalMode('reset')
-                                    setActiveMenuId(null)
-                                  }}
-                                  className="w-full flex items-center gap-2 px-4 py-2.5 hover:bg-secondary text-sm transition-colors"
-                                >
-                                  <ShieldAlert className="w-4 h-4 text-muted-foreground" /> Reset Password
-                                </button>
-                                <div className="border-t border-border/50 my-1" />
-                                <button 
-                                  onClick={() => {
-                                    deleteMutation.mutate(user.id)
-                                    setActiveMenuId(null)
-                                  }}
-                                  className="w-full flex items-center gap-2 px-4 py-2.5 hover:bg-rose-500/10 text-rose-500 text-sm transition-colors"
-                                >
-                                  <Trash2 className="w-4 h-4" /> Hapus Akses
-                                </button>
-                              </motion.div>
-                            </>
-                          )}
-                        </AnimatePresence>
+                            <AnimatePresence>
+                              {activeMenuId === user.id && (
+                                <>
+                                  <div className="fixed inset-0 z-40" onClick={() => setActiveMenuId(null)} />
+                                  <motion.div
+                                    initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                                    exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                                    className="absolute right-8 top-10 w-48 bg-card border border-border shadow-xl rounded-xl overflow-hidden z-50 text-left"
+                                  >
+                                    <button 
+                                      onClick={() => {
+                                        setSelectedUser(user)
+                                        setModalMode('edit')
+                                        setActiveMenuId(null)
+                                      }}
+                                      className="w-full flex items-center gap-2 px-4 py-2.5 hover:bg-secondary text-sm transition-colors"
+                                    >
+                                      <Edit2 className="w-4 h-4 text-muted-foreground" /> Edit Data
+                                    </button>
+                                    <button 
+                                      onClick={() => {
+                                        setSelectedUser(user)
+                                        setModalMode('reset')
+                                        setActiveMenuId(null)
+                                      }}
+                                      className="w-full flex items-center gap-2 px-4 py-2.5 hover:bg-secondary text-sm transition-colors"
+                                    >
+                                      <ShieldAlert className="w-4 h-4 text-muted-foreground" /> Reset Password
+                                    </button>
+                                    <div className="border-t border-border/50 my-1" />
+                                    <button 
+                                      onClick={() => {
+                                        deleteMutation.mutate(user.id)
+                                        setActiveMenuId(null)
+                                      }}
+                                      className="w-full flex items-center gap-2 px-4 py-2.5 hover:bg-rose-500/10 text-rose-500 text-sm transition-colors"
+                                    >
+                                      <Trash2 className="w-4 h-4" /> Hapus Akses
+                                    </button>
+                                  </motion.div>
+                                </>
+                              )}
+                            </AnimatePresence>
+                          </>
+                        ) : (
+                          <div className="w-8 inline-block" />
+                        )}
                       </td>
                     </motion.tr>
                   ))}
@@ -228,12 +241,12 @@ export function UsersDataTable() {
         </div>
       </div>
       
-      {modalMode && selectedUser !== undefined && (
+      {modalMode && (
         <UserModal 
           mode={modalMode} 
           user={selectedUser} 
           onClose={() => {
-            setModalMode('add')
+            setModalMode(null)
             setSelectedUser(null)
           }} 
         />
