@@ -3,8 +3,9 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { Loader2, Lock, User, UserCircle, CheckCircle2, XCircle, Eye, EyeOff } from 'lucide-react'
+import { Loader2, Lock, User, UserCircle, CheckCircle2, XCircle, Eye, EyeOff, Mail } from 'lucide-react'
 import { register } from '@/server/actions/auth'
+import { motion } from 'framer-motion'
 
 export default function RegisterPage() {
   const router = useRouter()
@@ -60,145 +61,161 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background flex flex-col md:flex-row">
-      {/* Kiri: Form */}
-      <div className="flex-1 flex flex-col justify-center px-4 py-8 sm:px-6 lg:flex-none lg:w-1/2 lg:px-20 xl:px-24 relative z-10 bg-background">
-        <div className="mx-auto w-full max-w-sm lg:w-[400px]">
-          <div className="text-center mb-8">
-            <div className="mx-auto w-12 h-12 flex items-center justify-center text-[#254d68] mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2L14.4 7.6L20 10L14.4 12.4L12 18L9.6 12.4L4 10L9.6 7.6L12 2Z" />
-                <circle cx="12" cy="10" r="3" fill="white" />
-                <circle cx="12" cy="10" r="1.5" fill="#254d68" />
-              </svg>
-            </div>
-            <h2 className="text-xl sm:text-[22px] font-bold tracking-tight text-foreground leading-snug">
-              Gabung dan bagikan kisahmu bersama kami.
-            </h2>
-            <p className="mt-3 text-[13px] text-muted-foreground font-medium">
-              Daftar untuk memulai kunjungan Anda bersama Sistem Keuangan Desa.
-            </p>
+    <div className="h-screen w-full bg-background flex overflow-hidden">
+      {/* Left side - Decorative/Branding */}
+      <motion.div 
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="hidden lg:flex lg:flex-1 relative bg-secondary/30 border-r border-border/50 p-12 items-center justify-center overflow-hidden"
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-50"></div>
+        <div className="relative z-10 max-w-lg">
+          <div className="w-16 h-16 rounded-2xl bg-primary flex items-center justify-center text-primary-foreground font-bold shadow-lg shadow-primary/30 mb-8 text-3xl">
+            D
+          </div>
+          <h2 className="text-5xl font-extrabold mb-6 leading-tight tracking-tight">Mulai Perjalanan<br/>Digital Desa.</h2>
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            Bergabunglah dengan platform enterprise modern kami untuk mengelola administrasi keuangan dan tata kelola secara cerdas.
+          </p>
+        </div>
+        
+        {/* Abstract animated shapes */}
+        <motion.div 
+          animate={{ rotate: 360 }}
+          transition={{ duration: 100, repeat: Infinity, ease: "linear" }}
+          className="absolute -top-1/4 -right-1/4 w-[800px] h-[800px] bg-gradient-to-br from-primary/5 to-primary/10 rounded-full blur-3xl opacity-50 pointer-events-none"
+        />
+        <motion.div 
+          animate={{ rotate: -360 }}
+          transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
+          className="absolute -bottom-1/4 -left-1/4 w-[600px] h-[600px] bg-gradient-to-tr from-primary/10 to-transparent rounded-full blur-3xl opacity-40 pointer-events-none"
+        />
+      </motion.div>
+
+      {/* Right side - Form */}
+      <div className="flex-1 flex flex-col justify-center px-4 sm:px-6 lg:px-20 xl:px-24 h-full overflow-y-auto">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mx-auto w-full max-w-md"
+        >
+          <div className="mb-6 lg:mb-8 text-center lg:text-left">
+            <h2 className="text-3xl font-bold tracking-tight text-foreground">Buat Akun</h2>
+            <p className="mt-2 text-sm text-muted-foreground">Silakan lengkapi data di bawah ini untuk mendaftar.</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-4 lg:space-y-5">
             {error && (
-              <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-600 text-sm font-medium">
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-600 text-sm font-medium"
+              >
                 {error}
-              </div>
+              </motion.div>
             )}
             
-            <div className="space-y-1.5">
-              <label className="text-[13px] font-bold text-foreground/80">Nama</label>
-              <div className="relative">
-                <UserCircle className="absolute left-3.5 top-1/2 -translate-y-1/2 w-[18px] h-[18px] text-muted-foreground/60" />
-                <input 
-                  name="name"
-                  required
-                  className="w-full bg-background border border-border/70 rounded-[14px] pl-10 pr-4 py-3 text-sm outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/10 transition-all placeholder:text-muted-foreground/50 placeholder:font-medium"
-                  placeholder="Masukkan Nama"
-                />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-5">
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Nama Lengkap</label>
+                <div className="relative group">
+                  <UserCircle className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                  <input 
+                    name="name"
+                    required
+                    className="w-full bg-background border border-border/50 rounded-xl pl-9 pr-3 py-2 text-sm outline-none focus:ring-2 focus:ring-primary/30 transition-all shadow-sm hover:border-border"
+                    placeholder="John Doe"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Username</label>
+                <div className="relative group">
+                  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                  <input 
+                    name="username"
+                    required
+                    className="w-full bg-background border border-border/50 rounded-xl pl-9 pr-3 py-2 text-sm outline-none focus:ring-2 focus:ring-primary/30 transition-all shadow-sm hover:border-border"
+                    placeholder="Min 10 char"
+                  />
+                </div>
               </div>
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-[13px] font-bold text-foreground/80">Email</label>
-              <div className="relative">
-                <UserCircle className="absolute left-3.5 top-1/2 -translate-y-1/2 w-[18px] h-[18px] text-muted-foreground/60" />
+              <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Email Terdaftar</label>
+              <div className="relative group">
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
                 <input 
                   type="email"
                   name="email"
                   required
-                  className="w-full bg-background border border-border/70 rounded-[14px] pl-10 pr-4 py-3 text-sm outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/10 transition-all placeholder:text-muted-foreground/50 placeholder:font-medium"
-                  placeholder="Masukkan Email"
+                  className="w-full bg-background border border-border/50 rounded-xl pl-9 pr-3 py-2 text-sm outline-none focus:ring-2 focus:ring-primary/30 transition-all shadow-sm hover:border-border"
+                  placeholder="Alamat email aktif Anda"
                 />
               </div>
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-[13px] font-bold text-foreground/80">Username</label>
-              <div className="relative">
-                <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-[18px] h-[18px] text-muted-foreground/60" />
-                <input 
-                  name="username"
-                  required
-                  className="w-full bg-background border border-border/70 rounded-[14px] pl-10 pr-4 py-3 text-sm outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/10 transition-all placeholder:text-muted-foreground/50 placeholder:font-medium"
-                  placeholder="Masukkan Username"
-                />
-              </div>
-            </div>
-
-            <div className="space-y-1.5">
-              <label className="text-[13px] font-bold text-foreground/80">Password</label>
-              <div className="relative">
-                <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-[18px] h-[18px] text-muted-foreground/60" />
+              <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Password</label>
+              <div className="relative group">
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
                 <input 
                   type={showPassword ? "text" : "password"}
                   name="password"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full bg-background border border-border/70 rounded-[14px] pl-10 pr-10 py-3 text-sm outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/10 transition-all placeholder:text-muted-foreground/50 placeholder:font-medium"
-                  placeholder="Masukkan Password"
+                  className="w-full bg-background border border-border/50 rounded-xl pl-9 pr-10 py-2 text-sm outline-none focus:ring-2 focus:ring-primary/30 transition-all shadow-sm hover:border-border"
+                  placeholder="••••••••"
                 />
                 <button 
                   type="button" 
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-muted-foreground/60 hover:text-foreground transition-colors"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  {showPassword ? <EyeOff className="w-[18px] h-[18px]" /> : <Eye className="w-[18px] h-[18px]" />}
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
               </div>
               
-              <div className="pt-3 grid grid-cols-2 gap-y-2 gap-x-4">
-                <div className={`flex items-center gap-2 text-xs font-medium ${validations.length ? 'text-emerald-500' : 'text-muted-foreground/80'}`}>
+              <div className="pt-2 grid grid-cols-2 gap-1.5 bg-secondary/20 p-2.5 rounded-lg border border-border/30 mt-2">
+                <div className={`flex items-center gap-1.5 text-[11px] font-medium transition-colors ${validations.length ? 'text-emerald-500' : 'text-muted-foreground/70'}`}>
                   {validations.length ? <CheckCircle2 className="w-3.5 h-3.5" /> : <XCircle className="w-3.5 h-3.5" />} Min. 10 Characters
                 </div>
-                <div className={`flex items-center gap-2 text-xs font-medium ${validations.uppercase ? 'text-emerald-500' : 'text-muted-foreground/80'}`}>
+                <div className={`flex items-center gap-1.5 text-[11px] font-medium transition-colors ${validations.uppercase ? 'text-emerald-500' : 'text-muted-foreground/70'}`}>
                   {validations.uppercase ? <CheckCircle2 className="w-3.5 h-3.5" /> : <XCircle className="w-3.5 h-3.5" />} 1 Uppercase Letter
                 </div>
-                <div className={`flex items-center gap-2 text-xs font-medium ${validations.lowercase ? 'text-emerald-500' : 'text-muted-foreground/80'}`}>
+                <div className={`flex items-center gap-1.5 text-[11px] font-medium transition-colors ${validations.lowercase ? 'text-emerald-500' : 'text-muted-foreground/70'}`}>
                   {validations.lowercase ? <CheckCircle2 className="w-3.5 h-3.5" /> : <XCircle className="w-3.5 h-3.5" />} 1 Lowercase Letter
                 </div>
-                <div className={`flex items-center gap-2 text-xs font-medium ${validations.number ? 'text-emerald-500' : 'text-muted-foreground/80'}`}>
+                <div className={`flex items-center gap-1.5 text-[11px] font-medium transition-colors ${validations.number ? 'text-emerald-500' : 'text-muted-foreground/70'}`}>
                   {validations.number ? <CheckCircle2 className="w-3.5 h-3.5" /> : <XCircle className="w-3.5 h-3.5" />} 1 Number
                 </div>
               </div>
             </div>
 
-            <div className="pt-2">
-              <button 
-                type="submit"
-                disabled={isLoading || !isPasswordValid}
-                className="w-full flex items-center justify-center gap-2 px-4 py-3.5 rounded-[14px] font-semibold bg-[#509798] text-white hover:bg-[#437d7e] transition-colors shadow-md shadow-[#509798]/30 disabled:opacity-70 disabled:cursor-not-allowed text-[15px]"
-              >
-                {isLoading && <Loader2 className="w-4 h-4 animate-spin" />}
-                Sign up
-              </button>
-            </div>
+            <motion.button 
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.98 }}
+              type="submit"
+              disabled={isLoading || !isPasswordValid}
+              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 mt-2 rounded-xl font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-all shadow-md shadow-primary/25 disabled:opacity-50 disabled:hover:scale-100"
+            >
+              {isLoading && <Loader2 className="w-4 h-4 animate-spin" />}
+              Daftar Sekarang
+            </motion.button>
           </form>
 
-          <p className="mt-8 text-center text-[13px] font-medium text-muted-foreground">
+          <p className="mt-8 text-center text-sm text-muted-foreground">
             Sudah memiliki akun?{' '}
-            <Link href="/login" className="font-bold text-[#509798] hover:underline">
+            <Link href="/login" className="font-semibold text-primary hover:underline transition-all">
               Masuk di sini
             </Link>
           </p>
-        </div>
-      </div>
-      
-      {/* Kanan: Background */}
-      <div className="hidden lg:block relative flex-1">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=2070&auto=format&fit=crop")' }}
-        >
-          <div className="absolute inset-0 bg-black/10" />
-          <div className="absolute bottom-16 left-16 right-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight drop-shadow-lg">
-              Jadilah bagian dari<br/>Keluarga Kami
-            </h2>
-          </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   )
