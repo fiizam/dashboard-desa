@@ -11,7 +11,9 @@ import { UserModal } from './UserModal'
 export function UsersDataTable() {
   const queryClient = useQueryClient()
   const [search, setSearch] = useState('')
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [modalMode, setModalMode] = useState<'add' | 'edit' | 'reset'>('add')
+  const [selectedUser, setSelectedUser] = useState<any>(null)
+
   const [activeMenuId, setActiveMenuId] = useState<string | null>(null)
 
   const { data: users = [], isLoading } = useQuery({
@@ -21,12 +23,18 @@ export function UsersDataTable() {
 
   const toggleStatusMutation = useMutation({
     mutationFn: ({ id, status }: { id: string, status: boolean }) => toggleUserStatus(id, status),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['users'] })
+    onSuccess: (data: any) => {
+      if (data?.error) alert(data.error)
+      queryClient.invalidateQueries({ queryKey: ['users'] })
+    }
   })
 
   const deleteMutation = useMutation({
     mutationFn: (id: string) => deleteUser(id),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['users'] })
+    onSuccess: (data: any) => {
+      if (data?.error) alert(data.error)
+      queryClient.invalidateQueries({ queryKey: ['users'] })
+    }
   })
 
   const filteredUsers = users.filter(u => 
@@ -69,7 +77,10 @@ export function UsersDataTable() {
             Export
           </button>
           <button 
-            onClick={() => setIsModalOpen(true)}
+            onClick={() => {
+              setModalMode('add')
+              setSelectedUser(null)
+            }}
             className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl font-medium transition-colors shadow-sm shadow-primary/25"
           >
             <Plus className="w-4 h-4" />
@@ -173,15 +184,32 @@ export function UsersDataTable() {
                                 exit={{ opacity: 0, scale: 0.95, y: 10 }}
                                 className="absolute right-8 top-10 w-48 bg-card border border-border shadow-xl rounded-xl overflow-hidden z-50 text-left"
                               >
-                                <button className="w-full flex items-center gap-2 px-4 py-2.5 hover:bg-secondary text-sm transition-colors">
+                                <button 
+                                  onClick={() => {
+                                    setSelectedUser(user)
+                                    setModalMode('edit')
+                                    setActiveMenuId(null)
+                                  }}
+                                  className="w-full flex items-center gap-2 px-4 py-2.5 hover:bg-secondary text-sm transition-colors"
+                                >
                                   <Edit2 className="w-4 h-4 text-muted-foreground" /> Edit Data
                                 </button>
-                                <button className="w-full flex items-center gap-2 px-4 py-2.5 hover:bg-secondary text-sm transition-colors">
+                                <button 
+                                  onClick={() => {
+                                    setSelectedUser(user)
+                                    setModalMode('reset')
+                                    setActiveMenuId(null)
+                                  }}
+                                  className="w-full flex items-center gap-2 px-4 py-2.5 hover:bg-secondary text-sm transition-colors"
+                                >
                                   <ShieldAlert className="w-4 h-4 text-muted-foreground" /> Reset Password
                                 </button>
                                 <div className="border-t border-border/50 my-1" />
                                 <button 
-                                  onClick={() => deleteMutation.mutate(user.id)}
+                                  onClick={() => {
+                                    deleteMutation.mutate(user.id)
+                                    setActiveMenuId(null)
+                                  }}
                                   className="w-full flex items-center gap-2 px-4 py-2.5 hover:bg-rose-500/10 text-rose-500 text-sm transition-colors"
                                 >
                                   <Trash2 className="w-4 h-4" /> Hapus Akses
@@ -200,7 +228,16 @@ export function UsersDataTable() {
         </div>
       </div>
       
-      {isModalOpen && <UserModal onClose={() => setIsModalOpen(false)} />}
+      {modalMode && selectedUser !== undefined && (
+        <UserModal 
+          mode={modalMode} 
+          user={selectedUser} 
+          onClose={() => {
+            setModalMode('add')
+            setSelectedUser(null)
+          }} 
+        />
+      )}
     </>
   )
 }

@@ -63,6 +63,11 @@ export async function toggleUserStatus(id: string, currentStatus: boolean) {
   const session = await getSession()
   if (session?.role !== 'Admin') throw new Error('Unauthorized')
 
+  const targetUser = await prisma.user.findUnique({ where: { id }, include: { role: true } })
+  if (targetUser?.role.name === 'Admin' || targetUser?.role.name === 'Super Admin') {
+    return { error: 'Tidak dapat mengubah status akun Admin' }
+  }
+
   await prisma.user.update({
     where: { id },
     data: { isActive: !currentStatus }
@@ -75,8 +80,55 @@ export async function deleteUser(id: string) {
   const session = await getSession()
   if (session?.role !== 'Admin') throw new Error('Unauthorized')
 
+  const targetUser = await prisma.user.findUnique({ where: { id }, include: { role: true } })
+  if (targetUser?.role.name === 'Admin' || targetUser?.role.name === 'Super Admin') {
+    return { error: 'Tidak dapat menghapus akun Admin' }
+  }
+
   await prisma.user.delete({
     where: { id }
+  })
+  revalidatePath('/master')
+  return { success: true }
+}
+
+export async function editUser(id: string, data: { name: string, username: string, email: string, roleId: string, desaId?: string | null }) {
+  const session = await getSession()
+  if (session?.role !== 'Admin') throw new Error('Unauthorized')
+
+  const targetUser = await prisma.user.findUnique({ where: { id }, include: { role: true } })
+  if (targetUser?.role.name === 'Admin' || targetUser?.role.name === 'Super Admin') {
+    return { error: 'Tidak dapat mengedit data akun Admin' }
+  }
+
+  await prisma.user.update({
+    where: { id },
+    data: {
+      name: data.name,
+      username: data.username,
+      email: data.email,
+      roleId: data.roleId,
+      desaId: data.desaId || null
+    }
+  })
+  revalidatePath('/master')
+  return { success: true }
+}
+
+export async function resetUserPassword(id: string, newPassword: string) {
+  const session = await getSession()
+  if (session?.role !== 'Admin') throw new Error('Unauthorized')
+
+  const targetUser = await prisma.user.findUnique({ where: { id }, include: { role: true } })
+  if (targetUser?.role.name === 'Admin' || targetUser?.role.name === 'Super Admin') {
+    return { error: 'Tidak dapat mereset kata sandi akun Admin' }
+  }
+
+  const hashedPassword = await bcrypt.hash(newPassword, 10)
+
+  await prisma.user.update({
+    where: { id },
+    data: { password: hashedPassword }
   })
   revalidatePath('/master')
   return { success: true }

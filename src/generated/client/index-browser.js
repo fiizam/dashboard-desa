@@ -130,6 +130,7 @@ exports.Prisma.UserScalarFieldEnum = {
   password: 'password',
   roleId: 'roleId',
   desaId: 'desaId',
+  alamat: 'alamat',
   avatarUrl: 'avatarUrl',
   isActive: 'isActive',
   resetToken: 'resetToken',

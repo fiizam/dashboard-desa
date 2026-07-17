@@ -2792,6 +2792,7 @@ export namespace Prisma {
     password: string | null
     roleId: string | null
     desaId: string | null
+    alamat: string | null
     avatarUrl: string | null
     isActive: boolean | null
     resetToken: string | null
@@ -2808,6 +2809,7 @@ export namespace Prisma {
     password: string | null
     roleId: string | null
     desaId: string | null
+    alamat: string | null
     avatarUrl: string | null
     isActive: boolean | null
     resetToken: string | null
@@ -2824,6 +2826,7 @@ export namespace Prisma {
     password: number
     roleId: number
     desaId: number
+    alamat: number
     avatarUrl: number
     isActive: number
     resetToken: number
@@ -2842,6 +2845,7 @@ export namespace Prisma {
     password?: true
     roleId?: true
     desaId?: true
+    alamat?: true
     avatarUrl?: true
     isActive?: true
     resetToken?: true
@@ -2858,6 +2862,7 @@ export namespace Prisma {
     password?: true
     roleId?: true
     desaId?: true
+    alamat?: true
     avatarUrl?: true
     isActive?: true
     resetToken?: true
@@ -2874,6 +2879,7 @@ export namespace Prisma {
     password?: true
     roleId?: true
     desaId?: true
+    alamat?: true
     avatarUrl?: true
     isActive?: true
     resetToken?: true
@@ -2963,6 +2969,7 @@ export namespace Prisma {
     password: string
     roleId: string
     desaId: string | null
+    alamat: string | null
     avatarUrl: string | null
     isActive: boolean
     resetToken: string | null
@@ -2996,6 +3003,7 @@ export namespace Prisma {
     password?: boolean
     roleId?: boolean
     desaId?: boolean
+    alamat?: boolean
     avatarUrl?: boolean
     isActive?: boolean
     resetToken?: boolean
@@ -3016,6 +3024,7 @@ export namespace Prisma {
     password?: boolean
     roleId?: boolean
     desaId?: boolean
+    alamat?: boolean
     avatarUrl?: boolean
     isActive?: boolean
     resetToken?: boolean
@@ -3034,6 +3043,7 @@ export namespace Prisma {
     password?: boolean
     roleId?: boolean
     desaId?: boolean
+    alamat?: boolean
     avatarUrl?: boolean
     isActive?: boolean
     resetToken?: boolean
@@ -3068,6 +3078,7 @@ export namespace Prisma {
       password: string
       roleId: string
       desaId: string | null
+      alamat: string | null
       avatarUrl: string | null
       isActive: boolean
       resetToken: string | null
@@ -3477,6 +3488,7 @@ export namespace Prisma {
     readonly password: FieldRef<"User", 'String'>
     readonly roleId: FieldRef<"User", 'String'>
     readonly desaId: FieldRef<"User", 'String'>
+    readonly alamat: FieldRef<"User", 'String'>
     readonly avatarUrl: FieldRef<"User", 'String'>
     readonly isActive: FieldRef<"User", 'Boolean'>
     readonly resetToken: FieldRef<"User", 'String'>
@@ -20371,6 +20383,7 @@ export namespace Prisma {
     password: 'password',
     roleId: 'roleId',
     desaId: 'desaId',
+    alamat: 'alamat',
     avatarUrl: 'avatarUrl',
     isActive: 'isActive',
     resetToken: 'resetToken',
@@ -20677,6 +20690,7 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     roleId?: StringFilter<"User"> | string
     desaId?: StringNullableFilter<"User"> | string | null
+    alamat?: StringNullableFilter<"User"> | string | null
     avatarUrl?: StringNullableFilter<"User"> | string | null
     isActive?: BoolFilter<"User"> | boolean
     resetToken?: StringNullableFilter<"User"> | string | null
@@ -20696,6 +20710,7 @@ export namespace Prisma {
     password?: SortOrder
     roleId?: SortOrder
     desaId?: SortOrderInput | SortOrder
+    alamat?: SortOrderInput | SortOrder
     avatarUrl?: SortOrderInput | SortOrder
     isActive?: SortOrder
     resetToken?: SortOrderInput | SortOrder
@@ -20718,6 +20733,7 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     roleId?: StringFilter<"User"> | string
     desaId?: StringNullableFilter<"User"> | string | null
+    alamat?: StringNullableFilter<"User"> | string | null
     avatarUrl?: StringNullableFilter<"User"> | string | null
     isActive?: BoolFilter<"User"> | boolean
     resetToken?: StringNullableFilter<"User"> | string | null
@@ -20737,6 +20753,7 @@ export namespace Prisma {
     password?: SortOrder
     roleId?: SortOrder
     desaId?: SortOrderInput | SortOrder
+    alamat?: SortOrderInput | SortOrder
     avatarUrl?: SortOrderInput | SortOrder
     isActive?: SortOrder
     resetToken?: SortOrderInput | SortOrder
@@ -20759,6 +20776,7 @@ export namespace Prisma {
     password?: StringWithAggregatesFilter<"User"> | string
     roleId?: StringWithAggregatesFilter<"User"> | string
     desaId?: StringNullableWithAggregatesFilter<"User"> | string | null
+    alamat?: StringNullableWithAggregatesFilter<"User"> | string | null
     avatarUrl?: StringNullableWithAggregatesFilter<"User"> | string | null
     isActive?: BoolWithAggregatesFilter<"User"> | boolean
     resetToken?: StringNullableWithAggregatesFilter<"User"> | string | null
@@ -21778,6 +21796,7 @@ export namespace Prisma {
     username: string
     email: string
     password: string
+    alamat?: string | null
     avatarUrl?: string | null
     isActive?: boolean
     resetToken?: string | null
@@ -21797,6 +21816,7 @@ export namespace Prisma {
     password: string
     roleId: string
     desaId?: string | null
+    alamat?: string | null
     avatarUrl?: string | null
     isActive?: boolean
     resetToken?: string | null
@@ -21812,6 +21832,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    alamat?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     resetToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -21831,6 +21852,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     roleId?: StringFieldUpdateOperationsInput | string
     desaId?: NullableStringFieldUpdateOperationsInput | string | null
+    alamat?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     resetToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -21848,6 +21870,7 @@ export namespace Prisma {
     password: string
     roleId: string
     desaId?: string | null
+    alamat?: string | null
     avatarUrl?: string | null
     isActive?: boolean
     resetToken?: string | null
@@ -21862,6 +21885,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    alamat?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     resetToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -21878,6 +21902,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     roleId?: StringFieldUpdateOperationsInput | string
     desaId?: NullableStringFieldUpdateOperationsInput | string | null
+    alamat?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     resetToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -22994,6 +23019,7 @@ export namespace Prisma {
     password?: SortOrder
     roleId?: SortOrder
     desaId?: SortOrder
+    alamat?: SortOrder
     avatarUrl?: SortOrder
     isActive?: SortOrder
     resetToken?: SortOrder
@@ -23010,6 +23036,7 @@ export namespace Prisma {
     password?: SortOrder
     roleId?: SortOrder
     desaId?: SortOrder
+    alamat?: SortOrder
     avatarUrl?: SortOrder
     isActive?: SortOrder
     resetToken?: SortOrder
@@ -23026,6 +23053,7 @@ export namespace Prisma {
     password?: SortOrder
     roleId?: SortOrder
     desaId?: SortOrder
+    alamat?: SortOrder
     avatarUrl?: SortOrder
     isActive?: SortOrder
     resetToken?: SortOrder
@@ -25198,6 +25226,7 @@ export namespace Prisma {
     username: string
     email: string
     password: string
+    alamat?: string | null
     avatarUrl?: string | null
     isActive?: boolean
     resetToken?: string | null
@@ -25215,6 +25244,7 @@ export namespace Prisma {
     email: string
     password: string
     desaId?: string | null
+    alamat?: string | null
     avatarUrl?: string | null
     isActive?: boolean
     resetToken?: string | null
@@ -25261,6 +25291,7 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     roleId?: StringFilter<"User"> | string
     desaId?: StringNullableFilter<"User"> | string | null
+    alamat?: StringNullableFilter<"User"> | string | null
     avatarUrl?: StringNullableFilter<"User"> | string | null
     isActive?: BoolFilter<"User"> | boolean
     resetToken?: StringNullableFilter<"User"> | string | null
@@ -25520,6 +25551,7 @@ export namespace Prisma {
     username: string
     email: string
     password: string
+    alamat?: string | null
     avatarUrl?: string | null
     isActive?: boolean
     resetToken?: string | null
@@ -25537,6 +25569,7 @@ export namespace Prisma {
     email: string
     password: string
     roleId: string
+    alamat?: string | null
     avatarUrl?: string | null
     isActive?: boolean
     resetToken?: string | null
@@ -26863,6 +26896,7 @@ export namespace Prisma {
     username: string
     email: string
     password: string
+    alamat?: string | null
     avatarUrl?: string | null
     isActive?: boolean
     resetToken?: string | null
@@ -26881,6 +26915,7 @@ export namespace Prisma {
     password: string
     roleId: string
     desaId?: string | null
+    alamat?: string | null
     avatarUrl?: string | null
     isActive?: boolean
     resetToken?: string | null
@@ -26911,6 +26946,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    alamat?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     resetToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -26929,6 +26965,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     roleId?: StringFieldUpdateOperationsInput | string
     desaId?: NullableStringFieldUpdateOperationsInput | string | null
+    alamat?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     resetToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -26980,6 +27017,7 @@ export namespace Prisma {
     email: string
     password: string
     desaId?: string | null
+    alamat?: string | null
     avatarUrl?: string | null
     isActive?: boolean
     resetToken?: string | null
@@ -26994,6 +27032,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    alamat?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     resetToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -27011,6 +27050,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     desaId?: NullableStringFieldUpdateOperationsInput | string | null
+    alamat?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     resetToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -27027,6 +27067,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     desaId?: NullableStringFieldUpdateOperationsInput | string | null
+    alamat?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     resetToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -27122,6 +27163,7 @@ export namespace Prisma {
     email: string
     password: string
     roleId: string
+    alamat?: string | null
     avatarUrl?: string | null
     isActive?: boolean
     resetToken?: string | null
@@ -27144,6 +27186,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    alamat?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     resetToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -27161,6 +27204,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     roleId?: StringFieldUpdateOperationsInput | string
+    alamat?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     resetToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -27177,6 +27221,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     roleId?: StringFieldUpdateOperationsInput | string
+    alamat?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
     resetToken?: NullableStringFieldUpdateOperationsInput | string | null

@@ -20,6 +20,7 @@ model User {
   role      Role     @relation(fields: [roleId], references: [id])
   desaId    String?
   desa      Desa?    @relation(fields: [desaId], references: [id])
+  alamat    String?
   avatarUrl String?
   isActive  Boolean  @default(true)
   resetToken        String?
@@ -201,7 +202,7 @@ model TransaksiBelanja {
 model LogAktivitas {
   id          String   @id @default(cuid())
   userId      String
-  user        User     @relation(fields: [userId], references: [id])
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   action      String
   entity      String
   entityId    String?
