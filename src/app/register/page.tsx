@@ -60,117 +60,145 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md space-y-8">
-        <div className="text-center">
-          <div className="mx-auto w-12 h-12 rounded-xl bg-primary flex items-center justify-center text-primary-foreground font-bold shadow-sm shadow-primary/25 mb-4 text-xl">
-            D
-          </div>
-          <h2 className="text-3xl font-bold tracking-tight text-foreground">Buat Akun Baru</h2>
-          <p className="mt-2 text-sm text-muted-foreground">Bergabung untuk mengakses layanan digital desa.</p>
-        </div>
-
-        <form onSubmit={handleSubmit} className="bg-card border border-border/50 shadow-2xl rounded-3xl p-8 space-y-6">
-          {error && (
-            <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-600 text-sm font-medium">
-              {error}
+    <div className="min-h-screen bg-background flex flex-col md:flex-row">
+      {/* Kiri: Form */}
+      <div className="flex-1 flex flex-col justify-center px-4 py-8 sm:px-6 lg:flex-none lg:w-1/2 lg:px-20 xl:px-24 relative z-10 bg-background">
+        <div className="mx-auto w-full max-w-sm lg:w-[400px]">
+          <div className="text-center mb-8">
+            <div className="mx-auto w-12 h-12 flex items-center justify-center text-[#254d68] mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L14.4 7.6L20 10L14.4 12.4L12 18L9.6 12.4L4 10L9.6 7.6L12 2Z" />
+                <circle cx="12" cy="10" r="3" fill="white" />
+                <circle cx="12" cy="10" r="1.5" fill="#254d68" />
+              </svg>
             </div>
-          )}
-          
-          <div className="space-y-1">
-            <label className="text-sm font-medium">Nama Lengkap</label>
-            <div className="relative">
-              <UserCircle className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <input 
-                name="name"
-                required
-                className="w-full bg-background border border-border/50 rounded-xl pl-10 pr-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-primary/20"
-                placeholder="John Doe"
-              />
-            </div>
+            <h2 className="text-xl sm:text-[22px] font-bold tracking-tight text-foreground leading-snug">
+              Gabung dan bagikan kisahmu bersama kami.
+            </h2>
+            <p className="mt-3 text-[13px] text-muted-foreground font-medium">
+              Daftar untuk memulai kunjungan Anda bersama Sistem Keuangan Desa.
+            </p>
           </div>
 
-          <div className="space-y-1">
-            <label className="text-sm font-medium">Username</label>
-            <div className="relative">
-              <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <input 
-                name="username"
-                required
-                className="w-full bg-background border border-border/50 rounded-xl pl-10 pr-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-primary/20"
-                placeholder="Minimal 10 karakter unik"
-              />
+          <form onSubmit={handleSubmit} className="space-y-5">
+            {error && (
+              <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-600 text-sm font-medium">
+                {error}
+              </div>
+            )}
+            
+            <div className="space-y-1.5">
+              <label className="text-[13px] font-bold text-foreground/80">Nama</label>
+              <div className="relative">
+                <UserCircle className="absolute left-3.5 top-1/2 -translate-y-1/2 w-[18px] h-[18px] text-muted-foreground/60" />
+                <input 
+                  name="name"
+                  required
+                  className="w-full bg-background border border-border/70 rounded-[14px] pl-10 pr-4 py-3 text-sm outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/10 transition-all placeholder:text-muted-foreground/50 placeholder:font-medium"
+                  placeholder="Masukkan Nama"
+                />
+              </div>
             </div>
-          </div>
 
-          <div className="space-y-1">
-            <label className="text-sm font-medium">Email Terdaftar</label>
-            <div className="relative">
-              <UserCircle className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <input 
-                type="email"
-                name="email"
-                required
-                className="w-full bg-background border border-border/50 rounded-xl pl-10 pr-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-primary/20"
-                placeholder="Alamat email aktif Anda"
-              />
+            <div className="space-y-1.5">
+              <label className="text-[13px] font-bold text-foreground/80">Email</label>
+              <div className="relative">
+                <UserCircle className="absolute left-3.5 top-1/2 -translate-y-1/2 w-[18px] h-[18px] text-muted-foreground/60" />
+                <input 
+                  type="email"
+                  name="email"
+                  required
+                  className="w-full bg-background border border-border/70 rounded-[14px] pl-10 pr-4 py-3 text-sm outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/10 transition-all placeholder:text-muted-foreground/50 placeholder:font-medium"
+                  placeholder="Masukkan Email"
+                />
+              </div>
             </div>
-          </div>
 
-          <div className="space-y-1">
-            <label className="text-sm font-medium">Password</label>
-            <div className="relative">
-              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <input 
-                type={showPassword ? "text" : "password"}
-                name="password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full bg-background border border-border/50 rounded-xl pl-10 pr-10 py-2.5 text-sm outline-none focus:ring-2 focus:ring-primary/20"
-                placeholder="••••••••"
-              />
+            <div className="space-y-1.5">
+              <label className="text-[13px] font-bold text-foreground/80">Username</label>
+              <div className="relative">
+                <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-[18px] h-[18px] text-muted-foreground/60" />
+                <input 
+                  name="username"
+                  required
+                  className="w-full bg-background border border-border/70 rounded-[14px] pl-10 pr-4 py-3 text-sm outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/10 transition-all placeholder:text-muted-foreground/50 placeholder:font-medium"
+                  placeholder="Masukkan Username"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="text-[13px] font-bold text-foreground/80">Password</label>
+              <div className="relative">
+                <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-[18px] h-[18px] text-muted-foreground/60" />
+                <input 
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full bg-background border border-border/70 rounded-[14px] pl-10 pr-10 py-3 text-sm outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/10 transition-all placeholder:text-muted-foreground/50 placeholder:font-medium"
+                  placeholder="Masukkan Password"
+                />
+                <button 
+                  type="button" 
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-muted-foreground/60 hover:text-foreground transition-colors"
+                >
+                  {showPassword ? <EyeOff className="w-[18px] h-[18px]" /> : <Eye className="w-[18px] h-[18px]" />}
+                </button>
+              </div>
+              
+              <div className="pt-3 grid grid-cols-2 gap-y-2 gap-x-4">
+                <div className={`flex items-center gap-2 text-xs font-medium ${validations.length ? 'text-emerald-500' : 'text-muted-foreground/80'}`}>
+                  {validations.length ? <CheckCircle2 className="w-3.5 h-3.5" /> : <XCircle className="w-3.5 h-3.5" />} Min. 10 Characters
+                </div>
+                <div className={`flex items-center gap-2 text-xs font-medium ${validations.uppercase ? 'text-emerald-500' : 'text-muted-foreground/80'}`}>
+                  {validations.uppercase ? <CheckCircle2 className="w-3.5 h-3.5" /> : <XCircle className="w-3.5 h-3.5" />} 1 Uppercase Letter
+                </div>
+                <div className={`flex items-center gap-2 text-xs font-medium ${validations.lowercase ? 'text-emerald-500' : 'text-muted-foreground/80'}`}>
+                  {validations.lowercase ? <CheckCircle2 className="w-3.5 h-3.5" /> : <XCircle className="w-3.5 h-3.5" />} 1 Lowercase Letter
+                </div>
+                <div className={`flex items-center gap-2 text-xs font-medium ${validations.number ? 'text-emerald-500' : 'text-muted-foreground/80'}`}>
+                  {validations.number ? <CheckCircle2 className="w-3.5 h-3.5" /> : <XCircle className="w-3.5 h-3.5" />} 1 Number
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-2">
               <button 
-                type="button" 
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                type="submit"
+                disabled={isLoading || !isPasswordValid}
+                className="w-full flex items-center justify-center gap-2 px-4 py-3.5 rounded-[14px] font-semibold bg-[#509798] text-white hover:bg-[#437d7e] transition-colors shadow-md shadow-[#509798]/30 disabled:opacity-70 disabled:cursor-not-allowed text-[15px]"
               >
-                {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                {isLoading && <Loader2 className="w-4 h-4 animate-spin" />}
+                Sign up
               </button>
             </div>
-            
-            <div className="pt-2 grid grid-cols-2 gap-2">
-              <div className={`flex items-center gap-1.5 text-xs ${validations.length ? 'text-emerald-500' : 'text-muted-foreground'}`}>
-                {validations.length ? <CheckCircle2 className="w-3.5 h-3.5" /> : <XCircle className="w-3.5 h-3.5" />} Min. 10 Characters
-              </div>
-              <div className={`flex items-center gap-1.5 text-xs ${validations.uppercase ? 'text-emerald-500' : 'text-muted-foreground'}`}>
-                {validations.uppercase ? <CheckCircle2 className="w-3.5 h-3.5" /> : <XCircle className="w-3.5 h-3.5" />} 1 Uppercase Letter
-              </div>
-              <div className={`flex items-center gap-1.5 text-xs ${validations.lowercase ? 'text-emerald-500' : 'text-muted-foreground'}`}>
-                {validations.lowercase ? <CheckCircle2 className="w-3.5 h-3.5" /> : <XCircle className="w-3.5 h-3.5" />} 1 Lowercase Letter
-              </div>
-              <div className={`flex items-center gap-1.5 text-xs ${validations.number ? 'text-emerald-500' : 'text-muted-foreground'}`}>
-                {validations.number ? <CheckCircle2 className="w-3.5 h-3.5" /> : <XCircle className="w-3.5 h-3.5" />} 1 Number
-              </div>
-            </div>
+          </form>
+
+          <p className="mt-8 text-center text-[13px] font-medium text-muted-foreground">
+            Sudah memiliki akun?{' '}
+            <Link href="/login" className="font-bold text-[#509798] hover:underline">
+              Masuk di sini
+            </Link>
+          </p>
+        </div>
+      </div>
+      
+      {/* Kanan: Background */}
+      <div className="hidden lg:block relative flex-1">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=2070&auto=format&fit=crop")' }}
+        >
+          <div className="absolute inset-0 bg-black/10" />
+          <div className="absolute bottom-16 left-16 right-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight drop-shadow-lg">
+              Jadilah bagian dari<br/>Keluarga Kami
+            </h2>
           </div>
-
-          <button 
-            type="submit"
-            disabled={isLoading || !isPasswordValid}
-            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors shadow-sm shadow-primary/25 disabled:opacity-50"
-          >
-            {isLoading && <Loader2 className="w-4 h-4 animate-spin" />}
-            Daftar Akun
-          </button>
-        </form>
-
-        <p className="text-center text-sm text-muted-foreground">
-          Sudah memiliki akun?{' '}
-          <Link href="/login" className="font-semibold text-primary hover:underline">
-            Masuk di sini
-          </Link>
-        </p>
+        </div>
       </div>
     </div>
   )
