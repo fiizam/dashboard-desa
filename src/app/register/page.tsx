@@ -141,16 +141,16 @@ export default function RegisterPage() {
             
             <div className="pt-2 grid grid-cols-2 gap-2">
               <div className={`flex items-center gap-1.5 text-xs ${validations.length ? 'text-emerald-500' : 'text-muted-foreground'}`}>
-                {validations.length ? <CheckCircle2 className="w-3.5 h-3.5" /> : <XCircle className="w-3.5 h-3.5" />} Min. 10 Karakter
+                {validations.length ? <CheckCircle2 className="w-3.5 h-3.5" /> : <XCircle className="w-3.5 h-3.5" />} Min. 10 Characters
               </div>
               <div className={`flex items-center gap-1.5 text-xs ${validations.uppercase ? 'text-emerald-500' : 'text-muted-foreground'}`}>
-                {validations.uppercase ? <CheckCircle2 className="w-3.5 h-3.5" /> : <XCircle className="w-3.5 h-3.5" />} 1 Huruf Besar
+                {validations.uppercase ? <CheckCircle2 className="w-3.5 h-3.5" /> : <XCircle className="w-3.5 h-3.5" />} 1 Uppercase Letter
               </div>
               <div className={`flex items-center gap-1.5 text-xs ${validations.lowercase ? 'text-emerald-500' : 'text-muted-foreground'}`}>
-                {validations.lowercase ? <CheckCircle2 className="w-3.5 h-3.5" /> : <XCircle className="w-3.5 h-3.5" />} 1 Huruf Kecil
+                {validations.lowercase ? <CheckCircle2 className="w-3.5 h-3.5" /> : <XCircle className="w-3.5 h-3.5" />} 1 Lowercase Letter
               </div>
               <div className={`flex items-center gap-1.5 text-xs ${validations.number ? 'text-emerald-500' : 'text-muted-foreground'}`}>
-                {validations.number ? <CheckCircle2 className="w-3.5 h-3.5" /> : <XCircle className="w-3.5 h-3.5" />} 1 Angka
+                {validations.number ? <CheckCircle2 className="w-3.5 h-3.5" /> : <XCircle className="w-3.5 h-3.5" />} 1 Number
               </div>
             </div>
           </div>
