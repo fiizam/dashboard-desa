@@ -84,8 +84,13 @@ export function Sidebar({ userRole }: { userRole: string }) {
       >
         <div className="h-20 flex items-center justify-between px-4 shrink-0 mt-2">
           <Link href="/" className="flex items-center gap-3 overflow-hidden">
-            <div className="w-10 h-10 rounded-xl bg-slate-800 dark:bg-white flex items-center justify-center text-white dark:text-slate-900 font-bold shadow-sm shrink-0">
-              //
+            <div className="w-10 h-10 shrink-0 relative flex items-center justify-center bg-white rounded-xl overflow-hidden p-1">
+              <Image 
+                src="/logo.png" 
+                alt="DesaSync Logo" 
+                fill
+                className="object-contain drop-shadow-sm"
+              />
             </div>
             <AnimatePresence mode="popLayout">
               {isExpanded && (

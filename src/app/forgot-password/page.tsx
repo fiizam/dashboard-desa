@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Loader2, Mail, ArrowLeft } from 'lucide-react'
 import { requestPasswordReset } from '@/server/actions/auth-reset'
 
@@ -36,8 +37,13 @@ export default function ForgotPasswordPage() {
         <Link href="/login" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-6">
           <ArrowLeft className="w-4 h-4" /> Kembali ke Login
         </Link>
-        <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center text-primary-foreground font-bold shadow-sm shadow-primary/25 mb-4 text-xl">
-          D
+        <div className="w-16 h-16 mb-4 relative bg-white rounded-xl overflow-hidden p-1 shadow-sm border border-border/50 mx-auto sm:mx-0">
+          <Image 
+            src="/logo.png" 
+            alt="DesaSync Logo" 
+            fill
+            className="object-contain"
+          />
         </div>
         <h2 className="text-3xl font-bold tracking-tight text-foreground">Lupa Password?</h2>
         <p className="mt-2 text-sm text-muted-foreground">

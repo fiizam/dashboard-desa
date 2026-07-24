@@ -3,6 +3,7 @@
 import { useState, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Loader2, Lock, User, Eye, EyeOff } from 'lucide-react'
 import { login } from '@/server/actions/auth'
 
@@ -47,8 +48,13 @@ export default function LoginPage() {
       <div className="flex-1 flex flex-col justify-center px-4 sm:px-6 lg:flex-none lg:w-1/2 lg:px-20 xl:px-24">
         <div className="mx-auto w-full max-w-sm lg:w-96">
           <div className="mb-8">
-            <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center text-primary-foreground font-bold shadow-sm shadow-primary/25 mb-4 text-xl">
-              D
+            <div className="w-16 h-16 mb-4 relative bg-white rounded-xl overflow-hidden p-1 shadow-sm border border-border/50">
+              <Image 
+                src="/logo.png" 
+                alt="DesaSync Logo" 
+                fill
+                className="object-contain"
+              />
             </div>
             <h2 className="text-3xl font-bold tracking-tight text-foreground">Welcome back</h2>
             <p className="mt-2 text-sm text-muted-foreground">Silakan masuk ke akun Anda untuk melanjutkan.</p>

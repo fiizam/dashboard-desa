@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Loader2, Lock, User, UserCircle, CheckCircle2, XCircle, Eye, EyeOff, Mail } from 'lucide-react'
 import { register } from '@/server/actions/auth'
 import { motion } from 'framer-motion'
@@ -70,8 +71,13 @@ export default function RegisterPage() {
       >
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-50"></div>
         <div className="relative z-10 max-w-lg">
-          <div className="w-16 h-16 rounded-2xl bg-primary flex items-center justify-center text-primary-foreground font-bold shadow-lg shadow-primary/30 mb-8 text-3xl">
-            D
+          <div className="w-20 h-20 mb-8 relative bg-white rounded-2xl overflow-hidden p-2 shadow-lg shadow-primary/10">
+            <Image 
+              src="/logo.png" 
+              alt="DesaSync Logo" 
+              fill
+              className="object-contain"
+            />
           </div>
           <h2 className="text-5xl font-extrabold mb-6 leading-tight tracking-tight">Mulai Perjalanan<br />Digital Desa.</h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
