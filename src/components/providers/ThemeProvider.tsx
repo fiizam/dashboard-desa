@@ -15,19 +15,28 @@ export function ThemeProvider() {
   useEffect(() => {
     if (!mounted) return
 
-    const root = document.documentElement
-    
+    const applyTheme = (isDark: boolean) => {
+      const root = document.documentElement
+      const updateDOM = () => {
+        if (isDark) root.classList.add('dark')
+        else root.classList.remove('dark')
+      }
+
+      // @ts-ignore - View Transition API might not be typed in this TS version
+      if (!document.startViewTransition) {
+        updateDOM()
+        return
+      }
+
+      // @ts-ignore
+      document.startViewTransition(() => updateDOM())
+    }
+
     if (theme === 'system') {
       const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-      if (systemTheme === 'dark') {
-        root.classList.add('dark')
-      } else {
-        root.classList.remove('dark')
-      }
-    } else if (theme === 'dark') {
-      root.classList.add('dark')
+      applyTheme(systemTheme === 'dark')
     } else {
-      root.classList.remove('dark')
+      applyTheme(theme === 'dark')
     }
   }, [theme, mounted])
 
@@ -38,11 +47,17 @@ export function ThemeProvider() {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
     const handleChange = (e: MediaQueryListEvent) => {
       const root = document.documentElement
-      if (e.matches) {
-        root.classList.add('dark')
-      } else {
-        root.classList.remove('dark')
+      const updateDOM = () => {
+        if (e.matches) root.classList.add('dark')
+        else root.classList.remove('dark')
       }
+      // @ts-ignore
+      if (!document.startViewTransition) {
+        updateDOM()
+        return
+      }
+      // @ts-ignore
+      document.startViewTransition(() => updateDOM())
     }
 
     mediaQuery.addEventListener('change', handleChange)
