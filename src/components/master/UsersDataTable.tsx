@@ -158,7 +158,7 @@ export function UsersDataTable() {
                       </td>
                       <td className="px-4 py-4 text-muted-foreground">{user.desa}</td>
                       <td className="px-4 py-4">
-                        {(user.role === 'Admin' || user.role === 'Super Admin') ? (
+                        {(user.role === 'Super Admin' || session?.role === 'Super Admin') ? (
                           <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium ${user.isActive ? 'bg-emerald-500/10 text-emerald-600' : 'bg-rose-500/10 text-rose-600'}`}>
                             <div className={`w-1.5 h-1.5 rounded-full ${user.isActive ? 'bg-emerald-500' : 'bg-rose-500'}`} />
                             {user.isActive ? 'Aktif' : 'Nonaktif'}
@@ -174,7 +174,7 @@ export function UsersDataTable() {
                         )}
                       </td>
                       <td className="px-4 py-4 text-right relative">
-                        {user.role !== 'Admin' && user.role !== 'Super Admin' ? (
+                        {user.role !== 'Super Admin' ? (
                           <>
                             <button 
                               onClick={() => setActiveMenuId(activeMenuId === user.id ? null : user.id)}

@@ -40,7 +40,7 @@ export async function getDesa() {
 
 export async function addUser(data: { name: string, username: string, email: string, password?: string, roleId: string, desaId?: string | null, isActive: boolean }) {
   const session = await getSession()
-  if (session?.role !== 'Admin') throw new Error('Unauthorized')
+  if (!['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris'].includes(session?.role as string)) throw new Error('Unauthorized')
 
   const hashedPassword = data.password ? await bcrypt.hash(data.password, 10) : 'hashed_password'
 
@@ -61,11 +61,11 @@ export async function addUser(data: { name: string, username: string, email: str
 
 export async function toggleUserStatus(id: string, currentStatus: boolean) {
   const session = await getSession()
-  if (session?.role !== 'Admin') throw new Error('Unauthorized')
+  if (!['Super Admin', 'Ketua RW', 'Wakil Ketua RW'].includes(session?.role as string)) throw new Error('Unauthorized')
 
   const targetUser = await prisma.user.findUnique({ where: { id }, include: { role: true } })
-  if (targetUser?.role.name === 'Admin' || targetUser?.role.name === 'Super Admin') {
-    return { error: 'Tidak dapat mengubah status akun Admin' }
+  if (targetUser?.role.name === 'Super Admin' && session?.role !== 'Super Admin') {
+    return { error: 'Hanya Super Admin yang dapat mengubah status Super Admin' }
   }
 
   await prisma.user.update({
@@ -78,11 +78,11 @@ export async function toggleUserStatus(id: string, currentStatus: boolean) {
 
 export async function deleteUser(id: string) {
   const session = await getSession()
-  if (session?.role !== 'Admin') throw new Error('Unauthorized')
+  if (!['Super Admin', 'Ketua RW', 'Wakil Ketua RW'].includes(session?.role as string)) throw new Error('Unauthorized')
 
   const targetUser = await prisma.user.findUnique({ where: { id }, include: { role: true } })
-  if (targetUser?.role.name === 'Admin' || targetUser?.role.name === 'Super Admin') {
-    return { error: 'Tidak dapat menghapus akun Admin' }
+  if (targetUser?.role.name === 'Super Admin' && session?.role !== 'Super Admin') {
+    return { error: 'Hanya Super Admin yang dapat menghapus Super Admin' }
   }
 
   await prisma.user.delete({
@@ -94,11 +94,11 @@ export async function deleteUser(id: string) {
 
 export async function editUser(id: string, data: { name: string, username: string, email: string, roleId: string, desaId?: string | null }) {
   const session = await getSession()
-  if (session?.role !== 'Admin') throw new Error('Unauthorized')
+  if (!['Super Admin', 'Ketua RW', 'Wakil Ketua RW'].includes(session?.role as string)) throw new Error('Unauthorized')
 
   const targetUser = await prisma.user.findUnique({ where: { id }, include: { role: true } })
-  if (targetUser?.role.name === 'Admin' || targetUser?.role.name === 'Super Admin') {
-    return { error: 'Tidak dapat mengedit data akun Admin' }
+  if (targetUser?.role.name === 'Super Admin' && session?.role !== 'Super Admin') {
+    return { error: 'Hanya Super Admin yang dapat mengedit data Super Admin' }
   }
 
   await prisma.user.update({
@@ -117,11 +117,11 @@ export async function editUser(id: string, data: { name: string, username: strin
 
 export async function resetUserPassword(id: string, newPassword: string) {
   const session = await getSession()
-  if (session?.role !== 'Admin') throw new Error('Unauthorized')
+  if (!['Super Admin', 'Ketua RW', 'Wakil Ketua RW'].includes(session?.role as string)) throw new Error('Unauthorized')
 
   const targetUser = await prisma.user.findUnique({ where: { id }, include: { role: true } })
-  if (targetUser?.role.name === 'Admin' || targetUser?.role.name === 'Super Admin') {
-    return { error: 'Tidak dapat mereset kata sandi akun Admin' }
+  if (targetUser?.role.name === 'Super Admin' && session?.role !== 'Super Admin') {
+    return { error: 'Hanya Super Admin yang dapat mereset kata sandi Super Admin' }
   }
 
   const hashedPassword = await bcrypt.hash(newPassword, 10)

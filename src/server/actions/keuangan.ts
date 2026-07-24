@@ -80,14 +80,14 @@ export async function addTransaction(data: { type: 'in' | 'out', amount: number,
     await createAuditLog('CREATE_TRANSAKSI', 'Transaksi Belanja', tx.id, `Pengajuan belanja Rp ${data.amount}`)
   }
   
-  // Notify Kepala Desa
-  const kades = await prisma.user.findFirst({
-    where: { role: { name: 'Kepala Desa' } }
+  // Notify Ketua RW
+  const ketuaRw = await prisma.user.findFirst({
+    where: { role: { name: 'Ketua RW' } }
   })
   
-  if (kades) {
+  if (ketuaRw) {
     await createNotification(
-      kades.id,
+      ketuaRw.id,
       'Transaksi Baru Menunggu Persetujuan',
       `Terdapat pengajuan transaksi ${data.type === 'in' ? 'pendapatan' : 'belanja'} sebesar Rp ${data.amount.toLocaleString()} yang memerlukan persetujuan Anda.`,
       '/keuangan/approval'

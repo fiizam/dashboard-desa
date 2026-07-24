@@ -6,7 +6,7 @@ import { getSession } from '@/lib/session'
 export async function generateBackup() {
   const session = await getSession()
   
-  if (!session || session.role !== 'Admin') {
+  if (!session || !['Super Admin', 'Ketua RW', 'Wakil Ketua RW'].includes(session.role as string)) {
     return { error: 'Anda tidak memiliki otorisasi untuk mengunduh backup data.' }
   }
 

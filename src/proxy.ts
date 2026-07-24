@@ -21,31 +21,30 @@ export async function proxy(req: NextRequest) {
     return NextResponse.redirect(new URL('/', req.nextUrl))
   }
 
-  // RBAC Checks
-  if (session) {
-    const role = session.role as string
+    // RBAC Checks
+    if (session) {
+      const role = session.role as string
 
-    // 1. Audit Log: Only Super Admin and Admin
-    if (path.startsWith('/master/audit') && !['Super Admin', 'Admin'].includes(role)) {
-      return NextResponse.redirect(new URL('/', req.nextUrl))
-    }
+      // 1. Audit Log: Only Super Admin
+      if (path.startsWith('/master/audit') && role !== 'Super Admin') {
+        return NextResponse.redirect(new URL('/', req.nextUrl))
+      }
 
-    // 2. Master & Referensi: Super Admin, Admin Keuangan, Admin
-    if ((path.startsWith('/master') || path.startsWith('/referensi') || path.startsWith('/settings')) && 
-        !['Super Admin', 'Admin Keuangan', 'Admin', 'User'].includes(role) && !path.startsWith('/master/audit')) { 
-      return NextResponse.redirect(new URL('/', req.nextUrl))
-    }
+      // 2. Keuangan: Block Sekretaris
+      if (path.startsWith('/keuangan') && role === 'Sekretaris') {
+        return NextResponse.redirect(new URL('/', req.nextUrl))
+      }
 
-    // Specifically block User from Master and Referensi
-    if ((path.startsWith('/master') || path.startsWith('/referensi')) && role === 'User') {
-       return NextResponse.redirect(new URL('/', req.nextUrl))
-    }
+      // 3. Master Data & Referensi: Block Bendahara
+      if ((path.startsWith('/master') || path.startsWith('/referensi')) && role === 'Bendahara') {
+        return NextResponse.redirect(new URL('/', req.nextUrl))
+      }
 
-    // 3. Approval: Only Kepala Desa
-    if (path.startsWith('/keuangan/approval') && role !== 'Kepala Desa') {
-      return NextResponse.redirect(new URL('/keuangan', req.nextUrl))
+      // 4. Approval Transaksi: Only Super Admin, Ketua RW, Wakil Ketua RW
+      if (path.startsWith('/keuangan/approval') && !['Super Admin', 'Ketua RW', 'Wakil Ketua RW'].includes(role)) {
+        return NextResponse.redirect(new URL('/keuangan', req.nextUrl))
+      }
     }
-  }
 
   return NextResponse.next()
 }

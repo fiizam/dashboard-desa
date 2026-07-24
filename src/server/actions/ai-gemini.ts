@@ -6,7 +6,7 @@ import { GoogleGenerativeAI } from '@google/generative-ai'
 
 export async function generateFinancialInsights() {
   const session = await getSession()
-  if (session?.role !== 'Admin') throw new Error('Unauthorized')
+  if (!['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Bendahara'].includes(session?.role as string)) throw new Error('Unauthorized')
 
   const apiKey = process.env.GEMINI_API_KEY
   if (!apiKey) {

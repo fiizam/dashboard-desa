@@ -11,7 +11,7 @@ export async function getSumberDanas() {
 
 export async function upsertSumberDana(data: { id?: string; kode: string; name: string; keterangan?: string }) {
   const session = await getSession()
-  if (!['Super Admin', 'Admin Keuangan'].includes(session?.role as string)) throw new Error('Unauthorized')
+  if (!['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris'].includes(session?.role as string)) throw new Error('Unauthorized')
 
   if (data.id) {
     await prisma.sumberDana.update({ where: { id: data.id }, data })
@@ -24,7 +24,7 @@ export async function upsertSumberDana(data: { id?: string; kode: string; name: 
 
 export async function deleteSumberDana(id: string) {
   const session = await getSession()
-  if (!['Super Admin', 'Admin Keuangan'].includes(session?.role as string)) throw new Error('Unauthorized')
+  if (!['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris'].includes(session?.role as string)) throw new Error('Unauthorized')
 
   await prisma.sumberDana.delete({ where: { id } })
   revalidatePath('/referensi')
@@ -38,7 +38,7 @@ export async function getKategoriPendapatans() {
 
 export async function upsertKategoriPendapatan(data: { id?: string; kode: string; name: string }) {
   const session = await getSession()
-  if (!['Super Admin', 'Admin Keuangan'].includes(session?.role as string)) throw new Error('Unauthorized')
+  if (!['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris'].includes(session?.role as string)) throw new Error('Unauthorized')
 
   if (data.id) {
     await prisma.kategoriPendapatan.update({ where: { id: data.id }, data })
@@ -51,7 +51,7 @@ export async function upsertKategoriPendapatan(data: { id?: string; kode: string
 
 export async function deleteKategoriPendapatan(id: string) {
   const session = await getSession()
-  if (!['Super Admin', 'Admin Keuangan'].includes(session?.role as string)) throw new Error('Unauthorized')
+  if (!['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris'].includes(session?.role as string)) throw new Error('Unauthorized')
 
   await prisma.kategoriPendapatan.delete({ where: { id } })
   revalidatePath('/referensi')
@@ -65,7 +65,7 @@ export async function getKategoriBelanjas() {
 
 export async function upsertKategoriBelanja(data: { id?: string; kode: string; name: string }) {
   const session = await getSession()
-  if (!['Super Admin', 'Admin Keuangan'].includes(session?.role as string)) throw new Error('Unauthorized')
+  if (!['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris'].includes(session?.role as string)) throw new Error('Unauthorized')
 
   if (data.id) {
     await prisma.kategoriBelanja.update({ where: { id: data.id }, data })
@@ -78,7 +78,7 @@ export async function upsertKategoriBelanja(data: { id?: string; kode: string; n
 
 export async function deleteKategoriBelanja(id: string) {
   const session = await getSession()
-  if (!['Super Admin', 'Admin Keuangan'].includes(session?.role as string)) throw new Error('Unauthorized')
+  if (!['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris'].includes(session?.role as string)) throw new Error('Unauthorized')
 
   await prisma.kategoriBelanja.delete({ where: { id } })
   revalidatePath('/referensi')

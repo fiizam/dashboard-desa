@@ -38,11 +38,11 @@ export function Sidebar({ userRole }: { userRole: string }) {
   const isExpanded = isPinned || isHovered || isMobileMenuOpen
 
   const menuItems = [
-    { label: t.sidebar.dashboard, href: '/', icon: LayoutDashboard, roles: ['Admin', 'User'] },
-    { label: t.sidebar.keuangan, href: '/keuangan', icon: Wallet, roles: ['Admin', 'User'] },
-    { label: t.sidebar.masterData, href: '/master', icon: Users, roles: ['Admin'] },
-    { label: t.sidebar.laporan, href: '/laporan', icon: FileText, roles: ['Admin'] },
-    { label: t.sidebar.pengaturan, href: '/settings', icon: Settings, roles: ['Admin', 'User'] },
+    { label: t.sidebar.dashboard, href: '/', icon: LayoutDashboard, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
+    { label: t.sidebar.keuangan, href: '/keuangan', icon: Wallet, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Bendahara'] },
+    { label: t.sidebar.masterData, href: '/master', icon: Users, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris'] },
+    { label: t.sidebar.laporan, href: '/laporan', icon: FileText, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
+    { label: t.sidebar.pengaturan, href: '/settings', icon: Settings, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
   ]
 
   const visibleMenus = menuItems.filter(m => m.roles.includes(userRole))
