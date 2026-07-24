@@ -87,7 +87,7 @@ export function Sidebar({ userRole }: { userRole: string }) {
             <div className="w-10 h-10 shrink-0 relative flex items-center justify-center bg-white rounded-xl overflow-hidden p-1">
               <Image 
                 src="/logo.png" 
-                alt="DesaSync Logo" 
+                alt="Digital Village Logo" 
                 fill
                 className="object-contain drop-shadow-sm"
               />
@@ -100,7 +100,7 @@ export function Sidebar({ userRole }: { userRole: string }) {
                   exit={{ opacity: 0, x: -10 }}
                   className="font-bold text-lg whitespace-nowrap"
                 >
-                  DesaSync
+                  Digital Village
                 </motion.span>
               )}
             </AnimatePresence>

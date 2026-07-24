@@ -33,7 +33,7 @@ export async function generateFinancialInsights() {
 
   // Construct prompt
   const prompt = `
-Anda adalah DesaSync AI, seorang Konsultan Keuangan Desa yang ahli, profesional, analitis, dan berwibawa.
+Anda adalah Digital Village AI, seorang Konsultan Keuangan Desa yang ahli, profesional, analitis, dan berwibawa.
 Berikut adalah data keuangan (APBDes) desa saat ini:
 - Total Pendapatan Terealisasi: Rp ${totalPendapatan.toLocaleString('id-ID')}
 - Total Anggaran Belanja: Rp ${totalAnggaranBelanja.toLocaleString('id-ID')}

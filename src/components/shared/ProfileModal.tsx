@@ -37,7 +37,7 @@ export function ProfileModal() {
                 <User className="w-10 h-10 text-primary" />
               </div>
               <h3 className="text-xl font-bold">Admin Keuangan</h3>
-              <p className="text-sm text-muted-foreground">admin@desasync.id</p>
+              <p className="text-sm text-muted-foreground">admin@Digital Village.id</p>
               <div className="mt-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold">
                 <Shield className="w-3.5 h-3.5" />
                 Administrator

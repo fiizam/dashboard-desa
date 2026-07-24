@@ -27,7 +27,7 @@ export function TopNavigation() {
             <div className="w-8 h-8 rounded-xl bg-primary flex items-center justify-center text-primary-foreground font-bold shadow-sm shadow-primary/25 group-hover:scale-105 transition-transform">
               D
             </div>
-            <span className="font-semibold text-lg tracking-tight hidden sm:block">DesaSync</span>
+            <span className="font-semibold text-lg tracking-tight hidden sm:block">Digital Village</span>
           </Link>
 
           <nav className="hidden md:flex items-center gap-1">

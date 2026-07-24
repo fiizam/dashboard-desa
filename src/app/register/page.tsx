@@ -74,7 +74,7 @@ export default function RegisterPage() {
           <div className="w-20 h-20 mb-8 relative bg-white rounded-2xl overflow-hidden p-2 shadow-lg shadow-primary/10">
             <Image 
               src="/logo.png" 
-              alt="DesaSync Logo" 
+              alt="Digital Village Logo" 
               fill
               className="object-contain"
             />

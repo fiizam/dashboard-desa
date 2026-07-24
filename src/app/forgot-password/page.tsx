@@ -40,7 +40,7 @@ export default function ForgotPasswordPage() {
         <div className="w-16 h-16 mb-4 relative bg-white rounded-xl overflow-hidden p-1 shadow-sm border border-border/50 mx-auto sm:mx-0">
           <Image 
             src="/logo.png" 
-            alt="DesaSync Logo" 
+            alt="Digital Village Logo" 
             fill
             className="object-contain"
           />

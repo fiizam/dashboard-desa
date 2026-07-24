@@ -37,9 +37,9 @@ export async function requestPasswordReset(email: string) {
     const resetUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/reset-password?token=${resetToken}`
 
     const mailOptions = {
-      from: `"DesaSync Security" <${process.env.SMTP_USER || 'noreply@desa.id'}>`,
+      from: `"Digital Village Security" <${process.env.SMTP_USER || 'noreply@desa.id'}>`,
       to: user.email,
-      subject: 'Reset Password Akun DesaSync Anda',
+      subject: 'Reset Password Akun Digital Village Anda',
       text: `Halo ${user.name},\n\nKami menerima permintaan untuk mereset kata sandi akun Anda. Silakan kunjungi tautan berikut untuk mengatur kata sandi baru: \n\n${resetUrl}\n\nTautan ini hanya berlaku selama 1 jam.\nJika Anda tidak meminta reset kata sandi, abaikan email ini.`,
       html: `
         <!DOCTYPE html>
@@ -74,12 +74,12 @@ export async function requestPasswordReset(email: string) {
                 <div class="logo-container">
                   <span class="logo-text">D</span>
                 </div>
-                <h1 class="title">DesaSync</h1>
+                <h1 class="title">Digital Village</h1>
                 <div class="subtitle">Sistem Informasi Keuangan Desa</div>
               </div>
               <div class="content">
                 <p class="greeting">Halo ${user.name},</p>
-                <p class="message">Kami menerima permintaan untuk mengatur ulang kata sandi <i>(reset password)</i> akun Anda di platform DesaSync.</p>
+                <p class="message">Kami menerima permintaan untuk mengatur ulang kata sandi <i>(reset password)</i> akun Anda di platform Digital Village.</p>
                 <p class="message">Silakan klik tombol di bawah ini untuk membuat kata sandi yang baru. Tautan ini hanya berlaku selama <strong>1 jam</strong>.</p>
                 
                 <div class="button-container">
@@ -93,7 +93,7 @@ export async function requestPasswordReset(email: string) {
                 <a href="${resetUrl}" class="link-raw">${resetUrl}</a>
               </div>
               <div class="footer">
-                <p>&copy; ${new Date().getFullYear()} DesaSync Enterprise.<br>Email ini dikirim secara otomatis, mohon tidak membalas.</p>
+                <p>&copy; ${new Date().getFullYear()} Digital Village Enterprise.<br>Email ini dikirim secara otomatis, mohon tidak membalas.</p>
               </div>
             </div>
           </div>

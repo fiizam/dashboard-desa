@@ -177,7 +177,7 @@ export function LaporanInteractive() {
 
          <div className="hidden print:block mt-8">
            <h2 className="text-2xl font-bold mb-4 border-b pb-2">Dokumen Resmi: {reportType}</h2>
-           <p className="mb-4">Tahun Anggaran 2026. Laporan ini dicetak secara otomatis dari sistem DesaSync.</p>
+           <p className="mb-4">Tahun Anggaran 2026. Laporan ini dicetak secara otomatis dari sistem Digital Village.</p>
            {/* In a real app, we would render a structured table here based on the selected report */}
            <table className="w-full text-sm text-left border">
              <thead className="bg-gray-100 border-b">

@@ -36,7 +36,7 @@ export function AiFinancialAdvisor() {
               <Bot className="w-5 h-5" />
             </div>
             <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400">
-              DesaSync AI Advisor
+              Digital Village AI Advisor
             </h3>
           </div>
           <p className="text-slate-600 dark:text-slate-400 text-sm md:max-w-xl leading-relaxed">
