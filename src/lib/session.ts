@@ -21,7 +21,11 @@ export async function getSession() {
   const cookieStore = await cookies()
   const session = cookieStore.get('session')?.value
   if (!session) return null
-  return await decrypt(session)
+  const decrypted = await decrypt(session)
+  if (decrypted && decrypted.role === 'Admin') {
+    decrypted.role = 'Super Admin'
+  }
+  return decrypted
 }
 
 export async function deleteSession() {

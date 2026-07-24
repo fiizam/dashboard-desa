@@ -23,7 +23,8 @@ export async function proxy(req: NextRequest) {
 
     // RBAC Checks
     if (session) {
-      const role = session.role as string
+      let role = session.role as string
+      if (role === 'Admin') role = 'Super Admin'
 
       // 1. Audit Log: Only Super Admin
       if (path.startsWith('/master/audit') && role !== 'Super Admin') {

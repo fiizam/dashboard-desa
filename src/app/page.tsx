@@ -6,10 +6,22 @@ import { SoftCommunication } from '@/components/dashboard/SoftCommunication'
 import { SoftBreakdown } from '@/components/dashboard/SoftBreakdown'
 import { SoftRightPanel } from '@/components/dashboard/SoftRightPanel'
 import { getSession } from '@/lib/session'
+import prisma from '@/lib/prisma'
 
 export default async function Home() {
   const session = await getSession()
-  const role = session?.role || 'User'
+  let role = session?.role || 'User'
+
+  // Selalu ambil role terbaru dari database untuk menghindari stale session cookie
+  if (session?.userId) {
+    const user = await prisma.user.findUnique({
+      where: { id: session.userId },
+      include: { role: true }
+    })
+    if (user) {
+      role = user.role.name
+    }
+  }
 
   return (
     <DashboardLayout userRole={role}>
