@@ -37,15 +37,9 @@ export async function requestPasswordReset(email: string) {
     const resetUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/reset-password?token=${resetToken}`
 
     const mailOptions = {
-      from: `"DesaSync Enterprise" <${process.env.SMTP_USER || 'noreply@desa.id'}>`,
+      from: `"DesaSync Security" <${process.env.SMTP_USER || 'noreply@desa.id'}>`,
       to: user.email,
-      replyTo: process.env.SMTP_USER || 'noreply@desa.id',
-      subject: '🔒 Reset Password Akun DesaSync Anda',
-      headers: {
-        'X-Entity-Ref-ID': crypto.randomBytes(16).toString('hex'),
-        'Priority': 'High',
-        'Importance': 'High'
-      },
+      subject: 'Reset Password Akun DesaSync Anda',
       text: `Halo ${user.name},\n\nKami menerima permintaan untuk mereset kata sandi akun Anda. Silakan kunjungi tautan berikut untuk mengatur kata sandi baru: \n\n${resetUrl}\n\nTautan ini hanya berlaku selama 1 jam.\nJika Anda tidak meminta reset kata sandi, abaikan email ini.`,
       html: `
         <!DOCTYPE html>
@@ -54,58 +48,52 @@ export async function requestPasswordReset(email: string) {
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <style>
-            body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8fafc; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
-            .wrapper { width: 100%; table-layout: fixed; background-color: #f8fafc; padding-bottom: 60px; }
-            .main { max-width: 600px; margin: 40px auto; background: #ffffff; border-radius: 24px; overflow: hidden; box-shadow: 0 10px 40px -10px rgba(0,0,0,0.08); border: 1px solid #f1f5f9; }
-            .header { background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%); padding: 50px 40px; text-align: center; position: relative; overflow: hidden; }
-            .header::before { content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 60%); transform: rotate(30deg); pointer-events: none; }
-            .logo-box { background: rgba(255,255,255,0.2); width: 64px; height: 64px; border-radius: 16px; margin: 0 auto 20px; display: inline-flex; align-items: center; justify-content: center; font-size: 32px; font-weight: bold; color: white; backdrop-filter: blur(10px); }
-            .title { color: #ffffff; font-size: 28px; font-weight: 800; margin: 0; letter-spacing: -0.5px; line-height: 1.2; }
-            .subtitle { color: rgba(255,255,255,0.9); font-size: 15px; margin-top: 10px; font-weight: 500; }
-            .content { padding: 45px 40px; color: #334155; line-height: 1.7; }
-            .greeting { font-size: 22px; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 16px; }
-            .message { font-size: 16px; margin: 0 0 24px 0; color: #475569; }
-            .button-container { text-align: center; margin: 40px 0; }
-            .button { display: inline-block; background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%); color: #ffffff; padding: 16px 36px; font-size: 16px; font-weight: 600; text-decoration: none; border-radius: 12px; box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.4); transition: transform 0.2s, box-shadow 0.2s; }
-            .button:hover { transform: translateY(-2px); box-shadow: 0 12px 30px -5px rgba(59, 130, 246, 0.5); }
-            .divider { height: 1px; background-color: #e2e8f0; margin: 40px 0; }
-            .security-notice { display: flex; align-items: flex-start; gap: 16px; background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; }
-            .security-notice p { margin: 0; font-size: 14px; color: #64748b; line-height: 1.5; text-align: left; }
-            .security-notice strong { color: #334155; display: block; margin-bottom: 4px; }
-            .footer { background: #f1f5f9; padding: 30px 40px; text-align: center; font-size: 13px; color: #94a3b8; }
-            .footer p { margin: 5px 0; }
-            .link-raw { font-size: 12px; color: #3b82f6; word-break: break-all; margin-top: 24px; text-align: center; display: block; text-decoration: underline; }
+            body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f4f7f6; margin: 0; padding: 0; }
+            .wrapper { width: 100%; background-color: #f4f7f6; padding: 40px 0; }
+            .main { max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); }
+            .header { background-color: #2563eb; padding: 40px 20px; text-align: center; }
+            .logo-container { width: 60px; height: 60px; margin: 0 auto 15px auto; background-color: #ffffff; border-radius: 50%; display: table; }
+            .logo-text { display: table-cell; vertical-align: middle; font-size: 28px; font-weight: bold; color: #2563eb; }
+            .title { color: #ffffff; font-size: 24px; font-weight: bold; margin: 0; letter-spacing: 0.5px; }
+            .subtitle { color: #bfdbfe; font-size: 14px; margin-top: 8px; }
+            .content { padding: 40px 30px; color: #374151; line-height: 1.6; }
+            .greeting { font-size: 20px; font-weight: bold; color: #1f2937; margin-top: 0; }
+            .message { font-size: 15px; margin-bottom: 25px; }
+            .button-container { text-align: center; margin: 35px 0; }
+            .button { background-color: #2563eb; color: #ffffff !important; padding: 14px 32px; font-size: 16px; font-weight: bold; text-decoration: none; border-radius: 8px; display: inline-block; }
+            .security-notice { background-color: #f8fafc; border-left: 4px solid #94a3b8; padding: 15px 20px; margin-top: 30px; }
+            .security-notice p { margin: 0; font-size: 13px; color: #64748b; }
+            .footer { background-color: #f1f5f9; padding: 25px 30px; text-align: center; font-size: 12px; color: #64748b; }
+            .link-raw { font-size: 11px; color: #94a3b8; word-break: break-all; margin-top: 20px; display: block; text-align: center; }
           </style>
         </head>
         <body>
           <div class="wrapper">
             <div class="main">
               <div class="header">
-                <div class="logo-box">D</div>
+                <div class="logo-container">
+                  <span class="logo-text">D</span>
+                </div>
                 <h1 class="title">DesaSync</h1>
                 <div class="subtitle">Sistem Informasi Keuangan Desa</div>
               </div>
               <div class="content">
                 <p class="greeting">Halo ${user.name},</p>
-                <p class="message">Kami menerima permintaan dari perangkat Anda untuk mengatur ulang kata sandi <i>(reset password)</i> pada akun DesaSync.</p>
-                <p class="message">Untuk menjaga keamanan data keuangan desa, silakan klik tombol di bawah ini untuk membuat kata sandi yang baru. <b>Tautan ini akan kedaluwarsa secara otomatis dalam waktu 1 jam.</b></p>
+                <p class="message">Kami menerima permintaan untuk mengatur ulang kata sandi <i>(reset password)</i> akun Anda di platform DesaSync.</p>
+                <p class="message">Silakan klik tombol di bawah ini untuk membuat kata sandi yang baru. Tautan ini hanya berlaku selama <strong>1 jam</strong>.</p>
                 
                 <div class="button-container">
-                  <a href="${resetUrl}" class="button">Atur Ulang Kata Sandi</a>
+                  <a href="${resetUrl}" class="button">Reset Kata Sandi</a>
                 </div>
                 
                 <div class="security-notice">
-                  <div>
-                    <p><strong>Bukan Anda yang meminta?</strong></p>
-                    <p>Jika Anda tidak pernah merasa meminta pengaturan ulang kata sandi, abaikan email ini dengan aman. Sistem keamanan kami akan memastikan akun Anda tetap terlindungi.</p>
-                  </div>
+                  <p><strong>Abaikan email ini</strong> jika Anda tidak pernah meminta pengaturan ulang kata sandi. Keamanan akun Anda tetap terjaga dan kata sandi Anda tidak akan berubah.</p>
                 </div>
                 
                 <a href="${resetUrl}" class="link-raw">${resetUrl}</a>
               </div>
               <div class="footer">
-                <p>&copy; ${new Date().getFullYear()} DesaSync Enterprise. Hak Cipta Dilindungi.</p>
-                <p>Pesan ini dihasilkan secara otomatis oleh sistem keamanan kami. Mohon untuk tidak membalas email ini.</p>
+                <p>&copy; ${new Date().getFullYear()} DesaSync Enterprise.<br>Email ini dikirim secara otomatis, mohon tidak membalas.</p>
               </div>
             </div>
           </div>
