@@ -145,7 +145,7 @@ export function KeuanganInteractive({ initialApbdes, initialTransactions, userRo
                   </div>
                   <div className="flex items-center gap-4">
                     <span className="font-bold text-foreground">{formatRupiah(t.jumlah)}</span>
-                    {['Super Admin', 'Ketua RW', 'Wakil Ketua RW'].includes(userRole) && (
+                    {userRole && ['Super Admin', 'Ketua RW', 'Wakil Ketua RW'].includes(userRole) && (
                       <button 
                         onClick={() => approveMutation.mutate({ id: t.id, type: t.tType as 'in'|'out' })}
                         className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-500 text-white rounded-lg text-sm font-medium hover:bg-emerald-600 transition-colors shadow-sm shadow-emerald-500/20"

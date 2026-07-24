@@ -108,6 +108,16 @@ export type LogAktivitas = $Result.DefaultSelection<Prisma.$LogAktivitasPayload>
  * 
  */
 export type Notification = $Result.DefaultSelection<Prisma.$NotificationPayload>
+/**
+ * Model Keluarga
+ * 
+ */
+export type Keluarga = $Result.DefaultSelection<Prisma.$KeluargaPayload>
+/**
+ * Model Warga
+ * 
+ */
+export type Warga = $Result.DefaultSelection<Prisma.$WargaPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -421,6 +431,26 @@ export class PrismaClient<
     * ```
     */
   get notification(): Prisma.NotificationDelegate<ExtArgs>;
+
+  /**
+   * `prisma.keluarga`: Exposes CRUD operations for the **Keluarga** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Keluargas
+    * const keluargas = await prisma.keluarga.findMany()
+    * ```
+    */
+  get keluarga(): Prisma.KeluargaDelegate<ExtArgs>;
+
+  /**
+   * `prisma.warga`: Exposes CRUD operations for the **Warga** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Wargas
+    * const wargas = await prisma.warga.findMany()
+    * ```
+    */
+  get warga(): Prisma.WargaDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -880,7 +910,9 @@ export namespace Prisma {
     TransaksiPendapatan: 'TransaksiPendapatan',
     TransaksiBelanja: 'TransaksiBelanja',
     LogAktivitas: 'LogAktivitas',
-    Notification: 'Notification'
+    Notification: 'Notification',
+    Keluarga: 'Keluarga',
+    Warga: 'Warga'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -896,7 +928,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "role" | "provinsi" | "kabupaten" | "kecamatan" | "desa" | "apbdes" | "sumberDana" | "kategoriPendapatan" | "pendapatan" | "kategoriBelanja" | "bidang" | "kegiatan" | "belanja" | "pembiayaan" | "transaksiPendapatan" | "transaksiBelanja" | "logAktivitas" | "notification"
+      modelProps: "user" | "role" | "provinsi" | "kabupaten" | "kecamatan" | "desa" | "apbdes" | "sumberDana" | "kategoriPendapatan" | "pendapatan" | "kategoriBelanja" | "bidang" | "kegiatan" | "belanja" | "pembiayaan" | "transaksiPendapatan" | "transaksiBelanja" | "logAktivitas" | "notification" | "keluarga" | "warga"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2230,6 +2262,146 @@ export namespace Prisma {
           }
         }
       }
+      Keluarga: {
+        payload: Prisma.$KeluargaPayload<ExtArgs>
+        fields: Prisma.KeluargaFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.KeluargaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KeluargaPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.KeluargaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KeluargaPayload>
+          }
+          findFirst: {
+            args: Prisma.KeluargaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KeluargaPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.KeluargaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KeluargaPayload>
+          }
+          findMany: {
+            args: Prisma.KeluargaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KeluargaPayload>[]
+          }
+          create: {
+            args: Prisma.KeluargaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KeluargaPayload>
+          }
+          createMany: {
+            args: Prisma.KeluargaCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.KeluargaCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KeluargaPayload>[]
+          }
+          delete: {
+            args: Prisma.KeluargaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KeluargaPayload>
+          }
+          update: {
+            args: Prisma.KeluargaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KeluargaPayload>
+          }
+          deleteMany: {
+            args: Prisma.KeluargaDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.KeluargaUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.KeluargaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$KeluargaPayload>
+          }
+          aggregate: {
+            args: Prisma.KeluargaAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateKeluarga>
+          }
+          groupBy: {
+            args: Prisma.KeluargaGroupByArgs<ExtArgs>
+            result: $Utils.Optional<KeluargaGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.KeluargaCountArgs<ExtArgs>
+            result: $Utils.Optional<KeluargaCountAggregateOutputType> | number
+          }
+        }
+      }
+      Warga: {
+        payload: Prisma.$WargaPayload<ExtArgs>
+        fields: Prisma.WargaFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.WargaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WargaPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.WargaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WargaPayload>
+          }
+          findFirst: {
+            args: Prisma.WargaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WargaPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.WargaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WargaPayload>
+          }
+          findMany: {
+            args: Prisma.WargaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WargaPayload>[]
+          }
+          create: {
+            args: Prisma.WargaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WargaPayload>
+          }
+          createMany: {
+            args: Prisma.WargaCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.WargaCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WargaPayload>[]
+          }
+          delete: {
+            args: Prisma.WargaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WargaPayload>
+          }
+          update: {
+            args: Prisma.WargaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WargaPayload>
+          }
+          deleteMany: {
+            args: Prisma.WargaDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.WargaUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.WargaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WargaPayload>
+          }
+          aggregate: {
+            args: Prisma.WargaAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateWarga>
+          }
+          groupBy: {
+            args: Prisma.WargaGroupByArgs<ExtArgs>
+            result: $Utils.Optional<WargaGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.WargaCountArgs<ExtArgs>
+            result: $Utils.Optional<WargaCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2557,11 +2729,13 @@ export namespace Prisma {
   export type DesaCountOutputType = {
     users: number
     apbdes: number
+    keluargas: number
   }
 
   export type DesaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     users?: boolean | DesaCountOutputTypeCountUsersArgs
     apbdes?: boolean | DesaCountOutputTypeCountApbdesArgs
+    keluargas?: boolean | DesaCountOutputTypeCountKeluargasArgs
   }
 
   // Custom InputTypes
@@ -2587,6 +2761,13 @@ export namespace Prisma {
    */
   export type DesaCountOutputTypeCountApbdesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ApbdesWhereInput
+  }
+
+  /**
+   * DesaCountOutputType without action
+   */
+  export type DesaCountOutputTypeCountKeluargasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: KeluargaWhereInput
   }
 
 
@@ -2862,6 +3043,37 @@ export namespace Prisma {
    */
   export type BelanjaCountOutputTypeCountTransaksisArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TransaksiBelanjaWhereInput
+  }
+
+
+  /**
+   * Count Type KeluargaCountOutputType
+   */
+
+  export type KeluargaCountOutputType = {
+    anggota: number
+  }
+
+  export type KeluargaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    anggota?: boolean | KeluargaCountOutputTypeCountAnggotaArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * KeluargaCountOutputType without action
+   */
+  export type KeluargaCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the KeluargaCountOutputType
+     */
+    select?: KeluargaCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * KeluargaCountOutputType without action
+   */
+  export type KeluargaCountOutputTypeCountAnggotaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WargaWhereInput
   }
 
 
@@ -7862,6 +8074,7 @@ export namespace Prisma {
     kecamatan?: boolean | KecamatanDefaultArgs<ExtArgs>
     users?: boolean | Desa$usersArgs<ExtArgs>
     apbdes?: boolean | Desa$apbdesArgs<ExtArgs>
+    keluargas?: boolean | Desa$keluargasArgs<ExtArgs>
     _count?: boolean | DesaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["desa"]>
 
@@ -7888,6 +8101,7 @@ export namespace Prisma {
     kecamatan?: boolean | KecamatanDefaultArgs<ExtArgs>
     users?: boolean | Desa$usersArgs<ExtArgs>
     apbdes?: boolean | Desa$apbdesArgs<ExtArgs>
+    keluargas?: boolean | Desa$keluargasArgs<ExtArgs>
     _count?: boolean | DesaCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type DesaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7900,6 +8114,7 @@ export namespace Prisma {
       kecamatan: Prisma.$KecamatanPayload<ExtArgs>
       users: Prisma.$UserPayload<ExtArgs>[]
       apbdes: Prisma.$ApbdesPayload<ExtArgs>[]
+      keluargas: Prisma.$KeluargaPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -8275,6 +8490,7 @@ export namespace Prisma {
     kecamatan<T extends KecamatanDefaultArgs<ExtArgs> = {}>(args?: Subset<T, KecamatanDefaultArgs<ExtArgs>>): Prisma__KecamatanClient<$Result.GetResult<Prisma.$KecamatanPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     users<T extends Desa$usersArgs<ExtArgs> = {}>(args?: Subset<T, Desa$usersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany"> | Null>
     apbdes<T extends Desa$apbdesArgs<ExtArgs> = {}>(args?: Subset<T, Desa$apbdesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApbdesPayload<ExtArgs>, T, "findMany"> | Null>
+    keluargas<T extends Desa$keluargasArgs<ExtArgs> = {}>(args?: Subset<T, Desa$keluargasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$KeluargaPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8665,6 +8881,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ApbdesScalarFieldEnum | ApbdesScalarFieldEnum[]
+  }
+
+  /**
+   * Desa.keluargas
+   */
+  export type Desa$keluargasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Keluarga
+     */
+    select?: KeluargaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KeluargaInclude<ExtArgs> | null
+    where?: KeluargaWhereInput
+    orderBy?: KeluargaOrderByWithRelationInput | KeluargaOrderByWithRelationInput[]
+    cursor?: KeluargaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: KeluargaScalarFieldEnum | KeluargaScalarFieldEnum[]
   }
 
   /**
@@ -21438,6 +21674,2054 @@ export namespace Prisma {
 
 
   /**
+   * Model Keluarga
+   */
+
+  export type AggregateKeluarga = {
+    _count: KeluargaCountAggregateOutputType | null
+    _min: KeluargaMinAggregateOutputType | null
+    _max: KeluargaMaxAggregateOutputType | null
+  }
+
+  export type KeluargaMinAggregateOutputType = {
+    id: string | null
+    nomorKk: string | null
+    kepalaKeluarga: string | null
+    alamat: string | null
+    rt: string | null
+    rw: string | null
+    desaId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type KeluargaMaxAggregateOutputType = {
+    id: string | null
+    nomorKk: string | null
+    kepalaKeluarga: string | null
+    alamat: string | null
+    rt: string | null
+    rw: string | null
+    desaId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type KeluargaCountAggregateOutputType = {
+    id: number
+    nomorKk: number
+    kepalaKeluarga: number
+    alamat: number
+    rt: number
+    rw: number
+    desaId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type KeluargaMinAggregateInputType = {
+    id?: true
+    nomorKk?: true
+    kepalaKeluarga?: true
+    alamat?: true
+    rt?: true
+    rw?: true
+    desaId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type KeluargaMaxAggregateInputType = {
+    id?: true
+    nomorKk?: true
+    kepalaKeluarga?: true
+    alamat?: true
+    rt?: true
+    rw?: true
+    desaId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type KeluargaCountAggregateInputType = {
+    id?: true
+    nomorKk?: true
+    kepalaKeluarga?: true
+    alamat?: true
+    rt?: true
+    rw?: true
+    desaId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type KeluargaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Keluarga to aggregate.
+     */
+    where?: KeluargaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Keluargas to fetch.
+     */
+    orderBy?: KeluargaOrderByWithRelationInput | KeluargaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: KeluargaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Keluargas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Keluargas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Keluargas
+    **/
+    _count?: true | KeluargaCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: KeluargaMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: KeluargaMaxAggregateInputType
+  }
+
+  export type GetKeluargaAggregateType<T extends KeluargaAggregateArgs> = {
+        [P in keyof T & keyof AggregateKeluarga]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateKeluarga[P]>
+      : GetScalarType<T[P], AggregateKeluarga[P]>
+  }
+
+
+
+
+  export type KeluargaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: KeluargaWhereInput
+    orderBy?: KeluargaOrderByWithAggregationInput | KeluargaOrderByWithAggregationInput[]
+    by: KeluargaScalarFieldEnum[] | KeluargaScalarFieldEnum
+    having?: KeluargaScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: KeluargaCountAggregateInputType | true
+    _min?: KeluargaMinAggregateInputType
+    _max?: KeluargaMaxAggregateInputType
+  }
+
+  export type KeluargaGroupByOutputType = {
+    id: string
+    nomorKk: string
+    kepalaKeluarga: string
+    alamat: string
+    rt: string
+    rw: string
+    desaId: string
+    createdAt: Date
+    updatedAt: Date
+    _count: KeluargaCountAggregateOutputType | null
+    _min: KeluargaMinAggregateOutputType | null
+    _max: KeluargaMaxAggregateOutputType | null
+  }
+
+  type GetKeluargaGroupByPayload<T extends KeluargaGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<KeluargaGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof KeluargaGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], KeluargaGroupByOutputType[P]>
+            : GetScalarType<T[P], KeluargaGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type KeluargaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nomorKk?: boolean
+    kepalaKeluarga?: boolean
+    alamat?: boolean
+    rt?: boolean
+    rw?: boolean
+    desaId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    desa?: boolean | DesaDefaultArgs<ExtArgs>
+    anggota?: boolean | Keluarga$anggotaArgs<ExtArgs>
+    _count?: boolean | KeluargaCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["keluarga"]>
+
+  export type KeluargaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nomorKk?: boolean
+    kepalaKeluarga?: boolean
+    alamat?: boolean
+    rt?: boolean
+    rw?: boolean
+    desaId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    desa?: boolean | DesaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["keluarga"]>
+
+  export type KeluargaSelectScalar = {
+    id?: boolean
+    nomorKk?: boolean
+    kepalaKeluarga?: boolean
+    alamat?: boolean
+    rt?: boolean
+    rw?: boolean
+    desaId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type KeluargaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    desa?: boolean | DesaDefaultArgs<ExtArgs>
+    anggota?: boolean | Keluarga$anggotaArgs<ExtArgs>
+    _count?: boolean | KeluargaCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type KeluargaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    desa?: boolean | DesaDefaultArgs<ExtArgs>
+  }
+
+  export type $KeluargaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Keluarga"
+    objects: {
+      desa: Prisma.$DesaPayload<ExtArgs>
+      anggota: Prisma.$WargaPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      nomorKk: string
+      kepalaKeluarga: string
+      alamat: string
+      rt: string
+      rw: string
+      desaId: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["keluarga"]>
+    composites: {}
+  }
+
+  type KeluargaGetPayload<S extends boolean | null | undefined | KeluargaDefaultArgs> = $Result.GetResult<Prisma.$KeluargaPayload, S>
+
+  type KeluargaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<KeluargaFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: KeluargaCountAggregateInputType | true
+    }
+
+  export interface KeluargaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Keluarga'], meta: { name: 'Keluarga' } }
+    /**
+     * Find zero or one Keluarga that matches the filter.
+     * @param {KeluargaFindUniqueArgs} args - Arguments to find a Keluarga
+     * @example
+     * // Get one Keluarga
+     * const keluarga = await prisma.keluarga.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends KeluargaFindUniqueArgs>(args: SelectSubset<T, KeluargaFindUniqueArgs<ExtArgs>>): Prisma__KeluargaClient<$Result.GetResult<Prisma.$KeluargaPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Keluarga that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {KeluargaFindUniqueOrThrowArgs} args - Arguments to find a Keluarga
+     * @example
+     * // Get one Keluarga
+     * const keluarga = await prisma.keluarga.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends KeluargaFindUniqueOrThrowArgs>(args: SelectSubset<T, KeluargaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__KeluargaClient<$Result.GetResult<Prisma.$KeluargaPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Keluarga that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KeluargaFindFirstArgs} args - Arguments to find a Keluarga
+     * @example
+     * // Get one Keluarga
+     * const keluarga = await prisma.keluarga.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends KeluargaFindFirstArgs>(args?: SelectSubset<T, KeluargaFindFirstArgs<ExtArgs>>): Prisma__KeluargaClient<$Result.GetResult<Prisma.$KeluargaPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Keluarga that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KeluargaFindFirstOrThrowArgs} args - Arguments to find a Keluarga
+     * @example
+     * // Get one Keluarga
+     * const keluarga = await prisma.keluarga.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends KeluargaFindFirstOrThrowArgs>(args?: SelectSubset<T, KeluargaFindFirstOrThrowArgs<ExtArgs>>): Prisma__KeluargaClient<$Result.GetResult<Prisma.$KeluargaPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Keluargas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KeluargaFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Keluargas
+     * const keluargas = await prisma.keluarga.findMany()
+     * 
+     * // Get first 10 Keluargas
+     * const keluargas = await prisma.keluarga.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const keluargaWithIdOnly = await prisma.keluarga.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends KeluargaFindManyArgs>(args?: SelectSubset<T, KeluargaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$KeluargaPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Keluarga.
+     * @param {KeluargaCreateArgs} args - Arguments to create a Keluarga.
+     * @example
+     * // Create one Keluarga
+     * const Keluarga = await prisma.keluarga.create({
+     *   data: {
+     *     // ... data to create a Keluarga
+     *   }
+     * })
+     * 
+     */
+    create<T extends KeluargaCreateArgs>(args: SelectSubset<T, KeluargaCreateArgs<ExtArgs>>): Prisma__KeluargaClient<$Result.GetResult<Prisma.$KeluargaPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Keluargas.
+     * @param {KeluargaCreateManyArgs} args - Arguments to create many Keluargas.
+     * @example
+     * // Create many Keluargas
+     * const keluarga = await prisma.keluarga.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends KeluargaCreateManyArgs>(args?: SelectSubset<T, KeluargaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Keluargas and returns the data saved in the database.
+     * @param {KeluargaCreateManyAndReturnArgs} args - Arguments to create many Keluargas.
+     * @example
+     * // Create many Keluargas
+     * const keluarga = await prisma.keluarga.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Keluargas and only return the `id`
+     * const keluargaWithIdOnly = await prisma.keluarga.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends KeluargaCreateManyAndReturnArgs>(args?: SelectSubset<T, KeluargaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$KeluargaPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a Keluarga.
+     * @param {KeluargaDeleteArgs} args - Arguments to delete one Keluarga.
+     * @example
+     * // Delete one Keluarga
+     * const Keluarga = await prisma.keluarga.delete({
+     *   where: {
+     *     // ... filter to delete one Keluarga
+     *   }
+     * })
+     * 
+     */
+    delete<T extends KeluargaDeleteArgs>(args: SelectSubset<T, KeluargaDeleteArgs<ExtArgs>>): Prisma__KeluargaClient<$Result.GetResult<Prisma.$KeluargaPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Keluarga.
+     * @param {KeluargaUpdateArgs} args - Arguments to update one Keluarga.
+     * @example
+     * // Update one Keluarga
+     * const keluarga = await prisma.keluarga.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends KeluargaUpdateArgs>(args: SelectSubset<T, KeluargaUpdateArgs<ExtArgs>>): Prisma__KeluargaClient<$Result.GetResult<Prisma.$KeluargaPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Keluargas.
+     * @param {KeluargaDeleteManyArgs} args - Arguments to filter Keluargas to delete.
+     * @example
+     * // Delete a few Keluargas
+     * const { count } = await prisma.keluarga.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends KeluargaDeleteManyArgs>(args?: SelectSubset<T, KeluargaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Keluargas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KeluargaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Keluargas
+     * const keluarga = await prisma.keluarga.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends KeluargaUpdateManyArgs>(args: SelectSubset<T, KeluargaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Keluarga.
+     * @param {KeluargaUpsertArgs} args - Arguments to update or create a Keluarga.
+     * @example
+     * // Update or create a Keluarga
+     * const keluarga = await prisma.keluarga.upsert({
+     *   create: {
+     *     // ... data to create a Keluarga
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Keluarga we want to update
+     *   }
+     * })
+     */
+    upsert<T extends KeluargaUpsertArgs>(args: SelectSubset<T, KeluargaUpsertArgs<ExtArgs>>): Prisma__KeluargaClient<$Result.GetResult<Prisma.$KeluargaPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Keluargas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KeluargaCountArgs} args - Arguments to filter Keluargas to count.
+     * @example
+     * // Count the number of Keluargas
+     * const count = await prisma.keluarga.count({
+     *   where: {
+     *     // ... the filter for the Keluargas we want to count
+     *   }
+     * })
+    **/
+    count<T extends KeluargaCountArgs>(
+      args?: Subset<T, KeluargaCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], KeluargaCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Keluarga.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KeluargaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends KeluargaAggregateArgs>(args: Subset<T, KeluargaAggregateArgs>): Prisma.PrismaPromise<GetKeluargaAggregateType<T>>
+
+    /**
+     * Group by Keluarga.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {KeluargaGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends KeluargaGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: KeluargaGroupByArgs['orderBy'] }
+        : { orderBy?: KeluargaGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, KeluargaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetKeluargaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Keluarga model
+   */
+  readonly fields: KeluargaFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Keluarga.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__KeluargaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    desa<T extends DesaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DesaDefaultArgs<ExtArgs>>): Prisma__DesaClient<$Result.GetResult<Prisma.$DesaPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    anggota<T extends Keluarga$anggotaArgs<ExtArgs> = {}>(args?: Subset<T, Keluarga$anggotaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WargaPayload<ExtArgs>, T, "findMany"> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Keluarga model
+   */ 
+  interface KeluargaFieldRefs {
+    readonly id: FieldRef<"Keluarga", 'String'>
+    readonly nomorKk: FieldRef<"Keluarga", 'String'>
+    readonly kepalaKeluarga: FieldRef<"Keluarga", 'String'>
+    readonly alamat: FieldRef<"Keluarga", 'String'>
+    readonly rt: FieldRef<"Keluarga", 'String'>
+    readonly rw: FieldRef<"Keluarga", 'String'>
+    readonly desaId: FieldRef<"Keluarga", 'String'>
+    readonly createdAt: FieldRef<"Keluarga", 'DateTime'>
+    readonly updatedAt: FieldRef<"Keluarga", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Keluarga findUnique
+   */
+  export type KeluargaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Keluarga
+     */
+    select?: KeluargaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KeluargaInclude<ExtArgs> | null
+    /**
+     * Filter, which Keluarga to fetch.
+     */
+    where: KeluargaWhereUniqueInput
+  }
+
+  /**
+   * Keluarga findUniqueOrThrow
+   */
+  export type KeluargaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Keluarga
+     */
+    select?: KeluargaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KeluargaInclude<ExtArgs> | null
+    /**
+     * Filter, which Keluarga to fetch.
+     */
+    where: KeluargaWhereUniqueInput
+  }
+
+  /**
+   * Keluarga findFirst
+   */
+  export type KeluargaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Keluarga
+     */
+    select?: KeluargaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KeluargaInclude<ExtArgs> | null
+    /**
+     * Filter, which Keluarga to fetch.
+     */
+    where?: KeluargaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Keluargas to fetch.
+     */
+    orderBy?: KeluargaOrderByWithRelationInput | KeluargaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Keluargas.
+     */
+    cursor?: KeluargaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Keluargas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Keluargas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Keluargas.
+     */
+    distinct?: KeluargaScalarFieldEnum | KeluargaScalarFieldEnum[]
+  }
+
+  /**
+   * Keluarga findFirstOrThrow
+   */
+  export type KeluargaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Keluarga
+     */
+    select?: KeluargaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KeluargaInclude<ExtArgs> | null
+    /**
+     * Filter, which Keluarga to fetch.
+     */
+    where?: KeluargaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Keluargas to fetch.
+     */
+    orderBy?: KeluargaOrderByWithRelationInput | KeluargaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Keluargas.
+     */
+    cursor?: KeluargaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Keluargas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Keluargas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Keluargas.
+     */
+    distinct?: KeluargaScalarFieldEnum | KeluargaScalarFieldEnum[]
+  }
+
+  /**
+   * Keluarga findMany
+   */
+  export type KeluargaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Keluarga
+     */
+    select?: KeluargaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KeluargaInclude<ExtArgs> | null
+    /**
+     * Filter, which Keluargas to fetch.
+     */
+    where?: KeluargaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Keluargas to fetch.
+     */
+    orderBy?: KeluargaOrderByWithRelationInput | KeluargaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Keluargas.
+     */
+    cursor?: KeluargaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Keluargas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Keluargas.
+     */
+    skip?: number
+    distinct?: KeluargaScalarFieldEnum | KeluargaScalarFieldEnum[]
+  }
+
+  /**
+   * Keluarga create
+   */
+  export type KeluargaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Keluarga
+     */
+    select?: KeluargaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KeluargaInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Keluarga.
+     */
+    data: XOR<KeluargaCreateInput, KeluargaUncheckedCreateInput>
+  }
+
+  /**
+   * Keluarga createMany
+   */
+  export type KeluargaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Keluargas.
+     */
+    data: KeluargaCreateManyInput | KeluargaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Keluarga createManyAndReturn
+   */
+  export type KeluargaCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Keluarga
+     */
+    select?: KeluargaSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many Keluargas.
+     */
+    data: KeluargaCreateManyInput | KeluargaCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KeluargaIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Keluarga update
+   */
+  export type KeluargaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Keluarga
+     */
+    select?: KeluargaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KeluargaInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Keluarga.
+     */
+    data: XOR<KeluargaUpdateInput, KeluargaUncheckedUpdateInput>
+    /**
+     * Choose, which Keluarga to update.
+     */
+    where: KeluargaWhereUniqueInput
+  }
+
+  /**
+   * Keluarga updateMany
+   */
+  export type KeluargaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Keluargas.
+     */
+    data: XOR<KeluargaUpdateManyMutationInput, KeluargaUncheckedUpdateManyInput>
+    /**
+     * Filter which Keluargas to update
+     */
+    where?: KeluargaWhereInput
+  }
+
+  /**
+   * Keluarga upsert
+   */
+  export type KeluargaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Keluarga
+     */
+    select?: KeluargaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KeluargaInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Keluarga to update in case it exists.
+     */
+    where: KeluargaWhereUniqueInput
+    /**
+     * In case the Keluarga found by the `where` argument doesn't exist, create a new Keluarga with this data.
+     */
+    create: XOR<KeluargaCreateInput, KeluargaUncheckedCreateInput>
+    /**
+     * In case the Keluarga was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<KeluargaUpdateInput, KeluargaUncheckedUpdateInput>
+  }
+
+  /**
+   * Keluarga delete
+   */
+  export type KeluargaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Keluarga
+     */
+    select?: KeluargaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KeluargaInclude<ExtArgs> | null
+    /**
+     * Filter which Keluarga to delete.
+     */
+    where: KeluargaWhereUniqueInput
+  }
+
+  /**
+   * Keluarga deleteMany
+   */
+  export type KeluargaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Keluargas to delete
+     */
+    where?: KeluargaWhereInput
+  }
+
+  /**
+   * Keluarga.anggota
+   */
+  export type Keluarga$anggotaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Warga
+     */
+    select?: WargaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WargaInclude<ExtArgs> | null
+    where?: WargaWhereInput
+    orderBy?: WargaOrderByWithRelationInput | WargaOrderByWithRelationInput[]
+    cursor?: WargaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: WargaScalarFieldEnum | WargaScalarFieldEnum[]
+  }
+
+  /**
+   * Keluarga without action
+   */
+  export type KeluargaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Keluarga
+     */
+    select?: KeluargaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KeluargaInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Warga
+   */
+
+  export type AggregateWarga = {
+    _count: WargaCountAggregateOutputType | null
+    _min: WargaMinAggregateOutputType | null
+    _max: WargaMaxAggregateOutputType | null
+  }
+
+  export type WargaMinAggregateOutputType = {
+    id: string | null
+    nik: string | null
+    nama: string | null
+    tempatLahir: string | null
+    tanggalLahir: Date | null
+    jenisKelamin: string | null
+    agama: string | null
+    pendidikan: string | null
+    pekerjaan: string | null
+    statusPerkawinan: string | null
+    statusKeluarga: string | null
+    keluargaId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type WargaMaxAggregateOutputType = {
+    id: string | null
+    nik: string | null
+    nama: string | null
+    tempatLahir: string | null
+    tanggalLahir: Date | null
+    jenisKelamin: string | null
+    agama: string | null
+    pendidikan: string | null
+    pekerjaan: string | null
+    statusPerkawinan: string | null
+    statusKeluarga: string | null
+    keluargaId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type WargaCountAggregateOutputType = {
+    id: number
+    nik: number
+    nama: number
+    tempatLahir: number
+    tanggalLahir: number
+    jenisKelamin: number
+    agama: number
+    pendidikan: number
+    pekerjaan: number
+    statusPerkawinan: number
+    statusKeluarga: number
+    keluargaId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type WargaMinAggregateInputType = {
+    id?: true
+    nik?: true
+    nama?: true
+    tempatLahir?: true
+    tanggalLahir?: true
+    jenisKelamin?: true
+    agama?: true
+    pendidikan?: true
+    pekerjaan?: true
+    statusPerkawinan?: true
+    statusKeluarga?: true
+    keluargaId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type WargaMaxAggregateInputType = {
+    id?: true
+    nik?: true
+    nama?: true
+    tempatLahir?: true
+    tanggalLahir?: true
+    jenisKelamin?: true
+    agama?: true
+    pendidikan?: true
+    pekerjaan?: true
+    statusPerkawinan?: true
+    statusKeluarga?: true
+    keluargaId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type WargaCountAggregateInputType = {
+    id?: true
+    nik?: true
+    nama?: true
+    tempatLahir?: true
+    tanggalLahir?: true
+    jenisKelamin?: true
+    agama?: true
+    pendidikan?: true
+    pekerjaan?: true
+    statusPerkawinan?: true
+    statusKeluarga?: true
+    keluargaId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type WargaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Warga to aggregate.
+     */
+    where?: WargaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Wargas to fetch.
+     */
+    orderBy?: WargaOrderByWithRelationInput | WargaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: WargaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Wargas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Wargas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Wargas
+    **/
+    _count?: true | WargaCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: WargaMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: WargaMaxAggregateInputType
+  }
+
+  export type GetWargaAggregateType<T extends WargaAggregateArgs> = {
+        [P in keyof T & keyof AggregateWarga]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateWarga[P]>
+      : GetScalarType<T[P], AggregateWarga[P]>
+  }
+
+
+
+
+  export type WargaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WargaWhereInput
+    orderBy?: WargaOrderByWithAggregationInput | WargaOrderByWithAggregationInput[]
+    by: WargaScalarFieldEnum[] | WargaScalarFieldEnum
+    having?: WargaScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: WargaCountAggregateInputType | true
+    _min?: WargaMinAggregateInputType
+    _max?: WargaMaxAggregateInputType
+  }
+
+  export type WargaGroupByOutputType = {
+    id: string
+    nik: string
+    nama: string
+    tempatLahir: string
+    tanggalLahir: Date
+    jenisKelamin: string
+    agama: string
+    pendidikan: string
+    pekerjaan: string
+    statusPerkawinan: string
+    statusKeluarga: string
+    keluargaId: string
+    createdAt: Date
+    updatedAt: Date
+    _count: WargaCountAggregateOutputType | null
+    _min: WargaMinAggregateOutputType | null
+    _max: WargaMaxAggregateOutputType | null
+  }
+
+  type GetWargaGroupByPayload<T extends WargaGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<WargaGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof WargaGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], WargaGroupByOutputType[P]>
+            : GetScalarType<T[P], WargaGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type WargaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nik?: boolean
+    nama?: boolean
+    tempatLahir?: boolean
+    tanggalLahir?: boolean
+    jenisKelamin?: boolean
+    agama?: boolean
+    pendidikan?: boolean
+    pekerjaan?: boolean
+    statusPerkawinan?: boolean
+    statusKeluarga?: boolean
+    keluargaId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    keluarga?: boolean | KeluargaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["warga"]>
+
+  export type WargaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nik?: boolean
+    nama?: boolean
+    tempatLahir?: boolean
+    tanggalLahir?: boolean
+    jenisKelamin?: boolean
+    agama?: boolean
+    pendidikan?: boolean
+    pekerjaan?: boolean
+    statusPerkawinan?: boolean
+    statusKeluarga?: boolean
+    keluargaId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    keluarga?: boolean | KeluargaDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["warga"]>
+
+  export type WargaSelectScalar = {
+    id?: boolean
+    nik?: boolean
+    nama?: boolean
+    tempatLahir?: boolean
+    tanggalLahir?: boolean
+    jenisKelamin?: boolean
+    agama?: boolean
+    pendidikan?: boolean
+    pekerjaan?: boolean
+    statusPerkawinan?: boolean
+    statusKeluarga?: boolean
+    keluargaId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type WargaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    keluarga?: boolean | KeluargaDefaultArgs<ExtArgs>
+  }
+  export type WargaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    keluarga?: boolean | KeluargaDefaultArgs<ExtArgs>
+  }
+
+  export type $WargaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Warga"
+    objects: {
+      keluarga: Prisma.$KeluargaPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      nik: string
+      nama: string
+      tempatLahir: string
+      tanggalLahir: Date
+      jenisKelamin: string
+      agama: string
+      pendidikan: string
+      pekerjaan: string
+      statusPerkawinan: string
+      statusKeluarga: string
+      keluargaId: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["warga"]>
+    composites: {}
+  }
+
+  type WargaGetPayload<S extends boolean | null | undefined | WargaDefaultArgs> = $Result.GetResult<Prisma.$WargaPayload, S>
+
+  type WargaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<WargaFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: WargaCountAggregateInputType | true
+    }
+
+  export interface WargaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Warga'], meta: { name: 'Warga' } }
+    /**
+     * Find zero or one Warga that matches the filter.
+     * @param {WargaFindUniqueArgs} args - Arguments to find a Warga
+     * @example
+     * // Get one Warga
+     * const warga = await prisma.warga.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends WargaFindUniqueArgs>(args: SelectSubset<T, WargaFindUniqueArgs<ExtArgs>>): Prisma__WargaClient<$Result.GetResult<Prisma.$WargaPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Warga that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {WargaFindUniqueOrThrowArgs} args - Arguments to find a Warga
+     * @example
+     * // Get one Warga
+     * const warga = await prisma.warga.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends WargaFindUniqueOrThrowArgs>(args: SelectSubset<T, WargaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__WargaClient<$Result.GetResult<Prisma.$WargaPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Warga that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WargaFindFirstArgs} args - Arguments to find a Warga
+     * @example
+     * // Get one Warga
+     * const warga = await prisma.warga.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends WargaFindFirstArgs>(args?: SelectSubset<T, WargaFindFirstArgs<ExtArgs>>): Prisma__WargaClient<$Result.GetResult<Prisma.$WargaPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Warga that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WargaFindFirstOrThrowArgs} args - Arguments to find a Warga
+     * @example
+     * // Get one Warga
+     * const warga = await prisma.warga.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends WargaFindFirstOrThrowArgs>(args?: SelectSubset<T, WargaFindFirstOrThrowArgs<ExtArgs>>): Prisma__WargaClient<$Result.GetResult<Prisma.$WargaPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Wargas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WargaFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Wargas
+     * const wargas = await prisma.warga.findMany()
+     * 
+     * // Get first 10 Wargas
+     * const wargas = await prisma.warga.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const wargaWithIdOnly = await prisma.warga.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends WargaFindManyArgs>(args?: SelectSubset<T, WargaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WargaPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Warga.
+     * @param {WargaCreateArgs} args - Arguments to create a Warga.
+     * @example
+     * // Create one Warga
+     * const Warga = await prisma.warga.create({
+     *   data: {
+     *     // ... data to create a Warga
+     *   }
+     * })
+     * 
+     */
+    create<T extends WargaCreateArgs>(args: SelectSubset<T, WargaCreateArgs<ExtArgs>>): Prisma__WargaClient<$Result.GetResult<Prisma.$WargaPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Wargas.
+     * @param {WargaCreateManyArgs} args - Arguments to create many Wargas.
+     * @example
+     * // Create many Wargas
+     * const warga = await prisma.warga.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends WargaCreateManyArgs>(args?: SelectSubset<T, WargaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Wargas and returns the data saved in the database.
+     * @param {WargaCreateManyAndReturnArgs} args - Arguments to create many Wargas.
+     * @example
+     * // Create many Wargas
+     * const warga = await prisma.warga.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Wargas and only return the `id`
+     * const wargaWithIdOnly = await prisma.warga.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends WargaCreateManyAndReturnArgs>(args?: SelectSubset<T, WargaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WargaPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a Warga.
+     * @param {WargaDeleteArgs} args - Arguments to delete one Warga.
+     * @example
+     * // Delete one Warga
+     * const Warga = await prisma.warga.delete({
+     *   where: {
+     *     // ... filter to delete one Warga
+     *   }
+     * })
+     * 
+     */
+    delete<T extends WargaDeleteArgs>(args: SelectSubset<T, WargaDeleteArgs<ExtArgs>>): Prisma__WargaClient<$Result.GetResult<Prisma.$WargaPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Warga.
+     * @param {WargaUpdateArgs} args - Arguments to update one Warga.
+     * @example
+     * // Update one Warga
+     * const warga = await prisma.warga.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends WargaUpdateArgs>(args: SelectSubset<T, WargaUpdateArgs<ExtArgs>>): Prisma__WargaClient<$Result.GetResult<Prisma.$WargaPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Wargas.
+     * @param {WargaDeleteManyArgs} args - Arguments to filter Wargas to delete.
+     * @example
+     * // Delete a few Wargas
+     * const { count } = await prisma.warga.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends WargaDeleteManyArgs>(args?: SelectSubset<T, WargaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Wargas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WargaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Wargas
+     * const warga = await prisma.warga.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends WargaUpdateManyArgs>(args: SelectSubset<T, WargaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Warga.
+     * @param {WargaUpsertArgs} args - Arguments to update or create a Warga.
+     * @example
+     * // Update or create a Warga
+     * const warga = await prisma.warga.upsert({
+     *   create: {
+     *     // ... data to create a Warga
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Warga we want to update
+     *   }
+     * })
+     */
+    upsert<T extends WargaUpsertArgs>(args: SelectSubset<T, WargaUpsertArgs<ExtArgs>>): Prisma__WargaClient<$Result.GetResult<Prisma.$WargaPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Wargas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WargaCountArgs} args - Arguments to filter Wargas to count.
+     * @example
+     * // Count the number of Wargas
+     * const count = await prisma.warga.count({
+     *   where: {
+     *     // ... the filter for the Wargas we want to count
+     *   }
+     * })
+    **/
+    count<T extends WargaCountArgs>(
+      args?: Subset<T, WargaCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], WargaCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Warga.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WargaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends WargaAggregateArgs>(args: Subset<T, WargaAggregateArgs>): Prisma.PrismaPromise<GetWargaAggregateType<T>>
+
+    /**
+     * Group by Warga.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WargaGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends WargaGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: WargaGroupByArgs['orderBy'] }
+        : { orderBy?: WargaGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, WargaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetWargaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Warga model
+   */
+  readonly fields: WargaFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Warga.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__WargaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    keluarga<T extends KeluargaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, KeluargaDefaultArgs<ExtArgs>>): Prisma__KeluargaClient<$Result.GetResult<Prisma.$KeluargaPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Warga model
+   */ 
+  interface WargaFieldRefs {
+    readonly id: FieldRef<"Warga", 'String'>
+    readonly nik: FieldRef<"Warga", 'String'>
+    readonly nama: FieldRef<"Warga", 'String'>
+    readonly tempatLahir: FieldRef<"Warga", 'String'>
+    readonly tanggalLahir: FieldRef<"Warga", 'DateTime'>
+    readonly jenisKelamin: FieldRef<"Warga", 'String'>
+    readonly agama: FieldRef<"Warga", 'String'>
+    readonly pendidikan: FieldRef<"Warga", 'String'>
+    readonly pekerjaan: FieldRef<"Warga", 'String'>
+    readonly statusPerkawinan: FieldRef<"Warga", 'String'>
+    readonly statusKeluarga: FieldRef<"Warga", 'String'>
+    readonly keluargaId: FieldRef<"Warga", 'String'>
+    readonly createdAt: FieldRef<"Warga", 'DateTime'>
+    readonly updatedAt: FieldRef<"Warga", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Warga findUnique
+   */
+  export type WargaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Warga
+     */
+    select?: WargaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WargaInclude<ExtArgs> | null
+    /**
+     * Filter, which Warga to fetch.
+     */
+    where: WargaWhereUniqueInput
+  }
+
+  /**
+   * Warga findUniqueOrThrow
+   */
+  export type WargaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Warga
+     */
+    select?: WargaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WargaInclude<ExtArgs> | null
+    /**
+     * Filter, which Warga to fetch.
+     */
+    where: WargaWhereUniqueInput
+  }
+
+  /**
+   * Warga findFirst
+   */
+  export type WargaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Warga
+     */
+    select?: WargaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WargaInclude<ExtArgs> | null
+    /**
+     * Filter, which Warga to fetch.
+     */
+    where?: WargaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Wargas to fetch.
+     */
+    orderBy?: WargaOrderByWithRelationInput | WargaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Wargas.
+     */
+    cursor?: WargaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Wargas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Wargas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Wargas.
+     */
+    distinct?: WargaScalarFieldEnum | WargaScalarFieldEnum[]
+  }
+
+  /**
+   * Warga findFirstOrThrow
+   */
+  export type WargaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Warga
+     */
+    select?: WargaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WargaInclude<ExtArgs> | null
+    /**
+     * Filter, which Warga to fetch.
+     */
+    where?: WargaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Wargas to fetch.
+     */
+    orderBy?: WargaOrderByWithRelationInput | WargaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Wargas.
+     */
+    cursor?: WargaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Wargas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Wargas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Wargas.
+     */
+    distinct?: WargaScalarFieldEnum | WargaScalarFieldEnum[]
+  }
+
+  /**
+   * Warga findMany
+   */
+  export type WargaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Warga
+     */
+    select?: WargaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WargaInclude<ExtArgs> | null
+    /**
+     * Filter, which Wargas to fetch.
+     */
+    where?: WargaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Wargas to fetch.
+     */
+    orderBy?: WargaOrderByWithRelationInput | WargaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Wargas.
+     */
+    cursor?: WargaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Wargas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Wargas.
+     */
+    skip?: number
+    distinct?: WargaScalarFieldEnum | WargaScalarFieldEnum[]
+  }
+
+  /**
+   * Warga create
+   */
+  export type WargaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Warga
+     */
+    select?: WargaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WargaInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Warga.
+     */
+    data: XOR<WargaCreateInput, WargaUncheckedCreateInput>
+  }
+
+  /**
+   * Warga createMany
+   */
+  export type WargaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Wargas.
+     */
+    data: WargaCreateManyInput | WargaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Warga createManyAndReturn
+   */
+  export type WargaCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Warga
+     */
+    select?: WargaSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many Wargas.
+     */
+    data: WargaCreateManyInput | WargaCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WargaIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Warga update
+   */
+  export type WargaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Warga
+     */
+    select?: WargaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WargaInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Warga.
+     */
+    data: XOR<WargaUpdateInput, WargaUncheckedUpdateInput>
+    /**
+     * Choose, which Warga to update.
+     */
+    where: WargaWhereUniqueInput
+  }
+
+  /**
+   * Warga updateMany
+   */
+  export type WargaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Wargas.
+     */
+    data: XOR<WargaUpdateManyMutationInput, WargaUncheckedUpdateManyInput>
+    /**
+     * Filter which Wargas to update
+     */
+    where?: WargaWhereInput
+  }
+
+  /**
+   * Warga upsert
+   */
+  export type WargaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Warga
+     */
+    select?: WargaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WargaInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Warga to update in case it exists.
+     */
+    where: WargaWhereUniqueInput
+    /**
+     * In case the Warga found by the `where` argument doesn't exist, create a new Warga with this data.
+     */
+    create: XOR<WargaCreateInput, WargaUncheckedCreateInput>
+    /**
+     * In case the Warga was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<WargaUpdateInput, WargaUncheckedUpdateInput>
+  }
+
+  /**
+   * Warga delete
+   */
+  export type WargaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Warga
+     */
+    select?: WargaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WargaInclude<ExtArgs> | null
+    /**
+     * Filter which Warga to delete.
+     */
+    where: WargaWhereUniqueInput
+  }
+
+  /**
+   * Warga deleteMany
+   */
+  export type WargaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Wargas to delete
+     */
+    where?: WargaWhereInput
+  }
+
+  /**
+   * Warga without action
+   */
+  export type WargaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Warga
+     */
+    select?: WargaSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WargaInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -21671,6 +23955,41 @@ export namespace Prisma {
   };
 
   export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
+
+
+  export const KeluargaScalarFieldEnum: {
+    id: 'id',
+    nomorKk: 'nomorKk',
+    kepalaKeluarga: 'kepalaKeluarga',
+    alamat: 'alamat',
+    rt: 'rt',
+    rw: 'rw',
+    desaId: 'desaId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type KeluargaScalarFieldEnum = (typeof KeluargaScalarFieldEnum)[keyof typeof KeluargaScalarFieldEnum]
+
+
+  export const WargaScalarFieldEnum: {
+    id: 'id',
+    nik: 'nik',
+    nama: 'nama',
+    tempatLahir: 'tempatLahir',
+    tanggalLahir: 'tanggalLahir',
+    jenisKelamin: 'jenisKelamin',
+    agama: 'agama',
+    pendidikan: 'pendidikan',
+    pekerjaan: 'pekerjaan',
+    statusPerkawinan: 'statusPerkawinan',
+    statusKeluarga: 'statusKeluarga',
+    keluargaId: 'keluargaId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type WargaScalarFieldEnum = (typeof WargaScalarFieldEnum)[keyof typeof WargaScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -22071,6 +24390,7 @@ export namespace Prisma {
     kecamatan?: XOR<KecamatanRelationFilter, KecamatanWhereInput>
     users?: UserListRelationFilter
     apbdes?: ApbdesListRelationFilter
+    keluargas?: KeluargaListRelationFilter
   }
 
   export type DesaOrderByWithRelationInput = {
@@ -22083,6 +24403,7 @@ export namespace Prisma {
     kecamatan?: KecamatanOrderByWithRelationInput
     users?: UserOrderByRelationAggregateInput
     apbdes?: ApbdesOrderByRelationAggregateInput
+    keluargas?: KeluargaOrderByRelationAggregateInput
   }
 
   export type DesaWhereUniqueInput = Prisma.AtLeast<{
@@ -22098,6 +24419,7 @@ export namespace Prisma {
     kecamatan?: XOR<KecamatanRelationFilter, KecamatanWhereInput>
     users?: UserListRelationFilter
     apbdes?: ApbdesListRelationFilter
+    keluargas?: KeluargaListRelationFilter
   }, "id">
 
   export type DesaOrderByWithAggregationInput = {
@@ -22947,6 +25269,184 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Notification"> | Date | string
   }
 
+  export type KeluargaWhereInput = {
+    AND?: KeluargaWhereInput | KeluargaWhereInput[]
+    OR?: KeluargaWhereInput[]
+    NOT?: KeluargaWhereInput | KeluargaWhereInput[]
+    id?: StringFilter<"Keluarga"> | string
+    nomorKk?: StringFilter<"Keluarga"> | string
+    kepalaKeluarga?: StringFilter<"Keluarga"> | string
+    alamat?: StringFilter<"Keluarga"> | string
+    rt?: StringFilter<"Keluarga"> | string
+    rw?: StringFilter<"Keluarga"> | string
+    desaId?: StringFilter<"Keluarga"> | string
+    createdAt?: DateTimeFilter<"Keluarga"> | Date | string
+    updatedAt?: DateTimeFilter<"Keluarga"> | Date | string
+    desa?: XOR<DesaRelationFilter, DesaWhereInput>
+    anggota?: WargaListRelationFilter
+  }
+
+  export type KeluargaOrderByWithRelationInput = {
+    id?: SortOrder
+    nomorKk?: SortOrder
+    kepalaKeluarga?: SortOrder
+    alamat?: SortOrder
+    rt?: SortOrder
+    rw?: SortOrder
+    desaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    desa?: DesaOrderByWithRelationInput
+    anggota?: WargaOrderByRelationAggregateInput
+  }
+
+  export type KeluargaWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    nomorKk?: string
+    AND?: KeluargaWhereInput | KeluargaWhereInput[]
+    OR?: KeluargaWhereInput[]
+    NOT?: KeluargaWhereInput | KeluargaWhereInput[]
+    kepalaKeluarga?: StringFilter<"Keluarga"> | string
+    alamat?: StringFilter<"Keluarga"> | string
+    rt?: StringFilter<"Keluarga"> | string
+    rw?: StringFilter<"Keluarga"> | string
+    desaId?: StringFilter<"Keluarga"> | string
+    createdAt?: DateTimeFilter<"Keluarga"> | Date | string
+    updatedAt?: DateTimeFilter<"Keluarga"> | Date | string
+    desa?: XOR<DesaRelationFilter, DesaWhereInput>
+    anggota?: WargaListRelationFilter
+  }, "id" | "nomorKk">
+
+  export type KeluargaOrderByWithAggregationInput = {
+    id?: SortOrder
+    nomorKk?: SortOrder
+    kepalaKeluarga?: SortOrder
+    alamat?: SortOrder
+    rt?: SortOrder
+    rw?: SortOrder
+    desaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: KeluargaCountOrderByAggregateInput
+    _max?: KeluargaMaxOrderByAggregateInput
+    _min?: KeluargaMinOrderByAggregateInput
+  }
+
+  export type KeluargaScalarWhereWithAggregatesInput = {
+    AND?: KeluargaScalarWhereWithAggregatesInput | KeluargaScalarWhereWithAggregatesInput[]
+    OR?: KeluargaScalarWhereWithAggregatesInput[]
+    NOT?: KeluargaScalarWhereWithAggregatesInput | KeluargaScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Keluarga"> | string
+    nomorKk?: StringWithAggregatesFilter<"Keluarga"> | string
+    kepalaKeluarga?: StringWithAggregatesFilter<"Keluarga"> | string
+    alamat?: StringWithAggregatesFilter<"Keluarga"> | string
+    rt?: StringWithAggregatesFilter<"Keluarga"> | string
+    rw?: StringWithAggregatesFilter<"Keluarga"> | string
+    desaId?: StringWithAggregatesFilter<"Keluarga"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Keluarga"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Keluarga"> | Date | string
+  }
+
+  export type WargaWhereInput = {
+    AND?: WargaWhereInput | WargaWhereInput[]
+    OR?: WargaWhereInput[]
+    NOT?: WargaWhereInput | WargaWhereInput[]
+    id?: StringFilter<"Warga"> | string
+    nik?: StringFilter<"Warga"> | string
+    nama?: StringFilter<"Warga"> | string
+    tempatLahir?: StringFilter<"Warga"> | string
+    tanggalLahir?: DateTimeFilter<"Warga"> | Date | string
+    jenisKelamin?: StringFilter<"Warga"> | string
+    agama?: StringFilter<"Warga"> | string
+    pendidikan?: StringFilter<"Warga"> | string
+    pekerjaan?: StringFilter<"Warga"> | string
+    statusPerkawinan?: StringFilter<"Warga"> | string
+    statusKeluarga?: StringFilter<"Warga"> | string
+    keluargaId?: StringFilter<"Warga"> | string
+    createdAt?: DateTimeFilter<"Warga"> | Date | string
+    updatedAt?: DateTimeFilter<"Warga"> | Date | string
+    keluarga?: XOR<KeluargaRelationFilter, KeluargaWhereInput>
+  }
+
+  export type WargaOrderByWithRelationInput = {
+    id?: SortOrder
+    nik?: SortOrder
+    nama?: SortOrder
+    tempatLahir?: SortOrder
+    tanggalLahir?: SortOrder
+    jenisKelamin?: SortOrder
+    agama?: SortOrder
+    pendidikan?: SortOrder
+    pekerjaan?: SortOrder
+    statusPerkawinan?: SortOrder
+    statusKeluarga?: SortOrder
+    keluargaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    keluarga?: KeluargaOrderByWithRelationInput
+  }
+
+  export type WargaWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    nik?: string
+    AND?: WargaWhereInput | WargaWhereInput[]
+    OR?: WargaWhereInput[]
+    NOT?: WargaWhereInput | WargaWhereInput[]
+    nama?: StringFilter<"Warga"> | string
+    tempatLahir?: StringFilter<"Warga"> | string
+    tanggalLahir?: DateTimeFilter<"Warga"> | Date | string
+    jenisKelamin?: StringFilter<"Warga"> | string
+    agama?: StringFilter<"Warga"> | string
+    pendidikan?: StringFilter<"Warga"> | string
+    pekerjaan?: StringFilter<"Warga"> | string
+    statusPerkawinan?: StringFilter<"Warga"> | string
+    statusKeluarga?: StringFilter<"Warga"> | string
+    keluargaId?: StringFilter<"Warga"> | string
+    createdAt?: DateTimeFilter<"Warga"> | Date | string
+    updatedAt?: DateTimeFilter<"Warga"> | Date | string
+    keluarga?: XOR<KeluargaRelationFilter, KeluargaWhereInput>
+  }, "id" | "nik">
+
+  export type WargaOrderByWithAggregationInput = {
+    id?: SortOrder
+    nik?: SortOrder
+    nama?: SortOrder
+    tempatLahir?: SortOrder
+    tanggalLahir?: SortOrder
+    jenisKelamin?: SortOrder
+    agama?: SortOrder
+    pendidikan?: SortOrder
+    pekerjaan?: SortOrder
+    statusPerkawinan?: SortOrder
+    statusKeluarga?: SortOrder
+    keluargaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: WargaCountOrderByAggregateInput
+    _max?: WargaMaxOrderByAggregateInput
+    _min?: WargaMinOrderByAggregateInput
+  }
+
+  export type WargaScalarWhereWithAggregatesInput = {
+    AND?: WargaScalarWhereWithAggregatesInput | WargaScalarWhereWithAggregatesInput[]
+    OR?: WargaScalarWhereWithAggregatesInput[]
+    NOT?: WargaScalarWhereWithAggregatesInput | WargaScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Warga"> | string
+    nik?: StringWithAggregatesFilter<"Warga"> | string
+    nama?: StringWithAggregatesFilter<"Warga"> | string
+    tempatLahir?: StringWithAggregatesFilter<"Warga"> | string
+    tanggalLahir?: DateTimeWithAggregatesFilter<"Warga"> | Date | string
+    jenisKelamin?: StringWithAggregatesFilter<"Warga"> | string
+    agama?: StringWithAggregatesFilter<"Warga"> | string
+    pendidikan?: StringWithAggregatesFilter<"Warga"> | string
+    pekerjaan?: StringWithAggregatesFilter<"Warga"> | string
+    statusPerkawinan?: StringWithAggregatesFilter<"Warga"> | string
+    statusKeluarga?: StringWithAggregatesFilter<"Warga"> | string
+    keluargaId?: StringWithAggregatesFilter<"Warga"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Warga"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Warga"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     name: string
@@ -23256,6 +25756,7 @@ export namespace Prisma {
     kecamatan: KecamatanCreateNestedOneWithoutDesasInput
     users?: UserCreateNestedManyWithoutDesaInput
     apbdes?: ApbdesCreateNestedManyWithoutDesaInput
+    keluargas?: KeluargaCreateNestedManyWithoutDesaInput
   }
 
   export type DesaUncheckedCreateInput = {
@@ -23267,6 +25768,7 @@ export namespace Prisma {
     kecamatanId: string
     users?: UserUncheckedCreateNestedManyWithoutDesaInput
     apbdes?: ApbdesUncheckedCreateNestedManyWithoutDesaInput
+    keluargas?: KeluargaUncheckedCreateNestedManyWithoutDesaInput
   }
 
   export type DesaUpdateInput = {
@@ -23278,6 +25780,7 @@ export namespace Prisma {
     kecamatan?: KecamatanUpdateOneRequiredWithoutDesasNestedInput
     users?: UserUpdateManyWithoutDesaNestedInput
     apbdes?: ApbdesUpdateManyWithoutDesaNestedInput
+    keluargas?: KeluargaUpdateManyWithoutDesaNestedInput
   }
 
   export type DesaUncheckedUpdateInput = {
@@ -23289,6 +25792,7 @@ export namespace Prisma {
     kecamatanId?: StringFieldUpdateOperationsInput | string
     users?: UserUncheckedUpdateManyWithoutDesaNestedInput
     apbdes?: ApbdesUncheckedUpdateManyWithoutDesaNestedInput
+    keluargas?: KeluargaUncheckedUpdateManyWithoutDesaNestedInput
   }
 
   export type DesaCreateManyInput = {
@@ -24159,6 +26663,211 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type KeluargaCreateInput = {
+    id?: string
+    nomorKk: string
+    kepalaKeluarga: string
+    alamat: string
+    rt: string
+    rw: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    desa: DesaCreateNestedOneWithoutKeluargasInput
+    anggota?: WargaCreateNestedManyWithoutKeluargaInput
+  }
+
+  export type KeluargaUncheckedCreateInput = {
+    id?: string
+    nomorKk: string
+    kepalaKeluarga: string
+    alamat: string
+    rt: string
+    rw: string
+    desaId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    anggota?: WargaUncheckedCreateNestedManyWithoutKeluargaInput
+  }
+
+  export type KeluargaUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nomorKk?: StringFieldUpdateOperationsInput | string
+    kepalaKeluarga?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    rt?: StringFieldUpdateOperationsInput | string
+    rw?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    desa?: DesaUpdateOneRequiredWithoutKeluargasNestedInput
+    anggota?: WargaUpdateManyWithoutKeluargaNestedInput
+  }
+
+  export type KeluargaUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nomorKk?: StringFieldUpdateOperationsInput | string
+    kepalaKeluarga?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    rt?: StringFieldUpdateOperationsInput | string
+    rw?: StringFieldUpdateOperationsInput | string
+    desaId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    anggota?: WargaUncheckedUpdateManyWithoutKeluargaNestedInput
+  }
+
+  export type KeluargaCreateManyInput = {
+    id?: string
+    nomorKk: string
+    kepalaKeluarga: string
+    alamat: string
+    rt: string
+    rw: string
+    desaId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type KeluargaUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nomorKk?: StringFieldUpdateOperationsInput | string
+    kepalaKeluarga?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    rt?: StringFieldUpdateOperationsInput | string
+    rw?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type KeluargaUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nomorKk?: StringFieldUpdateOperationsInput | string
+    kepalaKeluarga?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    rt?: StringFieldUpdateOperationsInput | string
+    rw?: StringFieldUpdateOperationsInput | string
+    desaId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WargaCreateInput = {
+    id?: string
+    nik: string
+    nama: string
+    tempatLahir: string
+    tanggalLahir: Date | string
+    jenisKelamin: string
+    agama: string
+    pendidikan: string
+    pekerjaan: string
+    statusPerkawinan: string
+    statusKeluarga: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    keluarga: KeluargaCreateNestedOneWithoutAnggotaInput
+  }
+
+  export type WargaUncheckedCreateInput = {
+    id?: string
+    nik: string
+    nama: string
+    tempatLahir: string
+    tanggalLahir: Date | string
+    jenisKelamin: string
+    agama: string
+    pendidikan: string
+    pekerjaan: string
+    statusPerkawinan: string
+    statusKeluarga: string
+    keluargaId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type WargaUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nik?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    tempatLahir?: StringFieldUpdateOperationsInput | string
+    tanggalLahir?: DateTimeFieldUpdateOperationsInput | Date | string
+    jenisKelamin?: StringFieldUpdateOperationsInput | string
+    agama?: StringFieldUpdateOperationsInput | string
+    pendidikan?: StringFieldUpdateOperationsInput | string
+    pekerjaan?: StringFieldUpdateOperationsInput | string
+    statusPerkawinan?: StringFieldUpdateOperationsInput | string
+    statusKeluarga?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    keluarga?: KeluargaUpdateOneRequiredWithoutAnggotaNestedInput
+  }
+
+  export type WargaUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nik?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    tempatLahir?: StringFieldUpdateOperationsInput | string
+    tanggalLahir?: DateTimeFieldUpdateOperationsInput | Date | string
+    jenisKelamin?: StringFieldUpdateOperationsInput | string
+    agama?: StringFieldUpdateOperationsInput | string
+    pendidikan?: StringFieldUpdateOperationsInput | string
+    pekerjaan?: StringFieldUpdateOperationsInput | string
+    statusPerkawinan?: StringFieldUpdateOperationsInput | string
+    statusKeluarga?: StringFieldUpdateOperationsInput | string
+    keluargaId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WargaCreateManyInput = {
+    id?: string
+    nik: string
+    nama: string
+    tempatLahir: string
+    tanggalLahir: Date | string
+    jenisKelamin: string
+    agama: string
+    pendidikan: string
+    pekerjaan: string
+    statusPerkawinan: string
+    statusKeluarga: string
+    keluargaId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type WargaUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nik?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    tempatLahir?: StringFieldUpdateOperationsInput | string
+    tanggalLahir?: DateTimeFieldUpdateOperationsInput | Date | string
+    jenisKelamin?: StringFieldUpdateOperationsInput | string
+    agama?: StringFieldUpdateOperationsInput | string
+    pendidikan?: StringFieldUpdateOperationsInput | string
+    pekerjaan?: StringFieldUpdateOperationsInput | string
+    statusPerkawinan?: StringFieldUpdateOperationsInput | string
+    statusKeluarga?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WargaUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nik?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    tempatLahir?: StringFieldUpdateOperationsInput | string
+    tanggalLahir?: DateTimeFieldUpdateOperationsInput | Date | string
+    jenisKelamin?: StringFieldUpdateOperationsInput | string
+    agama?: StringFieldUpdateOperationsInput | string
+    pendidikan?: StringFieldUpdateOperationsInput | string
+    pekerjaan?: StringFieldUpdateOperationsInput | string
+    statusPerkawinan?: StringFieldUpdateOperationsInput | string
+    statusKeluarga?: StringFieldUpdateOperationsInput | string
+    keluargaId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -24504,7 +27213,17 @@ export namespace Prisma {
     none?: ApbdesWhereInput
   }
 
+  export type KeluargaListRelationFilter = {
+    every?: KeluargaWhereInput
+    some?: KeluargaWhereInput
+    none?: KeluargaWhereInput
+  }
+
   export type ApbdesOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type KeluargaOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -25101,6 +27820,108 @@ export namespace Prisma {
     createdAt?: SortOrder
   }
 
+  export type WargaListRelationFilter = {
+    every?: WargaWhereInput
+    some?: WargaWhereInput
+    none?: WargaWhereInput
+  }
+
+  export type WargaOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type KeluargaCountOrderByAggregateInput = {
+    id?: SortOrder
+    nomorKk?: SortOrder
+    kepalaKeluarga?: SortOrder
+    alamat?: SortOrder
+    rt?: SortOrder
+    rw?: SortOrder
+    desaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type KeluargaMaxOrderByAggregateInput = {
+    id?: SortOrder
+    nomorKk?: SortOrder
+    kepalaKeluarga?: SortOrder
+    alamat?: SortOrder
+    rt?: SortOrder
+    rw?: SortOrder
+    desaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type KeluargaMinOrderByAggregateInput = {
+    id?: SortOrder
+    nomorKk?: SortOrder
+    kepalaKeluarga?: SortOrder
+    alamat?: SortOrder
+    rt?: SortOrder
+    rw?: SortOrder
+    desaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type KeluargaRelationFilter = {
+    is?: KeluargaWhereInput
+    isNot?: KeluargaWhereInput
+  }
+
+  export type WargaCountOrderByAggregateInput = {
+    id?: SortOrder
+    nik?: SortOrder
+    nama?: SortOrder
+    tempatLahir?: SortOrder
+    tanggalLahir?: SortOrder
+    jenisKelamin?: SortOrder
+    agama?: SortOrder
+    pendidikan?: SortOrder
+    pekerjaan?: SortOrder
+    statusPerkawinan?: SortOrder
+    statusKeluarga?: SortOrder
+    keluargaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type WargaMaxOrderByAggregateInput = {
+    id?: SortOrder
+    nik?: SortOrder
+    nama?: SortOrder
+    tempatLahir?: SortOrder
+    tanggalLahir?: SortOrder
+    jenisKelamin?: SortOrder
+    agama?: SortOrder
+    pendidikan?: SortOrder
+    pekerjaan?: SortOrder
+    statusPerkawinan?: SortOrder
+    statusKeluarga?: SortOrder
+    keluargaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type WargaMinOrderByAggregateInput = {
+    id?: SortOrder
+    nik?: SortOrder
+    nama?: SortOrder
+    tempatLahir?: SortOrder
+    tanggalLahir?: SortOrder
+    jenisKelamin?: SortOrder
+    agama?: SortOrder
+    pendidikan?: SortOrder
+    pekerjaan?: SortOrder
+    statusPerkawinan?: SortOrder
+    statusKeluarga?: SortOrder
+    keluargaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type RoleCreateNestedOneWithoutUsersInput = {
     create?: XOR<RoleCreateWithoutUsersInput, RoleUncheckedCreateWithoutUsersInput>
     connectOrCreate?: RoleCreateOrConnectWithoutUsersInput
@@ -25451,6 +28272,13 @@ export namespace Prisma {
     connect?: ApbdesWhereUniqueInput | ApbdesWhereUniqueInput[]
   }
 
+  export type KeluargaCreateNestedManyWithoutDesaInput = {
+    create?: XOR<KeluargaCreateWithoutDesaInput, KeluargaUncheckedCreateWithoutDesaInput> | KeluargaCreateWithoutDesaInput[] | KeluargaUncheckedCreateWithoutDesaInput[]
+    connectOrCreate?: KeluargaCreateOrConnectWithoutDesaInput | KeluargaCreateOrConnectWithoutDesaInput[]
+    createMany?: KeluargaCreateManyDesaInputEnvelope
+    connect?: KeluargaWhereUniqueInput | KeluargaWhereUniqueInput[]
+  }
+
   export type UserUncheckedCreateNestedManyWithoutDesaInput = {
     create?: XOR<UserCreateWithoutDesaInput, UserUncheckedCreateWithoutDesaInput> | UserCreateWithoutDesaInput[] | UserUncheckedCreateWithoutDesaInput[]
     connectOrCreate?: UserCreateOrConnectWithoutDesaInput | UserCreateOrConnectWithoutDesaInput[]
@@ -25463,6 +28291,13 @@ export namespace Prisma {
     connectOrCreate?: ApbdesCreateOrConnectWithoutDesaInput | ApbdesCreateOrConnectWithoutDesaInput[]
     createMany?: ApbdesCreateManyDesaInputEnvelope
     connect?: ApbdesWhereUniqueInput | ApbdesWhereUniqueInput[]
+  }
+
+  export type KeluargaUncheckedCreateNestedManyWithoutDesaInput = {
+    create?: XOR<KeluargaCreateWithoutDesaInput, KeluargaUncheckedCreateWithoutDesaInput> | KeluargaCreateWithoutDesaInput[] | KeluargaUncheckedCreateWithoutDesaInput[]
+    connectOrCreate?: KeluargaCreateOrConnectWithoutDesaInput | KeluargaCreateOrConnectWithoutDesaInput[]
+    createMany?: KeluargaCreateManyDesaInputEnvelope
+    connect?: KeluargaWhereUniqueInput | KeluargaWhereUniqueInput[]
   }
 
   export type KecamatanUpdateOneRequiredWithoutDesasNestedInput = {
@@ -25501,6 +28336,20 @@ export namespace Prisma {
     deleteMany?: ApbdesScalarWhereInput | ApbdesScalarWhereInput[]
   }
 
+  export type KeluargaUpdateManyWithoutDesaNestedInput = {
+    create?: XOR<KeluargaCreateWithoutDesaInput, KeluargaUncheckedCreateWithoutDesaInput> | KeluargaCreateWithoutDesaInput[] | KeluargaUncheckedCreateWithoutDesaInput[]
+    connectOrCreate?: KeluargaCreateOrConnectWithoutDesaInput | KeluargaCreateOrConnectWithoutDesaInput[]
+    upsert?: KeluargaUpsertWithWhereUniqueWithoutDesaInput | KeluargaUpsertWithWhereUniqueWithoutDesaInput[]
+    createMany?: KeluargaCreateManyDesaInputEnvelope
+    set?: KeluargaWhereUniqueInput | KeluargaWhereUniqueInput[]
+    disconnect?: KeluargaWhereUniqueInput | KeluargaWhereUniqueInput[]
+    delete?: KeluargaWhereUniqueInput | KeluargaWhereUniqueInput[]
+    connect?: KeluargaWhereUniqueInput | KeluargaWhereUniqueInput[]
+    update?: KeluargaUpdateWithWhereUniqueWithoutDesaInput | KeluargaUpdateWithWhereUniqueWithoutDesaInput[]
+    updateMany?: KeluargaUpdateManyWithWhereWithoutDesaInput | KeluargaUpdateManyWithWhereWithoutDesaInput[]
+    deleteMany?: KeluargaScalarWhereInput | KeluargaScalarWhereInput[]
+  }
+
   export type UserUncheckedUpdateManyWithoutDesaNestedInput = {
     create?: XOR<UserCreateWithoutDesaInput, UserUncheckedCreateWithoutDesaInput> | UserCreateWithoutDesaInput[] | UserUncheckedCreateWithoutDesaInput[]
     connectOrCreate?: UserCreateOrConnectWithoutDesaInput | UserCreateOrConnectWithoutDesaInput[]
@@ -25527,6 +28376,20 @@ export namespace Prisma {
     update?: ApbdesUpdateWithWhereUniqueWithoutDesaInput | ApbdesUpdateWithWhereUniqueWithoutDesaInput[]
     updateMany?: ApbdesUpdateManyWithWhereWithoutDesaInput | ApbdesUpdateManyWithWhereWithoutDesaInput[]
     deleteMany?: ApbdesScalarWhereInput | ApbdesScalarWhereInput[]
+  }
+
+  export type KeluargaUncheckedUpdateManyWithoutDesaNestedInput = {
+    create?: XOR<KeluargaCreateWithoutDesaInput, KeluargaUncheckedCreateWithoutDesaInput> | KeluargaCreateWithoutDesaInput[] | KeluargaUncheckedCreateWithoutDesaInput[]
+    connectOrCreate?: KeluargaCreateOrConnectWithoutDesaInput | KeluargaCreateOrConnectWithoutDesaInput[]
+    upsert?: KeluargaUpsertWithWhereUniqueWithoutDesaInput | KeluargaUpsertWithWhereUniqueWithoutDesaInput[]
+    createMany?: KeluargaCreateManyDesaInputEnvelope
+    set?: KeluargaWhereUniqueInput | KeluargaWhereUniqueInput[]
+    disconnect?: KeluargaWhereUniqueInput | KeluargaWhereUniqueInput[]
+    delete?: KeluargaWhereUniqueInput | KeluargaWhereUniqueInput[]
+    connect?: KeluargaWhereUniqueInput | KeluargaWhereUniqueInput[]
+    update?: KeluargaUpdateWithWhereUniqueWithoutDesaInput | KeluargaUpdateWithWhereUniqueWithoutDesaInput[]
+    updateMany?: KeluargaUpdateManyWithWhereWithoutDesaInput | KeluargaUpdateManyWithWhereWithoutDesaInput[]
+    deleteMany?: KeluargaScalarWhereInput | KeluargaScalarWhereInput[]
   }
 
   export type DesaCreateNestedOneWithoutApbdesInput = {
@@ -26203,6 +29066,76 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutNotificationsInput, UserUpdateWithoutNotificationsInput>, UserUncheckedUpdateWithoutNotificationsInput>
   }
 
+  export type DesaCreateNestedOneWithoutKeluargasInput = {
+    create?: XOR<DesaCreateWithoutKeluargasInput, DesaUncheckedCreateWithoutKeluargasInput>
+    connectOrCreate?: DesaCreateOrConnectWithoutKeluargasInput
+    connect?: DesaWhereUniqueInput
+  }
+
+  export type WargaCreateNestedManyWithoutKeluargaInput = {
+    create?: XOR<WargaCreateWithoutKeluargaInput, WargaUncheckedCreateWithoutKeluargaInput> | WargaCreateWithoutKeluargaInput[] | WargaUncheckedCreateWithoutKeluargaInput[]
+    connectOrCreate?: WargaCreateOrConnectWithoutKeluargaInput | WargaCreateOrConnectWithoutKeluargaInput[]
+    createMany?: WargaCreateManyKeluargaInputEnvelope
+    connect?: WargaWhereUniqueInput | WargaWhereUniqueInput[]
+  }
+
+  export type WargaUncheckedCreateNestedManyWithoutKeluargaInput = {
+    create?: XOR<WargaCreateWithoutKeluargaInput, WargaUncheckedCreateWithoutKeluargaInput> | WargaCreateWithoutKeluargaInput[] | WargaUncheckedCreateWithoutKeluargaInput[]
+    connectOrCreate?: WargaCreateOrConnectWithoutKeluargaInput | WargaCreateOrConnectWithoutKeluargaInput[]
+    createMany?: WargaCreateManyKeluargaInputEnvelope
+    connect?: WargaWhereUniqueInput | WargaWhereUniqueInput[]
+  }
+
+  export type DesaUpdateOneRequiredWithoutKeluargasNestedInput = {
+    create?: XOR<DesaCreateWithoutKeluargasInput, DesaUncheckedCreateWithoutKeluargasInput>
+    connectOrCreate?: DesaCreateOrConnectWithoutKeluargasInput
+    upsert?: DesaUpsertWithoutKeluargasInput
+    connect?: DesaWhereUniqueInput
+    update?: XOR<XOR<DesaUpdateToOneWithWhereWithoutKeluargasInput, DesaUpdateWithoutKeluargasInput>, DesaUncheckedUpdateWithoutKeluargasInput>
+  }
+
+  export type WargaUpdateManyWithoutKeluargaNestedInput = {
+    create?: XOR<WargaCreateWithoutKeluargaInput, WargaUncheckedCreateWithoutKeluargaInput> | WargaCreateWithoutKeluargaInput[] | WargaUncheckedCreateWithoutKeluargaInput[]
+    connectOrCreate?: WargaCreateOrConnectWithoutKeluargaInput | WargaCreateOrConnectWithoutKeluargaInput[]
+    upsert?: WargaUpsertWithWhereUniqueWithoutKeluargaInput | WargaUpsertWithWhereUniqueWithoutKeluargaInput[]
+    createMany?: WargaCreateManyKeluargaInputEnvelope
+    set?: WargaWhereUniqueInput | WargaWhereUniqueInput[]
+    disconnect?: WargaWhereUniqueInput | WargaWhereUniqueInput[]
+    delete?: WargaWhereUniqueInput | WargaWhereUniqueInput[]
+    connect?: WargaWhereUniqueInput | WargaWhereUniqueInput[]
+    update?: WargaUpdateWithWhereUniqueWithoutKeluargaInput | WargaUpdateWithWhereUniqueWithoutKeluargaInput[]
+    updateMany?: WargaUpdateManyWithWhereWithoutKeluargaInput | WargaUpdateManyWithWhereWithoutKeluargaInput[]
+    deleteMany?: WargaScalarWhereInput | WargaScalarWhereInput[]
+  }
+
+  export type WargaUncheckedUpdateManyWithoutKeluargaNestedInput = {
+    create?: XOR<WargaCreateWithoutKeluargaInput, WargaUncheckedCreateWithoutKeluargaInput> | WargaCreateWithoutKeluargaInput[] | WargaUncheckedCreateWithoutKeluargaInput[]
+    connectOrCreate?: WargaCreateOrConnectWithoutKeluargaInput | WargaCreateOrConnectWithoutKeluargaInput[]
+    upsert?: WargaUpsertWithWhereUniqueWithoutKeluargaInput | WargaUpsertWithWhereUniqueWithoutKeluargaInput[]
+    createMany?: WargaCreateManyKeluargaInputEnvelope
+    set?: WargaWhereUniqueInput | WargaWhereUniqueInput[]
+    disconnect?: WargaWhereUniqueInput | WargaWhereUniqueInput[]
+    delete?: WargaWhereUniqueInput | WargaWhereUniqueInput[]
+    connect?: WargaWhereUniqueInput | WargaWhereUniqueInput[]
+    update?: WargaUpdateWithWhereUniqueWithoutKeluargaInput | WargaUpdateWithWhereUniqueWithoutKeluargaInput[]
+    updateMany?: WargaUpdateManyWithWhereWithoutKeluargaInput | WargaUpdateManyWithWhereWithoutKeluargaInput[]
+    deleteMany?: WargaScalarWhereInput | WargaScalarWhereInput[]
+  }
+
+  export type KeluargaCreateNestedOneWithoutAnggotaInput = {
+    create?: XOR<KeluargaCreateWithoutAnggotaInput, KeluargaUncheckedCreateWithoutAnggotaInput>
+    connectOrCreate?: KeluargaCreateOrConnectWithoutAnggotaInput
+    connect?: KeluargaWhereUniqueInput
+  }
+
+  export type KeluargaUpdateOneRequiredWithoutAnggotaNestedInput = {
+    create?: XOR<KeluargaCreateWithoutAnggotaInput, KeluargaUncheckedCreateWithoutAnggotaInput>
+    connectOrCreate?: KeluargaCreateOrConnectWithoutAnggotaInput
+    upsert?: KeluargaUpsertWithoutAnggotaInput
+    connect?: KeluargaWhereUniqueInput
+    update?: XOR<XOR<KeluargaUpdateToOneWithWhereWithoutAnggotaInput, KeluargaUpdateWithoutAnggotaInput>, KeluargaUncheckedUpdateWithoutAnggotaInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -26418,6 +29351,7 @@ export namespace Prisma {
     alamat: string
     kecamatan: KecamatanCreateNestedOneWithoutDesasInput
     apbdes?: ApbdesCreateNestedManyWithoutDesaInput
+    keluargas?: KeluargaCreateNestedManyWithoutDesaInput
   }
 
   export type DesaUncheckedCreateWithoutUsersInput = {
@@ -26428,6 +29362,7 @@ export namespace Prisma {
     alamat: string
     kecamatanId: string
     apbdes?: ApbdesUncheckedCreateNestedManyWithoutDesaInput
+    keluargas?: KeluargaUncheckedCreateNestedManyWithoutDesaInput
   }
 
   export type DesaCreateOrConnectWithoutUsersInput = {
@@ -26533,6 +29468,7 @@ export namespace Prisma {
     alamat?: StringFieldUpdateOperationsInput | string
     kecamatan?: KecamatanUpdateOneRequiredWithoutDesasNestedInput
     apbdes?: ApbdesUpdateManyWithoutDesaNestedInput
+    keluargas?: KeluargaUpdateManyWithoutDesaNestedInput
   }
 
   export type DesaUncheckedUpdateWithoutUsersInput = {
@@ -26543,6 +29479,7 @@ export namespace Prisma {
     alamat?: StringFieldUpdateOperationsInput | string
     kecamatanId?: StringFieldUpdateOperationsInput | string
     apbdes?: ApbdesUncheckedUpdateManyWithoutDesaNestedInput
+    keluargas?: KeluargaUncheckedUpdateManyWithoutDesaNestedInput
   }
 
   export type LogAktivitasUpsertWithWhereUniqueWithoutUserInput = {
@@ -26840,6 +29777,7 @@ export namespace Prisma {
     alamat: string
     users?: UserCreateNestedManyWithoutDesaInput
     apbdes?: ApbdesCreateNestedManyWithoutDesaInput
+    keluargas?: KeluargaCreateNestedManyWithoutDesaInput
   }
 
   export type DesaUncheckedCreateWithoutKecamatanInput = {
@@ -26850,6 +29788,7 @@ export namespace Prisma {
     alamat: string
     users?: UserUncheckedCreateNestedManyWithoutDesaInput
     apbdes?: ApbdesUncheckedCreateNestedManyWithoutDesaInput
+    keluargas?: KeluargaUncheckedCreateNestedManyWithoutDesaInput
   }
 
   export type DesaCreateOrConnectWithoutKecamatanInput = {
@@ -27008,6 +29947,40 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type KeluargaCreateWithoutDesaInput = {
+    id?: string
+    nomorKk: string
+    kepalaKeluarga: string
+    alamat: string
+    rt: string
+    rw: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    anggota?: WargaCreateNestedManyWithoutKeluargaInput
+  }
+
+  export type KeluargaUncheckedCreateWithoutDesaInput = {
+    id?: string
+    nomorKk: string
+    kepalaKeluarga: string
+    alamat: string
+    rt: string
+    rw: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    anggota?: WargaUncheckedCreateNestedManyWithoutKeluargaInput
+  }
+
+  export type KeluargaCreateOrConnectWithoutDesaInput = {
+    where: KeluargaWhereUniqueInput
+    create: XOR<KeluargaCreateWithoutDesaInput, KeluargaUncheckedCreateWithoutDesaInput>
+  }
+
+  export type KeluargaCreateManyDesaInputEnvelope = {
+    data: KeluargaCreateManyDesaInput | KeluargaCreateManyDesaInput[]
+    skipDuplicates?: boolean
+  }
+
   export type KecamatanUpsertWithoutDesasInput = {
     update: XOR<KecamatanUpdateWithoutDesasInput, KecamatanUncheckedUpdateWithoutDesasInput>
     create: XOR<KecamatanCreateWithoutDesasInput, KecamatanUncheckedCreateWithoutDesasInput>
@@ -27075,6 +30048,37 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Apbdes"> | Date | string
   }
 
+  export type KeluargaUpsertWithWhereUniqueWithoutDesaInput = {
+    where: KeluargaWhereUniqueInput
+    update: XOR<KeluargaUpdateWithoutDesaInput, KeluargaUncheckedUpdateWithoutDesaInput>
+    create: XOR<KeluargaCreateWithoutDesaInput, KeluargaUncheckedCreateWithoutDesaInput>
+  }
+
+  export type KeluargaUpdateWithWhereUniqueWithoutDesaInput = {
+    where: KeluargaWhereUniqueInput
+    data: XOR<KeluargaUpdateWithoutDesaInput, KeluargaUncheckedUpdateWithoutDesaInput>
+  }
+
+  export type KeluargaUpdateManyWithWhereWithoutDesaInput = {
+    where: KeluargaScalarWhereInput
+    data: XOR<KeluargaUpdateManyMutationInput, KeluargaUncheckedUpdateManyWithoutDesaInput>
+  }
+
+  export type KeluargaScalarWhereInput = {
+    AND?: KeluargaScalarWhereInput | KeluargaScalarWhereInput[]
+    OR?: KeluargaScalarWhereInput[]
+    NOT?: KeluargaScalarWhereInput | KeluargaScalarWhereInput[]
+    id?: StringFilter<"Keluarga"> | string
+    nomorKk?: StringFilter<"Keluarga"> | string
+    kepalaKeluarga?: StringFilter<"Keluarga"> | string
+    alamat?: StringFilter<"Keluarga"> | string
+    rt?: StringFilter<"Keluarga"> | string
+    rw?: StringFilter<"Keluarga"> | string
+    desaId?: StringFilter<"Keluarga"> | string
+    createdAt?: DateTimeFilter<"Keluarga"> | Date | string
+    updatedAt?: DateTimeFilter<"Keluarga"> | Date | string
+  }
+
   export type DesaCreateWithoutApbdesInput = {
     id?: string
     name: string
@@ -27083,6 +30087,7 @@ export namespace Prisma {
     alamat: string
     kecamatan: KecamatanCreateNestedOneWithoutDesasInput
     users?: UserCreateNestedManyWithoutDesaInput
+    keluargas?: KeluargaCreateNestedManyWithoutDesaInput
   }
 
   export type DesaUncheckedCreateWithoutApbdesInput = {
@@ -27093,6 +30098,7 @@ export namespace Prisma {
     alamat: string
     kecamatanId: string
     users?: UserUncheckedCreateNestedManyWithoutDesaInput
+    keluargas?: KeluargaUncheckedCreateNestedManyWithoutDesaInput
   }
 
   export type DesaCreateOrConnectWithoutApbdesInput = {
@@ -27207,6 +30213,7 @@ export namespace Prisma {
     alamat?: StringFieldUpdateOperationsInput | string
     kecamatan?: KecamatanUpdateOneRequiredWithoutDesasNestedInput
     users?: UserUpdateManyWithoutDesaNestedInput
+    keluargas?: KeluargaUpdateManyWithoutDesaNestedInput
   }
 
   export type DesaUncheckedUpdateWithoutApbdesInput = {
@@ -27217,6 +30224,7 @@ export namespace Prisma {
     alamat?: StringFieldUpdateOperationsInput | string
     kecamatanId?: StringFieldUpdateOperationsInput | string
     users?: UserUncheckedUpdateManyWithoutDesaNestedInput
+    keluargas?: KeluargaUncheckedUpdateManyWithoutDesaNestedInput
   }
 
   export type PendapatanUpsertWithWhereUniqueWithoutApbdesInput = {
@@ -28453,6 +31461,208 @@ export namespace Prisma {
     logs?: LogAktivitasUncheckedUpdateManyWithoutUserNestedInput
   }
 
+  export type DesaCreateWithoutKeluargasInput = {
+    id?: string
+    name: string
+    kepalaDesa: string
+    nip?: string | null
+    alamat: string
+    kecamatan: KecamatanCreateNestedOneWithoutDesasInput
+    users?: UserCreateNestedManyWithoutDesaInput
+    apbdes?: ApbdesCreateNestedManyWithoutDesaInput
+  }
+
+  export type DesaUncheckedCreateWithoutKeluargasInput = {
+    id?: string
+    name: string
+    kepalaDesa: string
+    nip?: string | null
+    alamat: string
+    kecamatanId: string
+    users?: UserUncheckedCreateNestedManyWithoutDesaInput
+    apbdes?: ApbdesUncheckedCreateNestedManyWithoutDesaInput
+  }
+
+  export type DesaCreateOrConnectWithoutKeluargasInput = {
+    where: DesaWhereUniqueInput
+    create: XOR<DesaCreateWithoutKeluargasInput, DesaUncheckedCreateWithoutKeluargasInput>
+  }
+
+  export type WargaCreateWithoutKeluargaInput = {
+    id?: string
+    nik: string
+    nama: string
+    tempatLahir: string
+    tanggalLahir: Date | string
+    jenisKelamin: string
+    agama: string
+    pendidikan: string
+    pekerjaan: string
+    statusPerkawinan: string
+    statusKeluarga: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type WargaUncheckedCreateWithoutKeluargaInput = {
+    id?: string
+    nik: string
+    nama: string
+    tempatLahir: string
+    tanggalLahir: Date | string
+    jenisKelamin: string
+    agama: string
+    pendidikan: string
+    pekerjaan: string
+    statusPerkawinan: string
+    statusKeluarga: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type WargaCreateOrConnectWithoutKeluargaInput = {
+    where: WargaWhereUniqueInput
+    create: XOR<WargaCreateWithoutKeluargaInput, WargaUncheckedCreateWithoutKeluargaInput>
+  }
+
+  export type WargaCreateManyKeluargaInputEnvelope = {
+    data: WargaCreateManyKeluargaInput | WargaCreateManyKeluargaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type DesaUpsertWithoutKeluargasInput = {
+    update: XOR<DesaUpdateWithoutKeluargasInput, DesaUncheckedUpdateWithoutKeluargasInput>
+    create: XOR<DesaCreateWithoutKeluargasInput, DesaUncheckedCreateWithoutKeluargasInput>
+    where?: DesaWhereInput
+  }
+
+  export type DesaUpdateToOneWithWhereWithoutKeluargasInput = {
+    where?: DesaWhereInput
+    data: XOR<DesaUpdateWithoutKeluargasInput, DesaUncheckedUpdateWithoutKeluargasInput>
+  }
+
+  export type DesaUpdateWithoutKeluargasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    kepalaDesa?: StringFieldUpdateOperationsInput | string
+    nip?: NullableStringFieldUpdateOperationsInput | string | null
+    alamat?: StringFieldUpdateOperationsInput | string
+    kecamatan?: KecamatanUpdateOneRequiredWithoutDesasNestedInput
+    users?: UserUpdateManyWithoutDesaNestedInput
+    apbdes?: ApbdesUpdateManyWithoutDesaNestedInput
+  }
+
+  export type DesaUncheckedUpdateWithoutKeluargasInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    kepalaDesa?: StringFieldUpdateOperationsInput | string
+    nip?: NullableStringFieldUpdateOperationsInput | string | null
+    alamat?: StringFieldUpdateOperationsInput | string
+    kecamatanId?: StringFieldUpdateOperationsInput | string
+    users?: UserUncheckedUpdateManyWithoutDesaNestedInput
+    apbdes?: ApbdesUncheckedUpdateManyWithoutDesaNestedInput
+  }
+
+  export type WargaUpsertWithWhereUniqueWithoutKeluargaInput = {
+    where: WargaWhereUniqueInput
+    update: XOR<WargaUpdateWithoutKeluargaInput, WargaUncheckedUpdateWithoutKeluargaInput>
+    create: XOR<WargaCreateWithoutKeluargaInput, WargaUncheckedCreateWithoutKeluargaInput>
+  }
+
+  export type WargaUpdateWithWhereUniqueWithoutKeluargaInput = {
+    where: WargaWhereUniqueInput
+    data: XOR<WargaUpdateWithoutKeluargaInput, WargaUncheckedUpdateWithoutKeluargaInput>
+  }
+
+  export type WargaUpdateManyWithWhereWithoutKeluargaInput = {
+    where: WargaScalarWhereInput
+    data: XOR<WargaUpdateManyMutationInput, WargaUncheckedUpdateManyWithoutKeluargaInput>
+  }
+
+  export type WargaScalarWhereInput = {
+    AND?: WargaScalarWhereInput | WargaScalarWhereInput[]
+    OR?: WargaScalarWhereInput[]
+    NOT?: WargaScalarWhereInput | WargaScalarWhereInput[]
+    id?: StringFilter<"Warga"> | string
+    nik?: StringFilter<"Warga"> | string
+    nama?: StringFilter<"Warga"> | string
+    tempatLahir?: StringFilter<"Warga"> | string
+    tanggalLahir?: DateTimeFilter<"Warga"> | Date | string
+    jenisKelamin?: StringFilter<"Warga"> | string
+    agama?: StringFilter<"Warga"> | string
+    pendidikan?: StringFilter<"Warga"> | string
+    pekerjaan?: StringFilter<"Warga"> | string
+    statusPerkawinan?: StringFilter<"Warga"> | string
+    statusKeluarga?: StringFilter<"Warga"> | string
+    keluargaId?: StringFilter<"Warga"> | string
+    createdAt?: DateTimeFilter<"Warga"> | Date | string
+    updatedAt?: DateTimeFilter<"Warga"> | Date | string
+  }
+
+  export type KeluargaCreateWithoutAnggotaInput = {
+    id?: string
+    nomorKk: string
+    kepalaKeluarga: string
+    alamat: string
+    rt: string
+    rw: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    desa: DesaCreateNestedOneWithoutKeluargasInput
+  }
+
+  export type KeluargaUncheckedCreateWithoutAnggotaInput = {
+    id?: string
+    nomorKk: string
+    kepalaKeluarga: string
+    alamat: string
+    rt: string
+    rw: string
+    desaId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type KeluargaCreateOrConnectWithoutAnggotaInput = {
+    where: KeluargaWhereUniqueInput
+    create: XOR<KeluargaCreateWithoutAnggotaInput, KeluargaUncheckedCreateWithoutAnggotaInput>
+  }
+
+  export type KeluargaUpsertWithoutAnggotaInput = {
+    update: XOR<KeluargaUpdateWithoutAnggotaInput, KeluargaUncheckedUpdateWithoutAnggotaInput>
+    create: XOR<KeluargaCreateWithoutAnggotaInput, KeluargaUncheckedCreateWithoutAnggotaInput>
+    where?: KeluargaWhereInput
+  }
+
+  export type KeluargaUpdateToOneWithWhereWithoutAnggotaInput = {
+    where?: KeluargaWhereInput
+    data: XOR<KeluargaUpdateWithoutAnggotaInput, KeluargaUncheckedUpdateWithoutAnggotaInput>
+  }
+
+  export type KeluargaUpdateWithoutAnggotaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nomorKk?: StringFieldUpdateOperationsInput | string
+    kepalaKeluarga?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    rt?: StringFieldUpdateOperationsInput | string
+    rw?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    desa?: DesaUpdateOneRequiredWithoutKeluargasNestedInput
+  }
+
+  export type KeluargaUncheckedUpdateWithoutAnggotaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nomorKk?: StringFieldUpdateOperationsInput | string
+    kepalaKeluarga?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    rt?: StringFieldUpdateOperationsInput | string
+    rw?: StringFieldUpdateOperationsInput | string
+    desaId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type LogAktivitasCreateManyUserInput = {
     id?: string
     action: string
@@ -28653,6 +31863,7 @@ export namespace Prisma {
     alamat?: StringFieldUpdateOperationsInput | string
     users?: UserUpdateManyWithoutDesaNestedInput
     apbdes?: ApbdesUpdateManyWithoutDesaNestedInput
+    keluargas?: KeluargaUpdateManyWithoutDesaNestedInput
   }
 
   export type DesaUncheckedUpdateWithoutKecamatanInput = {
@@ -28663,6 +31874,7 @@ export namespace Prisma {
     alamat?: StringFieldUpdateOperationsInput | string
     users?: UserUncheckedUpdateManyWithoutDesaNestedInput
     apbdes?: ApbdesUncheckedUpdateManyWithoutDesaNestedInput
+    keluargas?: KeluargaUncheckedUpdateManyWithoutDesaNestedInput
   }
 
   export type DesaUncheckedUpdateManyWithoutKecamatanInput = {
@@ -28693,6 +31905,17 @@ export namespace Prisma {
     id?: string
     tahun: number
     status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type KeluargaCreateManyDesaInput = {
+    id?: string
+    nomorKk: string
+    kepalaKeluarga: string
+    alamat: string
+    rt: string
+    rw: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -28775,6 +31998,41 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     tahun?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type KeluargaUpdateWithoutDesaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nomorKk?: StringFieldUpdateOperationsInput | string
+    kepalaKeluarga?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    rt?: StringFieldUpdateOperationsInput | string
+    rw?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    anggota?: WargaUpdateManyWithoutKeluargaNestedInput
+  }
+
+  export type KeluargaUncheckedUpdateWithoutDesaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nomorKk?: StringFieldUpdateOperationsInput | string
+    kepalaKeluarga?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    rt?: StringFieldUpdateOperationsInput | string
+    rw?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    anggota?: WargaUncheckedUpdateManyWithoutKeluargaNestedInput
+  }
+
+  export type KeluargaUncheckedUpdateManyWithoutDesaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nomorKk?: StringFieldUpdateOperationsInput | string
+    kepalaKeluarga?: StringFieldUpdateOperationsInput | string
+    alamat?: StringFieldUpdateOperationsInput | string
+    rt?: StringFieldUpdateOperationsInput | string
+    rw?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -29211,6 +32469,70 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type WargaCreateManyKeluargaInput = {
+    id?: string
+    nik: string
+    nama: string
+    tempatLahir: string
+    tanggalLahir: Date | string
+    jenisKelamin: string
+    agama: string
+    pendidikan: string
+    pekerjaan: string
+    statusPerkawinan: string
+    statusKeluarga: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type WargaUpdateWithoutKeluargaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nik?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    tempatLahir?: StringFieldUpdateOperationsInput | string
+    tanggalLahir?: DateTimeFieldUpdateOperationsInput | Date | string
+    jenisKelamin?: StringFieldUpdateOperationsInput | string
+    agama?: StringFieldUpdateOperationsInput | string
+    pendidikan?: StringFieldUpdateOperationsInput | string
+    pekerjaan?: StringFieldUpdateOperationsInput | string
+    statusPerkawinan?: StringFieldUpdateOperationsInput | string
+    statusKeluarga?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WargaUncheckedUpdateWithoutKeluargaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nik?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    tempatLahir?: StringFieldUpdateOperationsInput | string
+    tanggalLahir?: DateTimeFieldUpdateOperationsInput | Date | string
+    jenisKelamin?: StringFieldUpdateOperationsInput | string
+    agama?: StringFieldUpdateOperationsInput | string
+    pendidikan?: StringFieldUpdateOperationsInput | string
+    pekerjaan?: StringFieldUpdateOperationsInput | string
+    statusPerkawinan?: StringFieldUpdateOperationsInput | string
+    statusKeluarga?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WargaUncheckedUpdateManyWithoutKeluargaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nik?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    tempatLahir?: StringFieldUpdateOperationsInput | string
+    tanggalLahir?: DateTimeFieldUpdateOperationsInput | Date | string
+    jenisKelamin?: StringFieldUpdateOperationsInput | string
+    agama?: StringFieldUpdateOperationsInput | string
+    pendidikan?: StringFieldUpdateOperationsInput | string
+    pekerjaan?: StringFieldUpdateOperationsInput | string
+    statusPerkawinan?: StringFieldUpdateOperationsInput | string
+    statusKeluarga?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
 
 
   /**
@@ -29272,6 +32594,10 @@ export namespace Prisma {
      * @deprecated Use BelanjaCountOutputTypeDefaultArgs instead
      */
     export type BelanjaCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = BelanjaCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use KeluargaCountOutputTypeDefaultArgs instead
+     */
+    export type KeluargaCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = KeluargaCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use UserDefaultArgs instead
      */
@@ -29348,6 +32674,14 @@ export namespace Prisma {
      * @deprecated Use NotificationDefaultArgs instead
      */
     export type NotificationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = NotificationDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use KeluargaDefaultArgs instead
+     */
+    export type KeluargaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = KeluargaDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use WargaDefaultArgs instead
+     */
+    export type WargaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = WargaDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

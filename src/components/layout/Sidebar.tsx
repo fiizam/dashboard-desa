@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { 
   LayoutDashboard, Users, Wallet, FileText, Settings, 
-  Pin, PinOff, Search, LogOut, X
+  Pin, PinOff, Search, LogOut, X, Shield
 } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
@@ -40,7 +40,8 @@ export function Sidebar({ userRole }: { userRole: string }) {
   const menuItems = [
     { label: t.sidebar.dashboard, href: '/', icon: LayoutDashboard, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
     { label: t.sidebar.keuangan, href: '/keuangan', icon: Wallet, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Bendahara'] },
-    { label: t.sidebar.masterData, href: '/master', icon: Users, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris'] },
+    { label: 'Kependudukan', href: '/kependudukan', icon: Users, roles: ['Super Admin', 'Ketua RW', 'Sekretaris'] },
+    { label: t.sidebar.masterData, href: '/master', icon: Shield, roles: ['Super Admin', 'Ketua RW'] },
     { label: t.sidebar.laporan, href: '/laporan', icon: FileText, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
     { label: t.sidebar.pengaturan, href: '/settings', icon: Settings, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
   ]

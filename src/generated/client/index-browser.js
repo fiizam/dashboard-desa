@@ -287,6 +287,35 @@ exports.Prisma.NotificationScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.KeluargaScalarFieldEnum = {
+  id: 'id',
+  nomorKk: 'nomorKk',
+  kepalaKeluarga: 'kepalaKeluarga',
+  alamat: 'alamat',
+  rt: 'rt',
+  rw: 'rw',
+  desaId: 'desaId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.WargaScalarFieldEnum = {
+  id: 'id',
+  nik: 'nik',
+  nama: 'nama',
+  tempatLahir: 'tempatLahir',
+  tanggalLahir: 'tanggalLahir',
+  jenisKelamin: 'jenisKelamin',
+  agama: 'agama',
+  pendidikan: 'pendidikan',
+  pekerjaan: 'pekerjaan',
+  statusPerkawinan: 'statusPerkawinan',
+  statusKeluarga: 'statusKeluarga',
+  keluargaId: 'keluargaId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -322,7 +351,9 @@ exports.Prisma.ModelName = {
   TransaksiPendapatan: 'TransaksiPendapatan',
   TransaksiBelanja: 'TransaksiBelanja',
   LogAktivitas: 'LogAktivitas',
-  Notification: 'Notification'
+  Notification: 'Notification',
+  Keluarga: 'Keluarga',
+  Warga: 'Warga'
 };
 
 /**

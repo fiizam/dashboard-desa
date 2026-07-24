@@ -63,15 +63,16 @@ model Kecamatan {
 }
 
 model Desa {
-  id          String    @id @default(cuid())
+  id          String     @id @default(cuid())
   name        String
   kepalaDesa  String
   nip         String?
   alamat      String
   kecamatanId String
-  kecamatan   Kecamatan @relation(fields: [kecamatanId], references: [id])
+  kecamatan   Kecamatan  @relation(fields: [kecamatanId], references: [id])
   users       User[]
   apbdes      Apbdes[]
+  keluargas   Keluarga[]
 }
 
 // Keuangan & APBDes
@@ -220,4 +221,41 @@ model Notification {
   isRead    Boolean  @default(false)
   link      String?
   createdAt DateTime @default(now())
+}
+
+// Data Kependudukan (Warga & KK)
+model Keluarga {
+  id             String @id @default(cuid())
+  nomorKk        String @unique
+  kepalaKeluarga String
+  alamat         String
+  rt             String
+  rw             String
+  desaId         String
+  desa           Desa   @relation(fields: [desaId], references: [id])
+
+  anggota Warga[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Warga {
+  id               String   @id @default(cuid())
+  nik              String   @unique
+  nama             String
+  tempatLahir      String
+  tanggalLahir     DateTime
+  jenisKelamin     String // "Laki-laki" | "Perempuan"
+  agama            String
+  pendidikan       String
+  pekerjaan        String
+  statusPerkawinan String // "Belum Kawin", "Kawin", "Cerai Hidup", "Cerai Mati"
+  statusKeluarga   String // "Kepala Keluarga", "Istri", "Anak", dll
+
+  keluargaId String
+  keluarga   Keluarga @relation(fields: [keluargaId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
