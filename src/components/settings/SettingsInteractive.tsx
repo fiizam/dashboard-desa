@@ -41,7 +41,7 @@ export function SettingsInteractive() {
     setTimeout(() => setToastMessage(null), 3000)
   }
 
-  const handleThemeChange = (newTheme: 'light' | 'dark' | 'system') => {
+  const handleThemeChange = (newTheme: 'light' | 'dark' | 'system', event?: React.MouseEvent) => {
     if (theme === newTheme) return;
     
     if (!document.startViewTransition) {
@@ -49,7 +49,15 @@ export function SettingsInteractive() {
       return;
     }
 
-    document.startViewTransition(() => {
+    const x = event?.clientX ?? window.innerWidth;
+    const y = event?.clientY ?? 0;
+    
+    const endRadius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y)
+    );
+
+    const transition = document.startViewTransition(() => {
       flushSync(() => {
         setTheme(newTheme);
       });
@@ -60,6 +68,20 @@ export function SettingsInteractive() {
       } else {
         root.classList.remove('dark');
       }
+    });
+
+    transition.ready.then(() => {
+      document.documentElement.animate(
+        [
+          { clipPath: `circle(0px at ${x}px ${y}px)` },
+          { clipPath: `circle(${endRadius}px at ${x}px ${y}px)` }
+        ],
+        {
+          duration: 700,
+          easing: "ease-in-out",
+          pseudoElement: "::view-transition-new(root)"
+        }
+      );
     });
   }
 
@@ -137,7 +159,7 @@ export function SettingsInteractive() {
                   <h2 className="text-xl font-semibold mb-4">{t.settings.general.themeTitle}</h2>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <button 
-                      onClick={() => handleThemeChange('light')}
+                      onClick={(e) => handleThemeChange('light', e)}
                       className={`p-4 rounded-2xl border-2 text-left flex flex-col gap-3 transition-all ${
                         theme === 'light' ? 'border-primary bg-primary/5' : 'border-border/50 hover:border-border'
                       }`}
@@ -149,7 +171,7 @@ export function SettingsInteractive() {
                       </div>
                     </button>
                     <button 
-                      onClick={() => handleThemeChange('dark')}
+                      onClick={(e) => handleThemeChange('dark', e)}
                       className={`p-4 rounded-2xl border-2 text-left flex flex-col gap-3 transition-all ${
                         theme === 'dark' ? 'border-primary bg-primary/5' : 'border-border/50 hover:border-border'
                       }`}
@@ -161,7 +183,7 @@ export function SettingsInteractive() {
                       </div>
                     </button>
                     <button 
-                      onClick={() => handleThemeChange('system')}
+                      onClick={(e) => handleThemeChange('system', e)}
                       className={`p-4 rounded-2xl border-2 text-left flex flex-col gap-3 transition-all ${
                         theme === 'system' ? 'border-primary bg-primary/5' : 'border-border/50 hover:border-border'
                       }`}
