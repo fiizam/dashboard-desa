@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from 'react'
+import { flushSync } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { 
   Palette, BellRing, ShieldCheck, Database, 
@@ -38,6 +39,28 @@ export function SettingsInteractive() {
   const showToast = (title: string, desc: string, type: 'success' | 'error') => {
     setToastMessage({ title, desc, type })
     setTimeout(() => setToastMessage(null), 3000)
+  }
+
+  const handleThemeChange = (newTheme: 'light' | 'dark' | 'system') => {
+    if (theme === newTheme) return;
+    
+    if (!document.startViewTransition) {
+      setTheme(newTheme);
+      return;
+    }
+
+    document.startViewTransition(() => {
+      flushSync(() => {
+        setTheme(newTheme);
+      });
+      // Synchronously update the DOM so the view transition captures the new state
+      const root = document.documentElement;
+      if (newTheme === 'dark' || (newTheme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        root.classList.add('dark');
+      } else {
+        root.classList.remove('dark');
+      }
+    });
   }
 
   const handleDownloadBackup = async () => {
@@ -114,7 +137,7 @@ export function SettingsInteractive() {
                   <h2 className="text-xl font-semibold mb-4">{t.settings.general.themeTitle}</h2>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <button 
-                      onClick={() => setTheme('light')}
+                      onClick={() => handleThemeChange('light')}
                       className={`p-4 rounded-2xl border-2 text-left flex flex-col gap-3 transition-all ${
                         theme === 'light' ? 'border-primary bg-primary/5' : 'border-border/50 hover:border-border'
                       }`}
@@ -126,7 +149,7 @@ export function SettingsInteractive() {
                       </div>
                     </button>
                     <button 
-                      onClick={() => setTheme('dark')}
+                      onClick={() => handleThemeChange('dark')}
                       className={`p-4 rounded-2xl border-2 text-left flex flex-col gap-3 transition-all ${
                         theme === 'dark' ? 'border-primary bg-primary/5' : 'border-border/50 hover:border-border'
                       }`}
@@ -138,7 +161,7 @@ export function SettingsInteractive() {
                       </div>
                     </button>
                     <button 
-                      onClick={() => setTheme('system')}
+                      onClick={() => handleThemeChange('system')}
                       className={`p-4 rounded-2xl border-2 text-left flex flex-col gap-3 transition-all ${
                         theme === 'system' ? 'border-primary bg-primary/5' : 'border-border/50 hover:border-border'
                       }`}
