@@ -37,9 +37,6 @@ export function SoftTopCards({ role }: { role: string }) {
         <div className="absolute top-6 right-6 text-rose-500 font-bold text-sm bg-rose-500/10 px-2.5 py-1 rounded-xl border border-rose-500/20">
           -5,67%
         </div>
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
       </div>
     </div>
   )
