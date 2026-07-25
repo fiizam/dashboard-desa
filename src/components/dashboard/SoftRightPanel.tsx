@@ -3,8 +3,10 @@ import { useState } from 'react'
 import { Plus, Calendar as CalendarIcon, FileEdit } from 'lucide-react'
 import { AgendaModal } from './AgendaModal'
 import { TaskModal } from './TaskModal'
+import { useTranslation } from '@/lib/i18n'
 
 export function SoftRightPanel() {
+  const t = useTranslation()
   const [isAgendaModalOpen, setIsAgendaModalOpen] = useState(false)
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false)
 
@@ -13,7 +15,7 @@ export function SoftRightPanel() {
       {/* Calendar Section */}
       <div className="bg-white/70 dark:bg-secondary/50 backdrop-blur-md rounded-3xl p-6 shadow-[0_8px_30px_-15px_rgba(0,0,0,0.05)] border border-white/50 dark:border-border/50">
         <div className="flex items-center justify-between mb-6">
-          <h3 className="text-xs font-bold text-slate-400 dark:text-muted-foreground uppercase tracking-widest">Agenda Desa</h3>
+          <h3 className="text-xs font-bold text-slate-400 dark:text-muted-foreground uppercase tracking-widest">{t.dashboard.rightPanel.agendaTitle}</h3>
           <button 
             onClick={() => setIsAgendaModalOpen(true)}
             className="w-6 h-6 rounded-full bg-orange-400 text-white flex items-center justify-center hover:bg-orange-500 transition-colors cursor-pointer"
@@ -55,7 +57,7 @@ export function SoftRightPanel() {
       {/* Tasks Section */}
       <div className="bg-white/70 dark:bg-secondary/50 backdrop-blur-md rounded-3xl p-6 shadow-[0_8px_30px_-15px_rgba(0,0,0,0.05)] border border-white/50 dark:border-border/50">
         <div className="flex items-center justify-between mb-6">
-          <h3 className="text-xs font-bold text-slate-400 dark:text-muted-foreground uppercase tracking-widest">Tugas Keuangan</h3>
+          <h3 className="text-xs font-bold text-slate-400 dark:text-muted-foreground uppercase tracking-widest">{t.dashboard.rightPanel.taskTitle}</h3>
           <button 
             onClick={() => setIsTaskModalOpen(true)}
             className="w-6 h-6 rounded-full bg-orange-400 text-white flex items-center justify-center hover:bg-orange-500 transition-colors cursor-pointer"
@@ -67,8 +69,8 @@ export function SoftRightPanel() {
         <div className="space-y-4">
           <div className="flex flex-col gap-2">
             <div className="flex items-center justify-between text-xs font-semibold text-slate-400 dark:text-muted-foreground mb-1">
-              <span>Nama Tugas</span>
-              <span>Tenggat</span>
+              <span>{t.dashboard.rightPanel.colTaskName}</span>
+              <span>{t.dashboard.rightPanel.colDeadline}</span>
             </div>
             
             <div className="flex items-center justify-between">

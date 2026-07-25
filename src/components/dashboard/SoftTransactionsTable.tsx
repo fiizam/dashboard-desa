@@ -1,5 +1,6 @@
 import { Paperclip, Check } from 'lucide-react'
 import Link from 'next/link'
+import { useTranslation } from '@/lib/i18n'
 
 const cases = [
   {
@@ -29,11 +30,12 @@ const cases = [
 ]
 
 export function SoftTransactionsTable() {
+  const t = useTranslation()
   return (
     <div className="bg-white/70 dark:bg-secondary/50 backdrop-blur-md rounded-3xl p-6 shadow-[0_8px_30px_-15px_rgba(0,0,0,0.05)] border border-white/50 dark:border-border/50">
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-xs font-bold text-slate-400 dark:text-muted-foreground uppercase tracking-widest">Daftar Transaksi Tertunda</h3>
-        <Link href="/keuangan" className="text-sm font-semibold text-slate-500 hover:text-slate-800 dark:hover:text-foreground transition-colors">Lihat Semua {`>`}</Link>
+        <h3 className="text-xs font-bold text-slate-400 dark:text-muted-foreground uppercase tracking-widest">{t.dashboard.transactions.title}</h3>
+        <Link href="/keuangan" className="text-sm font-semibold text-slate-500 hover:text-slate-800 dark:hover:text-foreground transition-colors">{t.dashboard.transactions.viewAll} {`>`}</Link>
       </div>
 
       <div className="overflow-x-auto">
@@ -48,11 +50,11 @@ export function SoftTransactionsTable() {
                   </div>
                 </div>
               </th>
-              <th className="pb-4 font-medium px-4">Nama Transaksi</th>
-              <th className="pb-4 font-medium px-4">Tanggal</th>
-              <th className="pb-4 font-medium px-4 text-center">Prioritas</th>
-              <th className="pb-4 font-medium px-4">Lampiran</th>
-              <th className="pb-4 font-medium pl-4 text-center">Pemroses</th>
+              <th className="pb-4 font-medium px-4">{t.dashboard.transactions.colName}</th>
+              <th className="pb-4 font-medium px-4">{t.dashboard.transactions.colDate}</th>
+              <th className="pb-4 font-medium px-4 text-center">{t.dashboard.transactions.colPriority}</th>
+              <th className="pb-4 font-medium px-4">{t.dashboard.transactions.colAttachment}</th>
+              <th className="pb-4 font-medium pl-4 text-center">{t.dashboard.transactions.colAssignee}</th>
             </tr>
           </thead>
           <tbody>

@@ -2,6 +2,7 @@
 import { BarChart, Bar, ResponsiveContainer, YAxis, Tooltip } from 'recharts'
 import { ArrowUp, ArrowDown } from 'lucide-react'
 import Link from 'next/link'
+import { useTranslation } from '@/lib/i18n'
 
 const data = [
   { name: 'Pemdes', val1: 40, val2: 20, val3: 10, val4: 5 },
@@ -11,13 +12,14 @@ const data = [
 ]
 
 export function SoftBreakdown() {
+  const t = useTranslation()
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
       {/* Chart Section */}
       <div className="bg-white/70 dark:bg-secondary/50 backdrop-blur-md rounded-3xl p-6 shadow-[0_8px_30px_-15px_rgba(0,0,0,0.05)] border border-white/50 dark:border-border/50">
         <div className="flex flex-col xl:flex-row xl:items-center justify-between mb-6 gap-2">
-          <h3 className="text-xs font-bold text-slate-400 dark:text-muted-foreground uppercase tracking-widest leading-relaxed">Kategori Belanja</h3>
-          <Link href="/laporan" className="text-sm font-semibold text-slate-500 hover:text-slate-800 dark:hover:text-foreground transition-colors shrink-0 whitespace-nowrap">Laporan Penuh {`>`}</Link>
+          <h3 className="text-xs font-bold text-slate-400 dark:text-muted-foreground uppercase tracking-widest leading-relaxed">{t.dashboard.breakdown.title}</h3>
+          <Link href="/laporan" className="text-sm font-semibold text-slate-500 hover:text-slate-800 dark:hover:text-foreground transition-colors shrink-0 whitespace-nowrap">{t.dashboard.breakdown.reportLink}</Link>
         </div>
 
         <div className="flex flex-col 2xl:flex-row items-start 2xl:items-end gap-6 h-auto 2xl:h-48 relative">
@@ -75,15 +77,15 @@ export function SoftBreakdown() {
       {/* Stats Section */}
       <div className="bg-white/70 dark:bg-secondary/50 backdrop-blur-md rounded-3xl p-6 shadow-[0_8px_30px_-15px_rgba(0,0,0,0.05)] border border-white/50 dark:border-border/50">
         <div className="flex flex-col xl:flex-row xl:items-center justify-between mb-6 gap-2">
-          <h3 className="text-xs font-bold text-slate-400 dark:text-muted-foreground uppercase tracking-widest leading-relaxed">Realisasi per Wilayah</h3>
-          <Link href="/laporan" className="text-sm font-semibold text-slate-500 hover:text-slate-800 dark:hover:text-foreground transition-colors shrink-0 whitespace-nowrap">Lihat Semua {`>`}</Link>
+          <h3 className="text-xs font-bold text-slate-400 dark:text-muted-foreground uppercase tracking-widest leading-relaxed">{t.dashboard.breakdown.statsTitle}</h3>
+          <Link href="/laporan" className="text-sm font-semibold text-slate-500 hover:text-slate-800 dark:hover:text-foreground transition-colors shrink-0 whitespace-nowrap">{t.dashboard.breakdown.statsLink}</Link>
         </div>
 
         <table className="w-full text-sm text-left">
           <thead>
             <tr className="text-slate-400 dark:text-muted-foreground border-b border-border/30">
-              <th className="pb-4 font-medium">Wilayah</th>
-              <th className="pb-4 font-medium text-right">Kegiatan Aktif</th>
+              <th className="pb-4 font-medium">{t.dashboard.breakdown.colRegion}</th>
+              <th className="pb-4 font-medium text-right">{t.dashboard.breakdown.colActive}</th>
             </tr>
           </thead>
           <tbody>

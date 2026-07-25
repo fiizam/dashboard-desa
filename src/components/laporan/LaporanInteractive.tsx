@@ -4,11 +4,15 @@ import { FileText, Download, Printer, BarChart3, PieChart, FileSpreadsheet, Load
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { getExportData } from '@/server/actions/laporan'
+import { useQuery } from '@tanstack/react-query'
+import { getExportData } from '@/server/actions/laporan'
 import { toast } from 'sonner'
+import { useTranslation } from '@/lib/i18n'
 
 export function LaporanInteractive() {
   const [isExporting, setIsExporting] = useState(false)
   const [reportType, setReportType] = useState('Buku Kas Umum')
+  const t = useTranslation()
 
   const { data } = useQuery({
     queryKey: ['laporan_export'],
@@ -89,18 +93,18 @@ export function LaporanInteractive() {
   }
 
   const reports = [
-    { title: 'Laporan Realisasi APBDes', desc: 'Laporan komprehensif penyerapan anggaran.', icon: BarChart3, date: 'Juli 2026' },
-    { title: 'Buku Kas Umum', desc: 'Rekap seluruh transaksi penerimaan dan pengeluaran.', icon: FileSpreadsheet, date: 'Juli 2026' },
-    { title: 'Laporan Aset Desa', desc: 'Daftar inventaris dan aset tetap desa.', icon: PieChart, date: 'Semester 1 - 2026' },
-    { title: 'Laporan Pajak', desc: 'Penyetoran pajak PPN dan PPh transaksi desa.', icon: FileText, date: 'Juli 2026' },
+    { title: t.laporan.reportRealization, desc: t.laporan.reportRealizationDesc, icon: BarChart3, date: 'Juli 2026' },
+    { title: t.laporan.reportBku, desc: t.laporan.reportBkuDesc, icon: FileSpreadsheet, date: 'Juli 2026' },
+    { title: t.laporan.reportAsset, desc: t.laporan.reportAssetDesc, icon: PieChart, date: 'Semester 1 - 2026' },
+    { title: t.laporan.reportTax, desc: t.laporan.reportTaxDesc, icon: FileText, date: 'Juli 2026' },
   ]
 
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight mb-2">Pusat Laporan</h1>
-          <p className="text-muted-foreground">Unduh, cetak, dan kelola laporan keuangan secara otomatis.</p>
+          <h1 className="text-3xl font-bold tracking-tight mb-2">{t.laporan.title}</h1>
+          <p className="text-muted-foreground">{t.laporan.subtitle}</p>
         </div>
         <div className="flex items-center gap-3">
           <button 
@@ -108,7 +112,7 @@ export function LaporanInteractive() {
             className="flex items-center gap-2 px-4 py-2 bg-secondary/50 hover:bg-secondary rounded-xl font-medium transition-colors"
           >
             <Printer className="w-4 h-4" />
-            Cetak PDF
+            {t.laporan.printPdf}
           </button>
         </div>
       </div>
@@ -141,10 +145,10 @@ export function LaporanInteractive() {
       </div>
 
       <div className="p-6 rounded-3xl bg-card border border-border/50 shadow-sm mt-4 print:shadow-none print:border-none print:p-0">
-         <h3 className="text-lg font-semibold mb-4 print:hidden">Pembuat Laporan Kustom</h3>
+         <h3 className="text-lg font-semibold mb-4 print:hidden">{t.laporan.customReport}</h3>
          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 print:hidden">
            <div className="space-y-2">
-             <label className="text-sm font-medium">Jenis Laporan</label>
+             <label className="text-sm font-medium">{t.laporan.reportType}</label>
              <select 
                value={reportType}
                onChange={(e) => setReportType(e.target.value)}
@@ -156,11 +160,11 @@ export function LaporanInteractive() {
              </select>
            </div>
            <div className="space-y-2">
-             <label className="text-sm font-medium">Periode Mulai</label>
+             <label className="text-sm font-medium">{t.laporan.startDate}</label>
              <input type="date" className="w-full bg-background border border-border/50 rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-primary/20" />
            </div>
            <div className="space-y-2">
-             <label className="text-sm font-medium">Periode Akhir</label>
+             <label className="text-sm font-medium">{t.laporan.endDate}</label>
              <input type="date" className="w-full bg-background border border-border/50 rounded-xl px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-primary/20" />
            </div>
          </div>
@@ -171,13 +175,13 @@ export function LaporanInteractive() {
              className="px-6 py-2.5 bg-primary text-primary-foreground font-medium rounded-xl hover:bg-primary/90 transition-colors shadow-sm shadow-primary/25 flex items-center gap-2"
            >
              {isExporting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Printer className="w-4 h-4" />}
-             Export PDF Laporan Resmi
+             {t.laporan.exportOfficial}
            </button>
          </div>
 
          <div className="hidden print:block mt-8">
-           <h2 className="text-2xl font-bold mb-4 border-b pb-2">Dokumen Resmi: {reportType}</h2>
-           <p className="mb-4">Tahun Anggaran 2026. Laporan ini dicetak secara otomatis dari sistem Digital Village.</p>
+           <h2 className="text-2xl font-bold mb-4 border-b pb-2">{t.laporan.officialDoc} {reportType}</h2>
+           <p className="mb-4">{t.laporan.printNotice.replace('{year}', '2026')}</p>
            {/* In a real app, we would render a structured table here based on the selected report */}
            <table className="w-full text-sm text-left border">
              <thead className="bg-gray-100 border-b">
@@ -192,7 +196,7 @@ export function LaporanInteractive() {
                {data?.incomes.slice(0, 5).map((t:any) => (
                  <tr key={t.id} className="border-b">
                    <td className="p-2 border-r">{new Date(t.tanggal).toLocaleDateString()}</td>
-                   <td className="p-2 border-r">Pendapatan</td>
+                   <td className="p-2 border-r">{t.laporan?.typeIncome || 'Pendapatan'}</td>
                    <td className="p-2 border-r">{t.keterangan}</td>
                    <td className="p-2 text-right text-emerald-600">+ {t.jumlah.toLocaleString()}</td>
                  </tr>
@@ -200,7 +204,7 @@ export function LaporanInteractive() {
                {data?.expenses.slice(0, 5).map((t:any) => (
                  <tr key={t.id} className="border-b">
                    <td className="p-2 border-r">{new Date(t.tanggal).toLocaleDateString()}</td>
-                   <td className="p-2 border-r">Belanja</td>
+                   <td className="p-2 border-r">{t.laporan?.typeExpense || 'Belanja'}</td>
                    <td className="p-2 border-r">{t.keterangan}</td>
                    <td className="p-2 text-right text-rose-600">- {t.jumlah.toLocaleString()}</td>
                  </tr>

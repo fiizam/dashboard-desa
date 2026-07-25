@@ -11,11 +11,11 @@ export function BottomNav({ userRole }: { userRole: string }) {
   const t = useTranslation()
 
   const menuItems = [
-    { label: 'Beranda', href: '/', icon: LayoutDashboard, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
-    { label: 'Keuangan', href: '/keuangan', icon: Wallet, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Bendahara'] },
-    { label: 'Warga', href: '/kependudukan', icon: Users, roles: ['Super Admin', 'Ketua RW', 'Sekretaris'] },
-    { label: 'Master', href: '/master', icon: Shield, roles: ['Super Admin', 'Ketua RW'] },
-    { label: 'Laporan', href: '/laporan', icon: FileText, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
+    { label: t.bottomNav.beranda, href: '/', icon: LayoutDashboard, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
+    { label: t.bottomNav.keuangan, href: '/keuangan', icon: Wallet, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Bendahara'] },
+    { label: t.bottomNav.warga, href: '/kependudukan', icon: Users, roles: ['Super Admin', 'Ketua RW', 'Sekretaris'] },
+    { label: t.bottomNav.master, href: '/master', icon: Shield, roles: ['Super Admin', 'Ketua RW'] },
+    { label: t.bottomNav.laporan, href: '/laporan', icon: FileText, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
   ]
 
   const visibleMenus = menuItems.filter(m => m.roles.includes(userRole))

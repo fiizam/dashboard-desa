@@ -7,9 +7,11 @@ import { Search, Plus, MoreVertical, Filter, Download, Trash2, Edit2, ShieldAler
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { UserModal } from './UserModal'
+import { useTranslation } from '@/lib/i18n'
 
 export function UsersDataTable({ userRole }: { userRole?: string }) {
   const queryClient = useQueryClient()
+  const t = useTranslation()
   const [search, setSearch] = useState('')
   const [modalMode, setModalMode] = useState<'add' | 'edit' | 'reset' | null>(null)
   const [selectedUser, setSelectedUser] = useState<any>(null)
@@ -66,15 +68,15 @@ export function UsersDataTable({ userRole }: { userRole?: string }) {
     <>
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight mb-2">Data Master Pengguna</h1>
-          <p className="text-muted-foreground">Kelola hak akses dan pengguna di seluruh entitas desa.</p>
+          <h1 className="text-3xl font-bold tracking-tight mb-2">{t.master.pageTitle}</h1>
+          <p className="text-muted-foreground">{t.master.pageSubtitle}</p>
         </div>
         <div className="flex items-center gap-3">
           <button 
             onClick={exportCSV}
             className="flex items-center gap-2 px-4 py-2 bg-secondary/50 hover:bg-secondary rounded-xl font-medium transition-colors">
             <Download className="w-4 h-4" />
-            Export
+            {t.master.export}
           </button>
           <button 
             onClick={() => {
@@ -84,7 +86,7 @@ export function UsersDataTable({ userRole }: { userRole?: string }) {
             className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl font-medium transition-colors shadow-sm shadow-primary/25"
           >
             <Plus className="w-4 h-4" />
-            Tambah Pengguna
+            {t.master.addUser}
           </button>
         </div>
       </div>
@@ -97,13 +99,13 @@ export function UsersDataTable({ userRole }: { userRole?: string }) {
               type="text" 
               value={search}
               onChange={e => setSearch(e.target.value)}
-              placeholder="Cari nama, email, atau role..." 
+              placeholder={t.master.searchPlaceholder}
               className="w-full pl-9 pr-4 py-2.5 bg-secondary/30 border border-border/50 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
             />
           </div>
           <button className="flex items-center justify-center gap-2 px-4 py-2.5 bg-secondary/30 border border-border/50 rounded-xl text-sm font-medium hover:bg-secondary/50 transition-colors">
             <Filter className="w-4 h-4" />
-            Filter
+            {t.master.filter}
           </button>
         </div>
 
@@ -118,11 +120,11 @@ export function UsersDataTable({ userRole }: { userRole?: string }) {
             <table className="w-full text-sm text-left">
               <thead className="text-xs text-muted-foreground uppercase bg-secondary/30 rounded-xl">
                 <tr>
-                  <th className="px-4 py-4 rounded-tl-xl font-semibold">Pengguna</th>
-                  <th className="px-4 py-4 font-semibold">Role</th>
-                  <th className="px-4 py-4 font-semibold">Desa</th>
-                  <th className="px-4 py-4 font-semibold">Status</th>
-                  <th className="px-4 py-4 rounded-tr-xl font-semibold text-right">Aksi</th>
+                  <th className="px-4 py-4 rounded-tl-xl font-semibold">{t.master.colUser}</th>
+                  <th className="px-4 py-4 font-semibold">{t.master.colRole}</th>
+                  <th className="px-4 py-4 font-semibold">{t.master.colVillage}</th>
+                  <th className="px-4 py-4 font-semibold">{t.master.colStatus}</th>
+                  <th className="px-4 py-4 rounded-tr-xl font-semibold text-right">{t.master.colAction}</th>
                 </tr>
               </thead>
               <tbody className="relative">
@@ -161,7 +163,7 @@ export function UsersDataTable({ userRole }: { userRole?: string }) {
                         {(user.role === 'Super Admin' || userRole === 'Super Admin') ? (
                           <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium ${user.isActive ? 'bg-emerald-500/10 text-emerald-600' : 'bg-rose-500/10 text-rose-600'}`}>
                             <div className={`w-1.5 h-1.5 rounded-full ${user.isActive ? 'bg-emerald-500' : 'bg-rose-500'}`} />
-                            {user.isActive ? 'Aktif' : 'Nonaktif'}
+                            {user.isActive ? t.master.active : t.master.inactive}
                           </span>
                         ) : (
                           <button 
@@ -169,7 +171,7 @@ export function UsersDataTable({ userRole }: { userRole?: string }) {
                             className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium transition-all hover:opacity-80 ${user.isActive ? 'bg-emerald-500/10 text-emerald-600' : 'bg-rose-500/10 text-rose-600'}`}
                           >
                             <div className={`w-1.5 h-1.5 rounded-full ${user.isActive ? 'bg-emerald-500' : 'bg-rose-500'}`} />
-                            {user.isActive ? 'Aktif' : 'Nonaktif'}
+                            {user.isActive ? t.master.active : t.master.inactive}
                           </button>
                         )}
                       </td>
@@ -201,7 +203,7 @@ export function UsersDataTable({ userRole }: { userRole?: string }) {
                                       }}
                                       className="w-full flex items-center gap-2 px-4 py-2.5 hover:bg-secondary text-sm transition-colors"
                                     >
-                                      <Edit2 className="w-4 h-4 text-muted-foreground" /> Edit Data
+                                      <Edit2 className="w-4 h-4 text-muted-foreground" /> {t.master.editData}
                                     </button>
                                     <button 
                                       onClick={() => {
@@ -211,7 +213,7 @@ export function UsersDataTable({ userRole }: { userRole?: string }) {
                                       }}
                                       className="w-full flex items-center gap-2 px-4 py-2.5 hover:bg-secondary text-sm transition-colors"
                                     >
-                                      <ShieldAlert className="w-4 h-4 text-muted-foreground" /> Reset Password
+                                      <ShieldAlert className="w-4 h-4 text-muted-foreground" /> {t.master.resetPassword}
                                     </button>
                                     <div className="border-t border-border/50 my-1" />
                                     <button 
@@ -221,7 +223,7 @@ export function UsersDataTable({ userRole }: { userRole?: string }) {
                                       }}
                                       className="w-full flex items-center gap-2 px-4 py-2.5 hover:bg-rose-500/10 text-rose-500 text-sm transition-colors"
                                     >
-                                      <Trash2 className="w-4 h-4" /> Hapus Akses
+                                      <Trash2 className="w-4 h-4" /> {t.master.deleteAccess}
                                     </button>
                                   </motion.div>
                                 </>

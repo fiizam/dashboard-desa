@@ -7,6 +7,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { getApbdesData, getRecentTransactions, processTransaction } from '@/server/actions/keuangan'
 import jsPDF from 'jspdf'
 import autoTable from 'jspdf-autotable'
+import { useTranslation } from '@/lib/i18n'
 
 function formatRupiah(amount: number) {
   return new Intl.NumberFormat('id-ID', {
@@ -20,6 +21,7 @@ function formatRupiah(amount: number) {
 export function KeuanganInteractive({ initialApbdes, initialTransactions, userRole }: { initialApbdes: any, initialTransactions: any, userRole?: string }) {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const queryClient = useQueryClient()
+  const t = useTranslation()
 
   // Use React Query for realtime updates after mutations
   const { data: apbdes } = useQuery({
@@ -89,9 +91,9 @@ export function KeuanganInteractive({ initialApbdes, initialTransactions, userRo
   if (!apbdes) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh]">
-        <h2 className="text-2xl font-bold mb-2">Belum ada APBDes Aktif</h2>
-        <p className="text-muted-foreground mb-6">Silakan buat draf APBDes baru untuk tahun ini.</p>
-        <button className="px-4 py-2 bg-primary text-primary-foreground rounded-xl font-medium shadow-sm shadow-primary/25">Buat APBDes</button>
+        <h2 className="text-2xl font-bold mb-2">{t.keuangan.noApbdes}</h2>
+        <p className="text-muted-foreground mb-6">{t.keuangan.noApbdesDesc}</p>
+        <button className="px-4 py-2 bg-primary text-primary-foreground rounded-xl font-medium shadow-sm shadow-primary/25">{t.keuangan.createApbdes}</button>
       </div>
     )
   }
@@ -105,22 +107,22 @@ export function KeuanganInteractive({ initialApbdes, initialTransactions, userRo
       <div className="flex flex-col gap-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-2">
           <div>
-            <h1 className="text-3xl font-bold tracking-tight mb-2">Manajemen Keuangan</h1>
-            <p className="text-muted-foreground">Kelola APBDes {apbdes.tahun} dan persetujuan transaksi.</p>
+            <h1 className="text-3xl font-bold tracking-tight mb-2">{t.keuangan.pageTitle}</h1>
+            <p className="text-muted-foreground">{t.keuangan.pageSubtitle.replace('{year}', apbdes.tahun)}</p>
           </div>
           <div className="flex items-center gap-3">
             <button 
               onClick={exportPDF}
               className="flex items-center gap-2 px-4 py-2 bg-secondary/50 hover:bg-secondary rounded-xl font-medium transition-colors">
               <Download className="w-4 h-4" />
-              Export PDF
+              {t.keuangan.exportPdf}
             </button>
             <button 
               onClick={() => setIsModalOpen(true)}
               className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl font-medium transition-colors shadow-sm shadow-primary/25"
             >
               <Plus className="w-4 h-4" />
-              Catat Transaksi
+              {t.keuangan.addTransaction}
             </button>
           </div>
         </div>
@@ -129,7 +131,7 @@ export function KeuanganInteractive({ initialApbdes, initialTransactions, userRo
           <div className="p-6 rounded-2xl bg-amber-500/10 border border-amber-500/20 shadow-sm flex flex-col gap-4">
             <div className="flex items-center gap-2">
               <Clock className="w-5 h-5 text-amber-600 dark:text-amber-400" />
-              <h3 className="text-lg font-semibold text-amber-600 dark:text-amber-400">Persetujuan Menunggu ({allPending.length})</h3>
+              <h3 className="text-lg font-semibold text-amber-600 dark:text-amber-400">{t.keuangan.pendingApproval} ({allPending.length})</h3>
             </div>
             <div className="space-y-3">
               {allPending.map((t: any, i: number) => (
@@ -137,11 +139,11 @@ export function KeuanganInteractive({ initialApbdes, initialTransactions, userRo
                   <div>
                     <div className="flex items-center gap-2 mb-1">
                       <span className={`text-xs font-semibold px-2 py-0.5 rounded-md ${t.tType === 'in' ? 'bg-emerald-500/10 text-emerald-600' : 'bg-rose-500/10 text-rose-600'}`}>
-                        {t.tType === 'in' ? 'Pendapatan' : 'Belanja'}
+                        {t.tType === 'in' ? t.keuangan.incomeLabel : t.keuangan.expenseLabel}
                       </span>
                       <span className="font-medium text-sm">{t.keterangan}</span>
                     </div>
-                    <p className="text-xs text-muted-foreground">Pos: {t.tType === 'in' ? t.pendapatan?.uraian : t.belanja?.uraian}</p>
+                    <p className="text-xs text-muted-foreground">{t.keuangan.pos} {t.tType === 'in' ? t.pendapatan?.uraian : t.belanja?.uraian}</p>
                   </div>
                   <div className="flex items-center gap-4">
                     <span className="font-bold text-foreground">{formatRupiah(t.jumlah)}</span>
@@ -151,7 +153,7 @@ export function KeuanganInteractive({ initialApbdes, initialTransactions, userRo
                         className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-500 text-white rounded-lg text-sm font-medium hover:bg-emerald-600 transition-colors shadow-sm shadow-emerald-500/20"
                       >
                         <CheckCircle2 className="w-4 h-4" />
-                        Setujui
+                        {t.keuangan.approve}
                       </button>
                     )}
                   </div>
@@ -166,7 +168,7 @@ export function KeuanganInteractive({ initialApbdes, initialTransactions, userRo
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold flex items-center gap-2">
                 <ArrowDownRight className="w-5 h-5 text-emerald-500" />
-                Rincian Pendapatan
+                {t.keuangan.incomeDetails}
               </h3>
             </div>
             <div className="space-y-4">
@@ -181,7 +183,7 @@ export function KeuanganInteractive({ initialApbdes, initialTransactions, userRo
                     <div className="flex items-center justify-between text-xs text-muted-foreground mb-2">
                       <span className="flex items-center gap-1.5">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                        Realisasi: <span className="font-medium text-foreground">{formatRupiah(p.realisasi)}</span>
+                        {t.keuangan.realization} <span className="font-medium text-foreground">{formatRupiah(p.realisasi)}</span>
                       </span>
                       <span className={`font-medium ${percentage >= 100 ? 'text-emerald-600 dark:text-emerald-400' : ''}`}>{percentage.toFixed(1)}%</span>
                     </div>
@@ -198,7 +200,7 @@ export function KeuanganInteractive({ initialApbdes, initialTransactions, userRo
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold flex items-center gap-2">
                 <ArrowUpRight className="w-5 h-5 text-rose-500" />
-                Rincian Belanja
+                {t.keuangan.expenseDetails}
               </h3>
             </div>
             <div className="space-y-4">
@@ -213,7 +215,7 @@ export function KeuanganInteractive({ initialApbdes, initialTransactions, userRo
                     <div className="flex items-center justify-between text-xs text-muted-foreground mb-2">
                       <span className="flex items-center gap-1.5">
                         <span className="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
-                        Realisasi: <span className="font-medium text-foreground">{formatRupiah(b.realisasi)}</span>
+                        {t.keuangan.realization} <span className="font-medium text-foreground">{formatRupiah(b.realisasi)}</span>
                       </span>
                       <span className={`font-medium ${percentage >= 100 ? 'text-rose-600 dark:text-rose-400' : ''}`}>{percentage.toFixed(1)}%</span>
                     </div>

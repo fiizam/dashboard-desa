@@ -91,7 +91,7 @@ export function TopBarProfile({ isDashboard = false }: { isDashboard?: boolean }
                 className="flex items-center gap-3 px-3 py-2 text-sm text-foreground hover:bg-secondary rounded-xl transition-colors group"
               >
                 <Settings className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
-                Pengaturan
+                {t.topbar.settings}
               </Link>
               <form action={logout} className="w-full">
                 <button 

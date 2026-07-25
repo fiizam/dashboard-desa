@@ -5,6 +5,7 @@ import { Sparkles, Bot, RefreshCw, X, MessageSquareText } from 'lucide-react'
 import { generateFinancialInsights } from '@/server/actions/ai-gemini'
 import ReactMarkdown from 'react-markdown'
 import { usePathname } from 'next/navigation'
+import { useTranslation } from '@/lib/i18n'
 
 export function AiFinancialAdvisor() {
   const [isOpen, setIsOpen] = useState(false)
@@ -12,6 +13,7 @@ export function AiFinancialAdvisor() {
   const [insight, setInsight] = useState<string | null>(null)
   const popupRef = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
+  const t = useTranslation()
 
   // Hide on login page
   if (pathname === '/login') return null
@@ -36,7 +38,7 @@ export function AiFinancialAdvisor() {
       const res = await generateFinancialInsights()
       setInsight(res.response)
     } catch (error) {
-      setInsight("Terjadi kesalahan saat menghubungkan ke AI.")
+      setInsight(t.dashboard.aiAdvisorError)
     } finally {
       setIsLoading(false)
     }
@@ -73,8 +75,8 @@ export function AiFinancialAdvisor() {
                   <Bot className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-sm">Digital Village AI</h3>
-                  <p className="text-[10px] text-white/70">Asisten Finansial Pintar</p>
+                  <h3 className="font-bold text-sm">{t.dashboard.aiAdvisorTitle}</h3>
+                  <p className="text-[10px] text-white/70">{t.dashboard.aiAdvisorSubtitle}</p>
                 </div>
               </div>
               <button 
@@ -94,8 +96,8 @@ export function AiFinancialAdvisor() {
                     <div className="w-12 h-12 rounded-full border-4 border-indigo-600 border-t-transparent animate-spin absolute inset-0" />
                   </div>
                   <p className="text-sm font-medium text-slate-500 animate-pulse text-center">
-                    Menganalisis APBDes...<br/>
-                    <span className="text-xs text-slate-400">Harap tunggu sebentar</span>
+                    {t.dashboard.aiAdvisorAnalyzing.split('\n')[0]}<br/>
+                    <span className="text-xs text-slate-400">{t.dashboard.aiAdvisorWait}</span>
                   </p>
                 </div>
               ) : (
@@ -113,7 +115,7 @@ export function AiFinancialAdvisor() {
                       blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-indigo-500 pl-4 py-1 mb-4 text-slate-500 dark:text-slate-400 italic bg-indigo-50/50 dark:bg-indigo-500/10 rounded-r-lg" {...props} />
                     }}
                   >
-                    {insight || 'Halo! Saya asisten AI Desa Anda.'}
+                    {insight || t.dashboard.aiAdvisorDefault}
                   </ReactMarkdown>
                 </div>
               )}
@@ -126,7 +128,7 @@ export function AiFinancialAdvisor() {
                   onClick={handleAnalyze}
                   className="w-full py-3 flex items-center justify-center gap-2 text-sm font-semibold text-white bg-slate-900 hover:bg-slate-800 dark:bg-indigo-600 dark:hover:bg-indigo-700 rounded-xl transition-all shadow-md active:scale-[0.98]"
                 >
-                  <RefreshCw className="w-4 h-4" /> Perbarui Analisis
+                  <RefreshCw className="w-4 h-4" /> {t.dashboard.aiAdvisorRefresh}
                 </button>
               </div>
             )}
@@ -168,7 +170,7 @@ export function AiFinancialAdvisor() {
         {/* Tooltip on hover (desktop only) */}
         {!isOpen && (
           <div className="absolute right-full mr-4 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-slate-800 text-white text-xs font-medium rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap shadow-xl">
-            Tanya AI Advisor
+            {t.dashboard.aiAdvisorTooltip}
             <div className="absolute right-[-4px] top-1/2 -translate-y-1/2 border-y-[6px] border-y-transparent border-l-[6px] border-l-slate-800" />
           </div>
         )}

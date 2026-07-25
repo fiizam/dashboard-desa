@@ -41,6 +41,7 @@ function NotificationBell() {
 
 export function DashboardLayout({ children, userRole }: { children: ReactNode, userRole: string }) {
   const pathname = usePathname()
+  const t = useTranslation()
   const isPinned = useAppStore(s => s.isSidebarPinned)
   const isHovered = useAppStore(s => s.isSidebarHovered)
   const isExpanded = isPinned || isHovered
@@ -83,8 +84,8 @@ export function DashboardLayout({ children, userRole }: { children: ReactNode, u
             className="flex items-center gap-3 sm:gap-4 flex-1 min-w-0"
           >
             <div className="flex flex-col min-w-0">
-              <h1 className="text-base sm:text-lg font-bold text-slate-800 dark:text-foreground leading-tight truncate">Halo, {user?.name?.split(' ')[0] || userRole}</h1>
-              <p className="text-[10px] sm:text-xs text-slate-500 dark:text-muted-foreground hidden sm:block truncate">Sistem Keuangan Desa siap digunakan.</p>
+              <h1 className="text-base sm:text-lg font-bold text-slate-800 dark:text-foreground leading-tight truncate">{t.dashboard.greeting} {user?.name?.split(' ')[0] || userRole}</h1>
+              <p className="text-[10px] sm:text-xs text-slate-500 dark:text-muted-foreground hidden sm:block truncate">{t.dashboard.subtitle}</p>
               <p className="text-[10px] text-slate-500 dark:text-muted-foreground sm:hidden truncate">{userRole}</p>
             </div>
           </motion.div>
@@ -100,7 +101,7 @@ export function DashboardLayout({ children, userRole }: { children: ReactNode, u
               className="flex items-center gap-3 px-6 py-2.5 w-full bg-white/70 dark:bg-secondary/50 hover:bg-white dark:hover:bg-secondary rounded-full shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] border border-white/50 dark:border-border/50 text-sm text-slate-500 dark:text-muted-foreground transition-all duration-300"
             >
               <Search className="w-4 h-4" />
-              <span>Search...</span>
+              <span>{t.topbar.searchPlaceholder.split('...')[0]}...</span>
             </button>
           </motion.div>
           

@@ -1,14 +1,16 @@
 "use client"
 import { useAppStore } from '@/lib/store'
+import { useTranslation } from '@/lib/i18n'
 
 export function SoftCommunication() {
   const setNotificationDrawerOpen = useAppStore(s => s.setNotificationDrawerOpen)
+  const t = useTranslation()
 
   return (
     <div className="bg-white/70 dark:bg-secondary/50 backdrop-blur-md rounded-3xl p-6 shadow-[0_8px_30px_-15px_rgba(0,0,0,0.05)] border border-white/50 dark:border-border/50">
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-xs font-bold text-slate-400 dark:text-muted-foreground uppercase tracking-widest">Log Aktivitas Sistem (7 Hari Terakhir)</h3>
-        <button onClick={() => setNotificationDrawerOpen(true)} className="text-sm font-semibold text-slate-500 hover:text-slate-800 dark:hover:text-foreground transition-colors cursor-pointer">Lihat Semua {`>`}</button>
+        <h3 className="text-xs font-bold text-slate-400 dark:text-muted-foreground uppercase tracking-widest">{t.dashboard.communication.title}</h3>
+        <button onClick={() => setNotificationDrawerOpen(true)} className="text-sm font-semibold text-slate-500 hover:text-slate-800 dark:hover:text-foreground transition-colors cursor-pointer">{t.dashboard.communication.viewAll}</button>
       </div>
 
       <div className="space-y-6">

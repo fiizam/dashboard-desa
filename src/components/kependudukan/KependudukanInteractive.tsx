@@ -4,8 +4,10 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Users, Search, Download, Plus, Filter, UserCheck, ChevronDown, X } from 'lucide-react'
 import { WargaModal } from './WargaModal'
+import { useTranslation } from '@/lib/i18n'
 
 export function KependudukanInteractive({ initialStats, initialWarga, keluargaList }: { initialStats: any, initialWarga: any[], keluargaList: any[] }) {
+  const t = useTranslation()
   const [search, setSearch] = useState('')
   const [rtFilter, setRtFilter] = useState('')
   const [isFilterOpen, setIsFilterOpen] = useState(false)
@@ -23,20 +25,20 @@ export function KependudukanInteractive({ initialStats, initialWarga, keluargaLi
     <div className="flex flex-col gap-6 w-full max-w-7xl mx-auto">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight mb-2">Data Kependudukan</h1>
-          <p className="text-muted-foreground">Kelola Kartu Keluarga dan Demografi Warga RW.</p>
+          <h1 className="text-3xl font-bold tracking-tight mb-2">{t.warga.title}</h1>
+          <p className="text-muted-foreground">{t.warga.subtitle}</p>
         </div>
         <div className="flex items-center gap-3">
           <button className="flex items-center gap-2 px-4 py-2 bg-secondary/50 hover:bg-secondary rounded-xl font-medium transition-colors">
             <Download className="w-4 h-4" />
-            Export Data
+            {t.warga.exportData}
           </button>
           <button 
             onClick={() => setIsModalOpen(true)}
             className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl font-medium transition-colors shadow-sm shadow-primary/25"
           >
             <Plus className="w-4 h-4" />
-            Tambah Warga
+            {t.warga.addBtn}
           </button>
         </div>
       </div>
@@ -47,7 +49,7 @@ export function KependudukanInteractive({ initialStats, initialWarga, keluargaLi
             <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
               <Users className="w-5 h-5" />
             </div>
-            <div className="font-semibold text-sm text-muted-foreground">Total Warga</div>
+            <div className="font-semibold text-sm text-muted-foreground">{t.warga.totalCitizen}</div>
           </div>
           <div className="text-3xl font-bold">{initialStats.totalWarga}</div>
         </div>
@@ -56,7 +58,7 @@ export function KependudukanInteractive({ initialStats, initialWarga, keluargaLi
             <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-500">
               <UserCheck className="w-5 h-5" />
             </div>
-            <div className="font-semibold text-sm text-muted-foreground">Total KK</div>
+            <div className="font-semibold text-sm text-muted-foreground">{t.warga.totalFamily}</div>
           </div>
           <div className="text-3xl font-bold">{initialStats.totalKeluarga}</div>
         </div>
@@ -65,7 +67,7 @@ export function KependudukanInteractive({ initialStats, initialWarga, keluargaLi
             <div className="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-500">
               <UserCheck className="w-5 h-5" />
             </div>
-            <div className="font-semibold text-sm text-muted-foreground">Laki-laki</div>
+            <div className="font-semibold text-sm text-muted-foreground">{t.warga.male}</div>
           </div>
           <div className="text-3xl font-bold">{initialStats.lakiLaki}</div>
         </div>
@@ -74,7 +76,7 @@ export function KependudukanInteractive({ initialStats, initialWarga, keluargaLi
             <div className="w-10 h-10 rounded-xl bg-pink-500/10 flex items-center justify-center text-pink-500">
               <UserCheck className="w-5 h-5" />
             </div>
-            <div className="font-semibold text-sm text-muted-foreground">Perempuan</div>
+            <div className="font-semibold text-sm text-muted-foreground">{t.warga.female}</div>
           </div>
           <div className="text-3xl font-bold">{initialStats.perempuan}</div>
         </div>
@@ -88,7 +90,7 @@ export function KependudukanInteractive({ initialStats, initialWarga, keluargaLi
               type="text" 
               value={search}
               onChange={e => setSearch(e.target.value)}
-              placeholder="Cari NIK atau Nama..." 
+              placeholder={t.warga.searchPlaceholder}
               className="w-full pl-9 pr-4 py-2.5 bg-secondary/30 border border-border/50 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
             />
           </div>
@@ -98,7 +100,7 @@ export function KependudukanInteractive({ initialStats, initialWarga, keluargaLi
               className="flex items-center gap-2 px-4 py-2.5 bg-secondary/30 border border-border/50 rounded-xl text-sm font-medium hover:bg-secondary/50 transition-colors focus:outline-none"
             >
               <Filter className="w-4 h-4 text-muted-foreground" />
-              {rtFilter ? `RT ${rtFilter}` : 'Semua RT'}
+              {rtFilter ? `${t.warga.filterRt} ${rtFilter}` : t.warga.filterAll}
               <ChevronDown className="w-4 h-4 text-muted-foreground ml-2" />
             </button>
 
@@ -111,7 +113,7 @@ export function KependudukanInteractive({ initialStats, initialWarga, keluargaLi
                   className="absolute right-0 mt-2 w-48 bg-card border border-border shadow-xl rounded-xl overflow-hidden z-20"
                 >
                   <div className="flex flex-col py-1">
-                    <button onClick={() => { setRtFilter(''); setIsFilterOpen(false) }} className="px-4 py-2 text-sm text-left hover:bg-secondary transition-colors">Semua RT</button>
+                    <button onClick={() => { setRtFilter(''); setIsFilterOpen(false) }} className="px-4 py-2 text-sm text-left hover:bg-secondary transition-colors">{t.warga.filterAll}</button>
                     <button onClick={() => { setRtFilter('001'); setIsFilterOpen(false) }} className="px-4 py-2 text-sm text-left hover:bg-secondary transition-colors">RT 001</button>
                     <button onClick={() => { setRtFilter('002'); setIsFilterOpen(false) }} className="px-4 py-2 text-sm text-left hover:bg-secondary transition-colors">RT 002</button>
                     <button onClick={() => { setRtFilter('003'); setIsFilterOpen(false) }} className="px-4 py-2 text-sm text-left hover:bg-secondary transition-colors">RT 003</button>
@@ -128,12 +130,12 @@ export function KependudukanInteractive({ initialStats, initialWarga, keluargaLi
           <table className="w-full text-sm text-left whitespace-nowrap">
             <thead className="text-xs text-muted-foreground uppercase bg-secondary/30 rounded-xl">
               <tr>
-                <th className="px-4 py-4 rounded-tl-xl font-semibold">NIK</th>
-                <th className="px-4 py-4 font-semibold">Nama Lengkap</th>
-                <th className="px-4 py-4 font-semibold">Jenis Kelamin</th>
-                <th className="px-4 py-4 font-semibold">No. KK / Status</th>
-                <th className="px-4 py-4 font-semibold">RT/RW</th>
-                <th className="px-4 py-4 rounded-tr-xl font-semibold text-right">Aksi</th>
+                <th className="px-4 py-4 rounded-tl-xl font-semibold">{t.warga.colNik}</th>
+                <th className="px-4 py-4 font-semibold">{t.warga.colName}</th>
+                <th className="px-4 py-4 font-semibold">{t.warga.colGender}</th>
+                <th className="px-4 py-4 font-semibold">{t.warga.colKk}</th>
+                <th className="px-4 py-4 font-semibold">{t.warga.colRtRw}</th>
+                <th className="px-4 py-4 rounded-tr-xl font-semibold text-right">{t.warga.colAction}</th>
               </tr>
             </thead>
             <tbody>
@@ -163,7 +165,7 @@ export function KependudukanInteractive({ initialStats, initialWarga, keluargaLi
                         onClick={() => setSelectedDetail(w)}
                         className="text-primary text-xs font-medium hover:underline px-3 py-1.5 bg-primary/10 rounded-lg hover:bg-primary/20 transition-colors"
                       >
-                        Detail
+                        {t.warga.detail}
                       </button>
                     </td>
                   </motion.tr>
@@ -171,7 +173,7 @@ export function KependudukanInteractive({ initialStats, initialWarga, keluargaLi
                 {filteredWarga.length === 0 && (
                   <tr>
                     <td colSpan={6} className="px-4 py-12 text-center text-muted-foreground">
-                      Tidak ada data warga ditemukan.
+                      {t.warga.notFound}
                     </td>
                   </tr>
                 )}
@@ -204,7 +206,7 @@ export function KependudukanInteractive({ initialStats, initialWarga, keluargaLi
             >
               <div className="flex items-center justify-between p-6 border-b border-border/50 bg-secondary/30">
                 <div>
-                  <h2 className="text-xl font-bold">Detail Warga</h2>
+                  <h2 className="text-xl font-bold">{t.warga.detailTitle}</h2>
                   <p className="text-sm text-muted-foreground font-mono mt-1">{selectedDetail.nik}</p>
                 </div>
                 <button onClick={() => setSelectedDetail(null)} className="p-2 hover:bg-secondary rounded-xl transition-colors">
@@ -214,47 +216,47 @@ export function KependudukanInteractive({ initialStats, initialWarga, keluargaLi
               <div className="p-6">
                 <div className="space-y-4">
                   <div>
-                    <div className="text-xs font-medium text-muted-foreground uppercase mb-1">Nama Lengkap</div>
+                    <div className="text-xs font-medium text-muted-foreground uppercase mb-1">{t.warga.colName}</div>
                     <div className="text-base font-semibold">{selectedDetail.nama}</div>
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <div className="text-xs font-medium text-muted-foreground uppercase mb-1">Tempat, Tgl Lahir</div>
+                      <div className="text-xs font-medium text-muted-foreground uppercase mb-1">{t.warga.birthInfo}</div>
                       <div className="text-sm">{selectedDetail.tempatLahir}, {new Date(selectedDetail.tanggalLahir).toLocaleDateString('id-ID')}</div>
                     </div>
                     <div>
-                      <div className="text-xs font-medium text-muted-foreground uppercase mb-1">Jenis Kelamin</div>
+                      <div className="text-xs font-medium text-muted-foreground uppercase mb-1">{t.warga.colGender}</div>
                       <div className="text-sm">{selectedDetail.jenisKelamin}</div>
                     </div>
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <div className="text-xs font-medium text-muted-foreground uppercase mb-1">Agama</div>
+                      <div className="text-xs font-medium text-muted-foreground uppercase mb-1">{t.warga.religion}</div>
                       <div className="text-sm">{selectedDetail.agama}</div>
                     </div>
                     <div>
-                      <div className="text-xs font-medium text-muted-foreground uppercase mb-1">Status Perkawinan</div>
+                      <div className="text-xs font-medium text-muted-foreground uppercase mb-1">{t.warga.maritalStatus}</div>
                       <div className="text-sm">{selectedDetail.statusPerkawinan}</div>
                     </div>
                   </div>
                   <div>
-                    <div className="text-xs font-medium text-muted-foreground uppercase mb-1">Pendidikan / Pekerjaan</div>
+                    <div className="text-xs font-medium text-muted-foreground uppercase mb-1">{t.warga.educationJob}</div>
                     <div className="text-sm">{selectedDetail.pendidikan} &bull; {selectedDetail.pekerjaan}</div>
                   </div>
                   <div className="p-4 bg-secondary/30 rounded-xl mt-4">
-                    <div className="text-xs font-medium text-muted-foreground uppercase mb-2">Informasi Keluarga</div>
+                    <div className="text-xs font-medium text-muted-foreground uppercase mb-2">{t.warga.familyInfo}</div>
                     <div className="grid grid-cols-2 gap-2">
                       <div>
-                        <span className="text-xs text-muted-foreground">Status:</span>
+                        <span className="text-xs text-muted-foreground">{t.warga.status}</span>
                         <div className="text-sm font-medium">{selectedDetail.statusKeluarga}</div>
                       </div>
                       <div>
-                        <span className="text-xs text-muted-foreground">RT/RW:</span>
+                        <span className="text-xs text-muted-foreground">{t.warga.colRtRw}</span>
                         <div className="text-sm font-medium">RT {selectedDetail.keluarga?.rt} / RW {selectedDetail.keluarga?.rw}</div>
                       </div>
                     </div>
                     <div className="mt-2 pt-2 border-t border-border/50">
-                      <span className="text-xs text-muted-foreground block mb-1">No. Kartu Keluarga:</span>
+                      <span className="text-xs text-muted-foreground block mb-1">{t.warga.kkNum}</span>
                       <div className="text-sm font-mono font-medium">{selectedDetail.keluarga?.nomorKk}</div>
                     </div>
                   </div>

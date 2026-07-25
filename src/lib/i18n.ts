@@ -5,13 +5,80 @@ const translations = {
     sidebar: {
       dashboard: "Dashboard",
       keuangan: "Keuangan",
+      kependudukan: "Warga",
       masterData: "Data Master",
       laporan: "Pusat Laporan",
       pengaturan: "Pengaturan"
     },
+    bottomNav: { 
+      beranda: "Beranda", 
+      keuangan: "Keuangan", 
+      warga: "Warga", 
+      master: "Master", 
+      laporan: "Laporan" 
+    },
     topbar: {
       profileDetail: "Detail Profil",
-      logout: "Keluar (Logout)"
+      settings: "Pengaturan",
+      logout: "Keluar (Logout)",
+      searchPlaceholder: "Cari transaksi, program... (Ctrl+K)"
+    },
+    dashboard: {
+      greeting: "Halo,",
+      subtitle: "Sistem Keuangan Desa siap digunakan.",
+      aiAdvisorTitle: "Digital Village AI",
+      aiAdvisorSubtitle: "Asisten Finansial Pintar",
+      aiAdvisorTooltip: "Tanya AI Advisor",
+      aiAdvisorAnalyzing: "Menganalisis APBDes...",
+      aiAdvisorWait: "Harap tunggu sebentar",
+      aiAdvisorRefresh: "Perbarui Analisis",
+      aiAdvisorError: "Terjadi kesalahan saat menghubungkan ke AI.",
+      aiAdvisorDefault: "Halo! Saya asisten AI Desa Anda.",
+      cards: { totalBudget: "Total APBDes", realization: "Realisasi", remaining: "Sisa Anggaran", efficiency: "Efisiensi" },
+      transactions: { title: "Daftar Transaksi Tertunda", subtitle: "Aktivitas keluar masuk kas desa", statusSuccess: "Selesai", statusPending: "Tertunda", viewAll: "Lihat Semua", colDate: "Tanggal", colName: "Nama Transaksi", colPriority: "Prioritas", colAttachment: "Lampiran", colAssignee: "Pemroses" },
+      breakdown: { title: "Kategori Belanja", reportLink: "Laporan Penuh >", statsTitle: "Realisasi per Wilayah", statsLink: "Lihat Semua >", colRegion: "Wilayah", colActive: "Kegiatan Aktif" },
+      rightPanel: {
+         agendaTitle: "Agenda Desa", taskTitle: "Tugas Keuangan", colTaskName: "Nama Tugas", colDeadline: "Tenggat"
+      },
+      communication: { title: "Log Aktivitas Sistem (7 Hari Terakhir)", viewAll: "Lihat Semua >" }
+    },
+    keuangan: {
+      title: "Manajemen Keuangan & APBDes", subtitle: "Kelola anggaran, pendapatan, dan belanja desa secara transparan.",
+      addBtn: "Tambah Transaksi", exportBtn: "Export Laporan PDF",
+      summary: { totalBudget: "Total APBDes", realization: "Realisasi APBDes", income: "Total Pendapatan", expense: "Total Belanja" },
+      tabs: { income: "Pendapatan", expense: "Belanja" },
+      table: { id: "ID", date: "Tanggal", desc: "Keterangan", category: "Kategori", amount: "Jumlah", status: "Status" },
+      pageTitle: "Manajemen Keuangan", pageSubtitle: "Kelola APBDes {year} dan persetujuan transaksi.",
+      exportPdf: "Export PDF", addTransaction: "Catat Transaksi", pendingApproval: "Persetujuan Menunggu",
+      incomeLabel: "Pendapatan", expenseLabel: "Belanja", pos: "Pos:", approve: "Setujui",
+      incomeDetails: "Rincian Pendapatan", expenseDetails: "Rincian Belanja", realization: "Realisasi:",
+      noApbdes: "Belum ada APBDes Aktif", noApbdesDesc: "Silakan buat draf APBDes baru untuk tahun ini.", createApbdes: "Buat APBDes"
+    },
+    laporan: {
+      title: "Pusat Laporan", subtitle: "Unduh, cetak, dan kelola laporan keuangan secara otomatis.",
+      pdfBtn: "Export PDF", printPdf: "Cetak PDF", reportRealization: "Laporan Realisasi APBDes", reportRealizationDesc: "Laporan komprehensif penyerapan anggaran.",
+      reportBku: "Buku Kas Umum", reportBkuDesc: "Rekap seluruh transaksi penerimaan dan pengeluaran.",
+      reportAsset: "Laporan Aset Desa", reportAssetDesc: "Daftar inventaris dan aset tetap desa.",
+      reportTax: "Laporan Pajak", reportTaxDesc: "Penyetoran pajak PPN dan PPh transaksi desa.",
+      customReport: "Pembuat Laporan Kustom", reportType: "Jenis Laporan", startDate: "Periode Mulai", endDate: "Periode Akhir", exportOfficial: "Export PDF Laporan Resmi",
+      officialDoc: "Dokumen Resmi:", printNotice: "Tahun Anggaran {year}. Laporan ini dicetak secara otomatis dari sistem Digital Village.", typeIncome: "Pendapatan", typeExpense: "Belanja"
+    },
+    warga: {
+      title: "Data Kependudukan", subtitle: "Kelola Kartu Keluarga dan Demografi Warga RW.",
+      addBtn: "Tambah Warga", exportData: "Export Data",
+      totalCitizen: "Total Warga", totalFamily: "Total KK", male: "Laki-laki", female: "Perempuan",
+      searchPlaceholder: "Cari NIK atau Nama...", filterAll: "Semua RT", filterRt: "RT",
+      colNik: "NIK", colName: "Nama Lengkap", colGender: "Jenis Kelamin", colKk: "No. KK / Status", colRtRw: "RT/RW", colAction: "Aksi",
+      detail: "Detail", notFound: "Tidak ada data warga ditemukan.",
+      detailTitle: "Detail Warga", birthInfo: "Tempat, Tgl Lahir", religion: "Agama", maritalStatus: "Status Perkawinan", educationJob: "Pendidikan / Pekerjaan",
+      familyInfo: "Informasi Keluarga", status: "Status:", kkNum: "No. Kartu Keluarga:"
+    },
+    master: {
+      pageTitle: "Data Master Pengguna", pageSubtitle: "Kelola hak akses dan pengguna di seluruh entitas desa.",
+      export: "Export", addUser: "Tambah Pengguna", searchPlaceholder: "Cari nama, email, atau role...", filter: "Filter",
+      colUser: "Pengguna", colRole: "Role", colVillage: "Desa", colStatus: "Status", colAction: "Aksi",
+      active: "Aktif", inactive: "Nonaktif",
+      editData: "Edit Data", resetPassword: "Reset Password", deleteAccess: "Hapus Akses"
     },
     settings: {
       title: "Pengaturan Sistem",
@@ -67,13 +134,67 @@ const translations = {
     sidebar: {
       dashboard: "Dashboard",
       keuangan: "Finances",
+      kependudukan: "Residents",
       masterData: "Master Data",
       laporan: "Report Center",
       pengaturan: "Settings"
     },
+    bottomNav: { 
+      beranda: "Home", 
+      keuangan: "Finances", 
+      warga: "Residents", 
+      master: "Master", 
+      laporan: "Reports" 
+    },
     topbar: {
       profileDetail: "Profile Details",
-      logout: "Log Out"
+      settings: "Settings",
+      logout: "Log Out",
+      searchPlaceholder: "Search transactions, programs... (Ctrl+K)"
+    },
+    dashboard: {
+      greeting: "Hello,",
+      subtitle: "Village Financial System is ready.",
+      aiAdvisorTitle: "Digital Village AI",
+      aiAdvisorSubtitle: "Smart Financial Assistant",
+      aiAdvisorTooltip: "Ask AI Advisor",
+      aiAdvisorAnalyzing: "Analyzing APBDes...",
+      aiAdvisorWait: "Please wait a moment",
+      aiAdvisorRefresh: "Refresh Analysis",
+      aiAdvisorError: "An error occurred while connecting to AI.",
+      aiAdvisorDefault: "Hello! I am your Village AI Assistant.",
+      cards: { totalBudget: "Total Budget", realization: "Realization", remaining: "Remaining", efficiency: "Efficiency" },
+      transactions: { title: "Pending Transactions", subtitle: "Cash flow activities", statusSuccess: "Completed", statusPending: "Pending", viewAll: "View All", colDate: "Date", colName: "Transaction Name", colPriority: "Priority", colAttachment: "Attachment", colAssignee: "Assignee" },
+      breakdown: { title: "Expense Categories", reportLink: "Full Report >", statsTitle: "Realization by Region", statsLink: "View All >", colRegion: "Region", colActive: "Active Activities" },
+      rightPanel: {
+         agendaTitle: "Village Agenda", taskTitle: "Financial Tasks", colTaskName: "Task Name", colDeadline: "Deadline"
+      },
+      communication: { title: "System Activity Log (Last 7 Days)", viewAll: "View All >" }
+    },
+    keuangan: {
+      title: "Finance & APBDes Management", subtitle: "Manage village budgets, income, and expenses transparently.",
+      addBtn: "Add Transaction", exportBtn: "Export PDF Report",
+      summary: { totalBudget: "Total Budget", realization: "Budget Realization", income: "Total Income", expense: "Total Expense" },
+      tabs: { income: "Income", expense: "Expense" },
+      table: { id: "ID", date: "Date", desc: "Description", category: "Category", amount: "Amount", status: "Status" },
+      pageTitle: "Financial Management", pageSubtitle: "Manage APBDes {year} and transaction approvals.",
+      exportPdf: "Export PDF", addTransaction: "Record Transaction", pendingApproval: "Pending Approvals",
+      incomeLabel: "Income", expenseLabel: "Expense", pos: "Account:", approve: "Approve",
+      incomeDetails: "Income Details", expenseDetails: "Expense Details", realization: "Realized:",
+      noApbdes: "No Active APBDes", noApbdesDesc: "Please create a new APBDes draft for this year.", createApbdes: "Create APBDes"
+    },
+    laporan: {
+      title: "Report Center", subtitle: "Download, print, and manage financial reports automatically.",
+    master: {
+      title: "Master User Data", subtitle: "Manage system access, roles, and user accounts.",
+      addBtn: "Add User", exportBtn: "Export CSV",
+      table: { name: "Name / Email", role: "Role & Access", status: "Status", action: "Action" }
+    },
+    kependudukan: {
+      title: "Demographics Data", subtitle: "Integrated Resident Information System.",
+      addBtn: "Add New Resident", exportBtn: "Export Data (Excel)",
+      summary: { total: "Total Population", male: "Male", female: "Female", families: "Families (KK)" },
+      table: { nik: "ID Number", name: "Full Name", gender: "Gender", rt: "RT/RW", status: "Status" }
     },
     settings: {
       title: "System Settings",
