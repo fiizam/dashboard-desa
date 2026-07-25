@@ -4,8 +4,6 @@ import { FileText, Download, Printer, BarChart3, PieChart, FileSpreadsheet, Load
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { getExportData } from '@/server/actions/laporan'
-import { useQuery } from '@tanstack/react-query'
-import { getExportData } from '@/server/actions/laporan'
 import { toast } from 'sonner'
 import { useTranslation } from '@/lib/i18n'
 
