@@ -12,6 +12,7 @@ import { useAppStore } from '@/lib/store'
 import { generateBackup } from '@/server/actions/settings'
 import { logout } from '@/server/actions/auth'
 import { useTranslation } from '@/lib/i18n'
+import { CustomSelect } from '../ui/CustomSelect'
 
 export function SettingsInteractive() {
   const [activeTab, setActiveTab] = useState<'general' | 'notifications' | 'security'>('general')
@@ -210,14 +211,16 @@ export function SettingsInteractive() {
                         <p className="text-sm text-muted-foreground">{t.settings.general.languageDesc}</p>
                       </div>
                     </div>
-                    <select 
-                      value={language}
-                      onChange={(e) => setLanguage(e.target.value as 'id' | 'en')}
-                      className="px-4 py-2 rounded-xl bg-background border border-border outline-none focus:border-primary text-sm font-medium min-w-[140px]"
-                    >
-                      <option value="id">Indonesia (ID)</option>
-                      <option value="en">English (US)</option>
-                    </select>
+                    <div className="w-[180px]">
+                      <CustomSelect
+                        value={language}
+                        onChange={(val) => setLanguage(val as 'id' | 'en')}
+                        options={[
+                          { label: 'Indonesia (ID)', value: 'id' },
+                          { label: 'English (US)', value: 'en' }
+                        ]}
+                      />
+                    </div>
                   </div>
 
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-2xl bg-secondary/30 border border-border/50">
@@ -230,15 +233,17 @@ export function SettingsInteractive() {
                         <p className="text-sm text-muted-foreground">{t.settings.general.yearDesc}</p>
                       </div>
                     </div>
-                    <select 
-                      value={activeYear}
-                      onChange={(e) => setActiveYear(e.target.value)}
-                      className="px-4 py-2 rounded-xl bg-background border border-border outline-none focus:border-primary text-sm font-medium min-w-[140px]"
-                    >
-                      <option value="2024">2024 ({t.settings.general.yearActive})</option>
-                      <option value="2023">2023 ({t.settings.general.yearArchive})</option>
-                      <option value="2022">2022 ({t.settings.general.yearArchive})</option>
-                    </select>
+                    <div className="w-[180px]">
+                      <CustomSelect
+                        value={activeYear}
+                        onChange={(val) => setActiveYear(val)}
+                        options={[
+                          { label: `2024 (${t.settings.general.yearActive})`, value: '2024' },
+                          { label: `2023 (${t.settings.general.yearArchive})`, value: '2023' },
+                          { label: `2022 (${t.settings.general.yearArchive})`, value: '2022' }
+                        ]}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
