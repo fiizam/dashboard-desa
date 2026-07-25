@@ -1,3 +1,4 @@
+"use client"
 import { Paperclip, Check } from 'lucide-react'
 import Link from 'next/link'
 import { useTranslation } from '@/lib/i18n'
