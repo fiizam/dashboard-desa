@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { LogOut, User, ChevronDown } from 'lucide-react'
+import { LogOut, User, ChevronDown, Settings } from 'lucide-react'
 import { logout } from '@/server/actions/auth'
 import { useQuery } from '@tanstack/react-query'
 import { getProfile } from '@/server/actions/profile'
@@ -84,6 +84,14 @@ export function TopBarProfile({ isDashboard = false }: { isDashboard?: boolean }
               >
                 <User className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
                 {t.topbar.profileDetail}
+              </Link>
+              <Link 
+                href="/settings"
+                onClick={() => setIsOpen(false)}
+                className="flex items-center gap-3 px-3 py-2 text-sm text-foreground hover:bg-secondary rounded-xl transition-colors group"
+              >
+                <Settings className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
+                Pengaturan
               </Link>
               <form action={logout} className="w-full">
                 <button 

@@ -1,4 +1,3 @@
-import { DashboardLayout } from '@/components/layout/DashboardLayout'
 import { SoftTopCards } from '@/components/dashboard/SoftTopCards'
 import { AiFinancialAdvisor } from '@/components/dashboard/AiFinancialAdvisor'
 import { SoftTransactionsTable } from '@/components/dashboard/SoftTransactionsTable'
@@ -24,12 +23,11 @@ export default async function Home() {
   }
 
   return (
-    <DashboardLayout userRole={role}>
+    <>
       <div className="flex flex-col xl:flex-row gap-6 w-full items-start">
         
         {/* Main Left Area (approx 70%) */}
         <div className="flex-1 w-full flex flex-col gap-6 min-w-0">
-          {['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Bendahara'].includes(role) && <AiFinancialAdvisor />}
           <SoftTopCards role={role} />
           
           <div className="grid grid-cols-1 lg:grid-cols-1 gap-6 w-full">
@@ -45,6 +43,6 @@ export default async function Home() {
         </div>
 
       </div>
-    </DashboardLayout>
+    </>
   )
 }

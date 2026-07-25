@@ -1,4 +1,3 @@
-import { DashboardLayout } from '@/components/layout/DashboardLayout'
 import { LaporanInteractive } from '@/components/laporan/LaporanInteractive'
 import { getSession } from '@/lib/session'
 import prisma from '@/lib/prisma'
@@ -7,6 +6,7 @@ import { redirect } from 'next/navigation'
 export default async function LaporanPage() {
   const session = await getSession()
   let role = session?.role || 'User'
+  let currentUser = null
 
   if (session?.userId) {
     const user = await prisma.user.findUnique({
@@ -15,6 +15,7 @@ export default async function LaporanPage() {
     })
     if (user) {
       role = user.role.name
+      currentUser = user
     }
   }
 
@@ -24,8 +25,8 @@ export default async function LaporanPage() {
   }
 
   return (
-    <DashboardLayout userRole={role}>
+    <>
       <LaporanInteractive />
-    </DashboardLayout>
+    </>
   )
 }

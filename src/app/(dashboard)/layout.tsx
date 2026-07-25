@@ -1,14 +1,20 @@
-import { DashboardLayout } from '@/components/layout/DashboardLayout'
-import { UsersDataTable } from '@/components/master/UsersDataTable'
+import { ReactNode } from 'react'
 import { getSession } from '@/lib/session'
 import prisma from '@/lib/prisma'
+import { DashboardLayout } from '@/components/layout/DashboardLayout'
 import { redirect } from 'next/navigation'
 
-export default async function MasterDataPage() {
+export default async function DashboardRouteLayout({ children }: { children: ReactNode }) {
   const session = await getSession()
-  let role = session?.role || 'User'
+  
+  if (!session) {
+    redirect('/login')
+  }
 
-  if (session?.userId) {
+  let role = session.role || 'User'
+
+  // Get fresh role from database if available
+  if (session.userId) {
     const user = await prisma.user.findUnique({
       where: { id: session.userId },
       include: { role: true }
@@ -18,14 +24,9 @@ export default async function MasterDataPage() {
     }
   }
 
-  const allowedRoles = ['Super Admin', 'Ketua RW']
-  if (!allowedRoles.includes(role)) {
-    redirect('/')
-  }
-
   return (
     <DashboardLayout userRole={role}>
-      <UsersDataTable userRole={role} />
+      {children}
     </DashboardLayout>
   )
 }

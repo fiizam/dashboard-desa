@@ -2,13 +2,15 @@
 
 import { ReactNode } from 'react'
 import { Sidebar } from './Sidebar'
-import { AnimatePresence, motion } from 'framer-motion'
+import { BottomNav } from './BottomNav'
 import { usePathname } from 'next/navigation'
+import { motion } from 'framer-motion'
 import { CommandPalette } from '../shared/CommandPalette'
 import { NotificationDrawer } from '../shared/NotificationDrawer'
 import { ProfileModal } from '../shared/ProfileModal'
+import { AiFinancialAdvisor } from '../dashboard/AiFinancialAdvisor'
 import { useAppStore } from '@/lib/store'
-import { Bell, Search, Menu } from 'lucide-react'
+import { Bell, Search } from 'lucide-react'
 import { TopBarProfile } from './TopBarProfile'
 import { useQuery } from '@tanstack/react-query'
 import { getProfile } from '@/server/actions/profile'
@@ -42,7 +44,6 @@ export function DashboardLayout({ children, userRole }: { children: ReactNode, u
   const isPinned = useAppStore(s => s.isSidebarPinned)
   const isHovered = useAppStore(s => s.isSidebarHovered)
   const isExpanded = isPinned || isHovered
-  const setMobileMenuOpen = useAppStore(s => s.setMobileMenuOpen)
   const setCommandPaletteOpen = useAppStore(s => s.setCommandPaletteOpen)
   const setNotificationDrawerOpen = useAppStore(s => s.setNotificationDrawerOpen)
   const setProfileModalOpen = useAppStore(s => s.setProfileModalOpen)
@@ -74,54 +75,62 @@ export function DashboardLayout({ children, userRole }: { children: ReactNode, u
           }
         `}} />
 
-        <header className="h-20 sticky top-0 z-30 px-6 sm:px-8 flex items-center justify-between transition-colors bg-[#FDF8F3]/80 dark:bg-background/80 backdrop-blur-md">
-          <div className="flex items-center gap-4 flex-1">
-            <button
-              onClick={() => setMobileMenuOpen(true)}
-              className="p-2 -ml-2 rounded-lg transition-colors lg:hidden text-slate-600 hover:bg-slate-200/50 dark:text-muted-foreground dark:hover:bg-secondary"
-            >
-              <Menu className="w-5 h-5" />
-            </button>
-            <div className="hidden sm:block">
-              <h1 className="text-lg font-bold text-slate-800 dark:text-foreground leading-tight">Halo {user?.name || userRole}</h1>
-              <p className="text-xs text-slate-500 dark:text-muted-foreground">Sistem Keuangan Desa siap digunakan.</p>
+        <header className="h-[72px] sm:h-20 sticky top-0 z-30 px-4 sm:px-8 flex items-center justify-between transition-colors bg-[#FDF8F3]/80 dark:bg-background/80 backdrop-blur-md border-b border-border/40 lg:border-none">
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="flex items-center gap-3 sm:gap-4 flex-1 min-w-0"
+          >
+            <div className="flex flex-col min-w-0">
+              <h1 className="text-base sm:text-lg font-bold text-slate-800 dark:text-foreground leading-tight truncate">Halo, {user?.name?.split(' ')[0] || userRole}</h1>
+              <p className="text-[10px] sm:text-xs text-slate-500 dark:text-muted-foreground hidden sm:block truncate">Sistem Keuangan Desa siap digunakan.</p>
+              <p className="text-[10px] text-slate-500 dark:text-muted-foreground sm:hidden truncate">{userRole}</p>
             </div>
-          </div>
+          </motion.div>
           
-          <div className="flex items-center gap-4 flex-1 max-w-xl mx-4">
+          <motion.div 
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+            className="hidden md:flex items-center gap-4 flex-1 max-w-xl mx-4"
+          >
             <button 
               onClick={() => setCommandPaletteOpen(true)}
-              className="flex items-center gap-3 px-6 py-3 w-full bg-white/70 dark:bg-secondary/50 hover:bg-white dark:hover:bg-secondary rounded-full shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] border border-white/50 dark:border-border/50 text-sm text-slate-500 dark:text-muted-foreground transition-all duration-300"
+              className="flex items-center gap-3 px-6 py-2.5 w-full bg-white/70 dark:bg-secondary/50 hover:bg-white dark:hover:bg-secondary rounded-full shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] border border-white/50 dark:border-border/50 text-sm text-slate-500 dark:text-muted-foreground transition-all duration-300"
             >
               <Search className="w-4 h-4" />
               <span>Search...</span>
             </button>
-          </div>
+          </motion.div>
           
-          <div className="flex items-center gap-3 sm:gap-6 shrink-0">
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+            className="flex items-center gap-1 sm:gap-4 shrink-0"
+          >
+            <button 
+              onClick={() => setCommandPaletteOpen(true)}
+              className="md:hidden p-2 text-slate-500 hover:bg-white/50 rounded-full"
+            >
+              <Search className="w-5 h-5" />
+            </button>
             <NotificationBell />
             <TopBarProfile isDashboard={false} />
-          </div>
+          </motion.div>
         </header>
 
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-[100vw] overflow-x-hidden relative z-10">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={pathname}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-            >
-              {children}
-            </motion.div>
-          </AnimatePresence>
+        <main className="flex-1 p-4 sm:p-6 lg:p-8 pb-24 lg:pb-8 max-w-[100vw] overflow-x-hidden relative z-10">
+          {children}
         </main>
       </div>
 
+      <BottomNav userRole={userRole} />
       <CommandPalette />
       <NotificationDrawer />
       <ProfileModal />
+      <AiFinancialAdvisor />
     </div>
   )
 }

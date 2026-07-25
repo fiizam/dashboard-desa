@@ -1,6 +1,5 @@
-import { DashboardLayout } from '@/components/layout/DashboardLayout'
-import { getSession } from '@/lib/session'
 import prisma from '@/lib/prisma'
+import { getSession } from '@/lib/session'
 import { redirect } from 'next/navigation'
 import { KependudukanInteractive } from '@/components/kependudukan/KependudukanInteractive'
 import { getStatistikKependudukan, getDaftarWarga, getDaftarKeluarga } from '@/server/actions/kependudukan'
@@ -29,8 +28,8 @@ export default async function KependudukanPage() {
   const keluarga = await getDaftarKeluarga()
 
   return (
-    <DashboardLayout userRole={role}>
+    <>
       <KependudukanInteractive initialStats={stats} initialWarga={warga} keluargaList={keluarga} />
-    </DashboardLayout>
+    </>
   )
 }

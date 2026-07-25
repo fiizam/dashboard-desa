@@ -19,8 +19,6 @@ export function Sidebar({ userRole }: { userRole: string }) {
   const isPinned = useAppStore(s => s.isSidebarPinned)
   const setPinned = useAppStore(s => s.setSidebarPinned)
   const setCommandOpen = useAppStore(s => s.setCommandPaletteOpen)
-  const isMobileMenuOpen = useAppStore(s => s.isMobileMenuOpen)
-  const setMobileMenuOpen = useAppStore(s => s.setMobileMenuOpen)
   const isHovered = useAppStore(s => s.isSidebarHovered)
   const setIsHovered = useAppStore(s => s.setSidebarHovered)
   const t = useTranslation()
@@ -34,8 +32,8 @@ export function Sidebar({ userRole }: { userRole: string }) {
 
   useEffect(() => setMounted(true), [])
 
-  // On desktop: expanded if pinned or hovered. On mobile: expanded if mobile menu is open
-  const isExpanded = isPinned || isHovered || isMobileMenuOpen
+  // On desktop: expanded if pinned or hovered.
+  const isExpanded = isPinned || isHovered
 
   const menuItems = [
     { label: t.sidebar.dashboard, href: '/', icon: LayoutDashboard, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
@@ -52,36 +50,13 @@ export function Sidebar({ userRole }: { userRole: string }) {
 
   return (
     <>
-      {/* Mobile Backdrop */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-background/50 backdrop-blur-sm z-40 lg:hidden"
-            onClick={() => {
-              setIsHovered(false)
-              setMobileMenuOpen(false)
-            }}
-          />
-        )}
-      </AnimatePresence>
-
       <motion.aside
         onMouseEnter={() => !isPinned && setIsHovered(true)}
         onMouseLeave={() => !isPinned && setIsHovered(false)}
         initial={false}
-        animate={{ 
-          width: isExpanded ? 280 : 96,
-          x: isMobileMenuOpen ? 0 : 'var(--mobile-x, 0px)' 
-        }}
+        animate={{ width: isExpanded ? 280 : 96 }}
         transition={{ type: 'spring', bounce: 0, duration: 0.4 }}
-        className="fixed top-6 left-6 bottom-6 rounded-3xl bg-white/70 dark:bg-secondary/70 backdrop-blur-xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] border border-white/50 dark:border-border/50 z-50 flex flex-col overflow-hidden -translate-x-[150%] lg:translate-x-0"
-        style={{
-          // On mobile, default to hidden off screen unless isMobileMenuOpen is true
-          transform: isMobileMenuOpen ? 'translateX(0)' : ''
-        }}
+        className="fixed top-6 left-6 bottom-6 rounded-3xl bg-white/70 dark:bg-secondary/70 backdrop-blur-xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] border border-white/50 dark:border-border/50 z-50 flex-col overflow-hidden hidden lg:flex"
       >
         <div className="h-20 flex items-center justify-between px-4 shrink-0 mt-2">
           <Link href="/" className="flex items-center gap-3 overflow-hidden">
@@ -121,12 +96,6 @@ export function Sidebar({ userRole }: { userRole: string }) {
                 >
                   {isPinned ? <Pin className="w-4 h-4" /> : <PinOff className="w-4 h-4" />}
                 </button>
-                <button
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="p-1.5 hover:bg-secondary rounded-lg text-muted-foreground lg:hidden"
-                >
-                  <X className="w-4 h-4" />
-                </button>
               </motion.div>
             )}
           </AnimatePresence>
@@ -142,7 +111,6 @@ export function Sidebar({ userRole }: { userRole: string }) {
               <div key={item.href}>
                 <Link
                   href={item.href}
-                  onClick={() => setMobileMenuOpen(false)}
                   className={`relative flex items-center gap-4 px-4 py-3 rounded-2xl transition-all duration-300 group ${isActive ? 'text-slate-800 dark:text-foreground font-bold' : 'text-slate-500 hover:text-slate-700 dark:text-muted-foreground dark:hover:text-foreground'}`}
                 >
                   {isActive && (
@@ -192,7 +160,7 @@ export function Sidebar({ userRole }: { userRole: string }) {
         </div>
 
         <div className="p-4 shrink-0 mt-auto">
-          <Link href="/profile" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 p-2 rounded-2xl bg-white/50 dark:bg-secondary/30 hover:bg-white dark:hover:bg-secondary transition-all duration-300 shadow-sm border border-white/50 dark:border-border/50 group">
+          <Link href="/profile" className="flex items-center gap-3 p-2 rounded-2xl bg-white/50 dark:bg-secondary/30 hover:bg-white dark:hover:bg-secondary transition-all duration-300 shadow-sm border border-white/50 dark:border-border/50 group">
             {user ? (
               <>
                 {user.avatarUrl ? (

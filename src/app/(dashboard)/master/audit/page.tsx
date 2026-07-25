@@ -1,4 +1,3 @@
-import { DashboardLayout } from '@/components/layout/DashboardLayout'
 import { getSession } from '@/lib/session'
 import prisma from '@/lib/prisma'
 import { redirect } from 'next/navigation'
@@ -23,7 +22,7 @@ export default async function AuditLogPage() {
   })
 
   return (
-    <DashboardLayout userRole={role}>
+    <>
       <div className="flex flex-col gap-6 w-full max-w-6xl mx-auto">
         <div className="flex items-center gap-4 border-b border-border/50 pb-6">
           <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 flex items-center justify-center">
@@ -94,6 +93,6 @@ export default async function AuditLogPage() {
           </div>
         </div>
       </div>
-    </DashboardLayout>
+    </>
   )
 }

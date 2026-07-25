@@ -1,4 +1,3 @@
-import { DashboardLayout } from '@/components/layout/DashboardLayout'
 import { getApbdesData, getRecentTransactions } from '@/server/actions/keuangan'
 import { KeuanganInteractive } from '@/components/keuangan/KeuanganInteractive'
 import { getSession } from '@/lib/session'
@@ -28,8 +27,6 @@ export default async function KeuanganPage() {
   const transactions = await getRecentTransactions()
 
   return (
-    <DashboardLayout userRole={role}>
-      <KeuanganInteractive initialApbdes={apbdes} initialTransactions={transactions} userRole={role} />
-    </DashboardLayout>
+    <KeuanganInteractive initialApbdes={apbdes} initialTransactions={transactions} userRole={role} />
   )
 }
