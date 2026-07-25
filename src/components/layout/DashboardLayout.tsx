@@ -15,7 +15,7 @@ import { TopBarProfile } from './TopBarProfile'
 import { useQuery } from '@tanstack/react-query'
 import { getProfile } from '@/server/actions/profile'
 import { getNotifications } from '@/server/actions/notifications'
-
+import { useTranslation } from '@/lib/i18n'
 function NotificationBell() {
   const setNotificationDrawerOpen = useAppStore(s => s.setNotificationDrawerOpen)
   const { data: notifications = [] } = useQuery({
@@ -39,7 +39,7 @@ function NotificationBell() {
   )
 }
 
-export function DashboardLayout({ children, userRole }: { children: ReactNode, userRole: string }) {
+export function DashboardLayout({ children, userRole }: { children: ReactNode, userRole?: string }) {
   const pathname = usePathname()
   const t = useTranslation()
   const isPinned = useAppStore(s => s.isSidebarPinned)
