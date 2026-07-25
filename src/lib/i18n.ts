@@ -185,16 +185,29 @@ const translations = {
     },
     laporan: {
       title: "Report Center", subtitle: "Download, print, and manage financial reports automatically.",
-    master: {
-      title: "Master User Data", subtitle: "Manage system access, roles, and user accounts.",
-      addBtn: "Add User", exportBtn: "Export CSV",
-      table: { name: "Name / Email", role: "Role & Access", status: "Status", action: "Action" }
+      pdfBtn: "Export PDF", printPdf: "Print PDF", reportRealization: "APBDes Realization Report", reportRealizationDesc: "Comprehensive budget absorption report.",
+      reportBku: "General Cash Book", reportBkuDesc: "Recap of all receipt and disbursement transactions.",
+      reportAsset: "Village Asset Report", reportAssetDesc: "List of inventory and fixed assets of the village.",
+      reportTax: "Tax Report", reportTaxDesc: "VAT and Income Tax deposit for village transactions.",
+      customReport: "Custom Report Builder", reportType: "Report Type", startDate: "Start Date", endDate: "End Date", exportOfficial: "Export Official PDF Report",
+      officialDoc: "Official Document:", printNotice: "Fiscal Year {year}. This report is automatically printed from the Digital Village system.", typeIncome: "Income", typeExpense: "Expense"
     },
-    kependudukan: {
-      title: "Demographics Data", subtitle: "Integrated Resident Information System.",
-      addBtn: "Add New Resident", exportBtn: "Export Data (Excel)",
-      summary: { total: "Total Population", male: "Male", female: "Female", families: "Families (KK)" },
-      table: { nik: "ID Number", name: "Full Name", gender: "Gender", rt: "RT/RW", status: "Status" }
+    warga: {
+      title: "Population Data", subtitle: "Manage Family Cards and Demographics of RW Residents.",
+      addBtn: "Add Resident", exportData: "Export Data",
+      totalCitizen: "Total Residents", totalFamily: "Total Families", male: "Male", female: "Female",
+      searchPlaceholder: "Search NIK or Name...", filterAll: "All RTs", filterRt: "RT",
+      colNik: "NIK", colName: "Full Name", colGender: "Gender", colKk: "KK No. / Status", colRtRw: "RT/RW", colAction: "Action",
+      detail: "Detail", notFound: "No resident data found.",
+      detailTitle: "Resident Details", birthInfo: "Place, DOB", religion: "Religion", maritalStatus: "Marital Status", educationJob: "Education / Job",
+      familyInfo: "Family Information", status: "Status:", kkNum: "Family Card No:"
+    },
+    master: {
+      pageTitle: "Master User Data", pageSubtitle: "Manage access rights and users across all village entities.",
+      export: "Export", addUser: "Add User", searchPlaceholder: "Search name, email, or role...", filter: "Filter",
+      colUser: "User", colRole: "Role", colVillage: "Village", colStatus: "Status", colAction: "Action",
+      active: "Active", inactive: "Inactive",
+      editData: "Edit Data", resetPassword: "Reset Password", deleteAccess: "Delete Access"
     },
     settings: {
       title: "System Settings",
