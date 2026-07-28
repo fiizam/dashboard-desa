@@ -50,8 +50,14 @@ export function SettingsInteractive() {
       return;
     }
 
-    const x = event?.clientX ?? window.innerWidth;
-    const y = event?.clientY ?? 0;
+    let x = event?.clientX ?? window.innerWidth / 2;
+    let y = event?.clientY ?? window.innerHeight / 2;
+
+    if (event?.currentTarget) {
+      const rect = (event.currentTarget as HTMLElement).getBoundingClientRect();
+      x = rect.left + rect.width / 2;
+      y = rect.top + rect.height / 2;
+    }
     
     const endRadius = Math.hypot(
       Math.max(x, window.innerWidth - x),
@@ -78,8 +84,8 @@ export function SettingsInteractive() {
           { clipPath: `circle(${endRadius}px at ${x}px ${y}px)` }
         ],
         {
-          duration: 700,
-          easing: "ease-in-out",
+          duration: 800,
+          easing: "cubic-bezier(0.16, 1, 0.3, 1)",
           pseudoElement: "::view-transition-new(root)"
         }
       );
