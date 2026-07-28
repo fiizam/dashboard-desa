@@ -1,5 +1,4 @@
 "use client"
-import { LineChart, Line, ResponsiveContainer } from 'recharts'
 import { getProfile } from '@/server/actions/profile'
 import { useQuery } from '@tanstack/react-query'
 import { TrendingUp, Wallet, ArrowUpRight, Activity } from 'lucide-react'

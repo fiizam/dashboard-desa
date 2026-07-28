@@ -1,8 +1,10 @@
 "use client"
-import { BarChart, Bar, ResponsiveContainer, YAxis, Tooltip } from 'recharts'
 import { ArrowUp, ArrowDown } from 'lucide-react'
 import Link from 'next/link'
 import { useTranslation } from '@/lib/i18n'
+import dynamic from 'next/dynamic'
+
+const SoftBreakdownChart = dynamic(() => import('./SoftBreakdownChart').then(mod => mod.SoftBreakdownChart), { ssr: false, loading: () => <div className="w-full h-full animate-pulse bg-secondary/30 rounded-xl" /> })
 
 const data = [
   { name: 'Pemdes', val1: 40, val2: 20, val3: 10, val4: 5 },
@@ -25,19 +27,7 @@ export function SoftBreakdown() {
         <div className="flex flex-col 2xl:flex-row items-start 2xl:items-end gap-6 h-auto 2xl:h-48 relative">
           {/* Chart */}
           <div className="w-full 2xl:w-1/2 h-48 2xl:h-full relative shrink-0 min-w-0">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={data} margin={{ top: 0, right: 0, left: -20, bottom: 0 }}>
-                <YAxis 
-                  axisLine={false} 
-                  tickLine={false} 
-                  tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 10 }} 
-                />
-                <Bar dataKey="val1" fill="#f59e0b" radius={[4, 4, 0, 0]} barSize={8} />
-                <Bar dataKey="val2" fill="#3b82f6" radius={[4, 4, 0, 0]} barSize={8} />
-                <Bar dataKey="val3" fill="#8b5cf6" radius={[4, 4, 0, 0]} barSize={8} />
-                <Bar dataKey="val4" fill="#ef4444" radius={[4, 4, 0, 0]} barSize={8} />
-              </BarChart>
-            </ResponsiveContainer>
+            <SoftBreakdownChart data={data} />
           </div>
           
           {/* Legend */}
