@@ -35,6 +35,7 @@ export function Sidebar({ userRole }: { userRole: string }) {
   // On desktop: expanded if pinned or hovered.
   const isExpanded = isPinned || isHovered
 
+  const menuItems = [
     { label: t.sidebar.dashboard, href: '/', icon: Command, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
     { label: t.sidebar.keuangan, href: '/keuangan', icon: Landmark, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Bendahara'] },
     { label: t.sidebar.kependudukan, href: '/kependudukan', icon: UsersRound, roles: ['Super Admin', 'Ketua RW', 'Sekretaris'] },
