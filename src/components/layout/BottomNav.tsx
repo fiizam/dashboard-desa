@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { LayoutDashboard, Users, Wallet, FileText, Settings, Shield } from 'lucide-react'
 import { useTranslation } from '@/lib/i18n'
 
@@ -21,13 +21,13 @@ export function BottomNav({ userRole }: { userRole: string }) {
   const visibleMenus = menuItems.filter(m => m.roles.includes(userRole))
 
   return (
-    <motion.nav 
-      initial={{ y: 100 }}
-      animate={{ y: 0 }}
-      transition={{ type: "spring", stiffness: 260, damping: 20 }}
-      className="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-white/80 dark:bg-background/80 backdrop-blur-xl border-t border-border/50 pb-safe shadow-[0_-10px_40px_rgba(0,0,0,0.05)]"
-    >
-      <div className="flex items-center justify-around px-2 h-16">
+    <div className="fixed bottom-0 left-0 right-0 z-50 lg:hidden pb-[env(safe-area-inset-bottom)] flex justify-center pointer-events-none">
+      <motion.nav 
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ y: -20, opacity: 1 }}
+        transition={{ type: "spring", stiffness: 260, damping: 20 }}
+        className="pointer-events-auto w-[92vw] max-w-[420px] flex items-center p-1.5 h-[70px] bg-white/70 dark:bg-[#111111]/70 backdrop-blur-2xl rounded-[28px] shadow-[0_8px_40px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_40px_rgba(0,0,0,0.4)] border border-slate-200/50 dark:border-white/10"
+      >
         {visibleMenus.map((item) => {
           const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))
           
@@ -35,23 +35,38 @@ export function BottomNav({ userRole }: { userRole: string }) {
             <Link
               key={item.href}
               href={item.href}
-              className={`relative flex flex-col items-center justify-center w-full h-full space-y-1 transition-colors duration-300 ${
-                isActive ? 'text-primary' : 'text-muted-foreground hover:text-foreground'
+              className={`relative flex flex-1 flex-col items-center justify-center h-full transition-all duration-300 z-10 ${
+                isActive ? 'text-white dark:text-slate-900' : 'text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300'
               }`}
             >
               {isActive && (
                 <motion.div
-                  layoutId="bottom-nav-indicator"
-                  className="absolute inset-0 bg-primary/10 rounded-xl"
+                  layoutId="mobile-nav-pill"
+                  className="absolute inset-0 bg-slate-900 dark:bg-white rounded-[22px] shadow-sm"
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
               )}
-              <item.icon className={`w-5 h-5 relative z-10 ${isActive ? 'animate-bounce-subtle' : ''}`} />
-              <span className="text-[10px] font-medium relative z-10 truncate max-w-full px-1">{item.label}</span>
+              <item.icon 
+                className={`w-[22px] h-[22px] relative z-20 transition-all duration-300 ${isActive ? '-translate-y-[2px]' : ''}`} 
+                strokeWidth={isActive ? 2.5 : 2} 
+              />
+              
+              <AnimatePresence>
+                {isActive && (
+                  <motion.span 
+                    initial={{ opacity: 0, scale: 0.8, y: 2 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.8, y: 2 }}
+                    className="text-[9px] font-bold relative z-20 truncate max-w-full px-1 mt-[2px] tracking-wide"
+                  >
+                    {item.label}
+                  </motion.span>
+                )}
+              </AnimatePresence>
             </Link>
           )
         })}
-      </div>
-    </motion.nav>
+      </motion.nav>
+    </div>
   )
 }
