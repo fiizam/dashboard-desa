@@ -3,7 +3,7 @@
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Compass, Users, Banknote, ScrollText, Settings, Layers } from 'lucide-react'
+import { Command, UsersRound, Landmark, AreaChart, Shield, Database } from 'lucide-react'
 import { useTranslation } from '@/lib/i18n'
 
 export function BottomNav({ userRole }: { userRole: string }) {
@@ -11,11 +11,11 @@ export function BottomNav({ userRole }: { userRole: string }) {
   const t = useTranslation()
 
   const menuItems = [
-    { label: t.bottomNav.beranda, href: '/', icon: Compass, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
-    { label: t.bottomNav.keuangan, href: '/keuangan', icon: Banknote, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Bendahara'] },
-    { label: t.bottomNav.warga, href: '/kependudukan', icon: Users, roles: ['Super Admin', 'Ketua RW', 'Sekretaris'] },
-    { label: t.bottomNav.master, href: '/master', icon: Layers, roles: ['Super Admin', 'Ketua RW'] },
-    { label: t.bottomNav.laporan, href: '/laporan', icon: ScrollText, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
+    { label: t.bottomNav.beranda, href: '/', icon: Command, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
+    { label: t.bottomNav.keuangan, href: '/keuangan', icon: Landmark, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Bendahara'] },
+    { label: t.bottomNav.warga, href: '/kependudukan', icon: UsersRound, roles: ['Super Admin', 'Ketua RW', 'Sekretaris'] },
+    { label: t.bottomNav.master, href: '/master', icon: Database, roles: ['Super Admin', 'Ketua RW'] },
+    { label: t.bottomNav.laporan, href: '/laporan', icon: AreaChart, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
   ]
 
   const visibleMenus = menuItems.filter(m => m.roles.includes(userRole))

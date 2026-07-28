@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { 
-  Compass, Users, Banknote, ScrollText, Settings, 
-  Pin, PinOff, Search, LogOut, X, Layers
+  Command, UsersRound, Landmark, AreaChart, Settings2, 
+  Pin, PinOff, Search, LogOut, X, Shield, Database
 } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
@@ -35,13 +35,12 @@ export function Sidebar({ userRole }: { userRole: string }) {
   // On desktop: expanded if pinned or hovered.
   const isExpanded = isPinned || isHovered
 
-  const menuItems = [
-    { label: t.sidebar.dashboard, href: '/', icon: Compass, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
-    { label: t.sidebar.keuangan, href: '/keuangan', icon: Banknote, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Bendahara'] },
-    { label: t.sidebar.kependudukan, href: '/kependudukan', icon: Users, roles: ['Super Admin', 'Ketua RW', 'Sekretaris'] },
-    { label: t.sidebar.masterData, href: '/master', icon: Layers, roles: ['Super Admin', 'Ketua RW'] },
-    { label: t.sidebar.laporan, href: '/laporan', icon: ScrollText, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
-    { label: t.sidebar.pengaturan, href: '/settings', icon: Settings, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
+    { label: t.sidebar.dashboard, href: '/', icon: Command, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
+    { label: t.sidebar.keuangan, href: '/keuangan', icon: Landmark, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Bendahara'] },
+    { label: t.sidebar.kependudukan, href: '/kependudukan', icon: UsersRound, roles: ['Super Admin', 'Ketua RW', 'Sekretaris'] },
+    { label: t.sidebar.masterData, href: '/master', icon: Database, roles: ['Super Admin', 'Ketua RW'] },
+    { label: t.sidebar.laporan, href: '/laporan', icon: AreaChart, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
+    { label: t.sidebar.pengaturan, href: '/settings', icon: Settings2, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
   ]
 
   const visibleMenus = menuItems.filter(m => m.roles.includes(userRole))
