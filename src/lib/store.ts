@@ -47,7 +47,7 @@ export const useAppStore = create<AppState>()(
   // Initial Settings
   theme: 'system',
   setTheme: (theme) => set({ theme }),
-  language: 'id',
+  language: 'en',
   setLanguage: (language) => set({ language }),
   activeYear: '2024',
   setActiveYear: (activeYear) => set({ activeYear }),
@@ -57,7 +57,7 @@ export const useAppStore = create<AppState>()(
   setSystemNotif: (systemNotif) => set({ systemNotif }),
     }),
     {
-      name: 'desa-sync-storage',
+      name: 'rw-sync-storage',
       // only persist settings, omit UI states like isSidebarHovered
       partialize: (state) => ({ 
         isSidebarPinned: state.isSidebarPinned,

@@ -95,7 +95,7 @@ export default function LoginPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-xs text-white/50 font-medium tracking-wide relative z-20 text-center uppercase"
           >
-            Sistem tata kelola desa online terpadu untuk Anda.
+            Sistem tata kelola RW online terpadu untuk Anda.
           </motion.div>
 
           {/* Main heading */}
@@ -106,7 +106,7 @@ export default function LoginPage() {
             className="relative z-20 mt-20 mb-auto text-center"
           >
             <h1 className="text-4xl lg:text-5xl font-bold leading-[1.1] tracking-tight">
-              Kelola Dana Desa<br />Dengan Mudah
+              Kelola Dana RW<br />Dengan Mudah
             </h1>
           </motion.div>
 
@@ -176,13 +176,8 @@ export default function LoginPage() {
               <div className="w-6 h-6 relative rounded-full border-2 border-orange-500 flex items-center justify-center">
                 <div className="w-2 h-2 bg-rose-500 rounded-full" />
               </div>
-              <span className="font-bold text-xl text-slate-800 tracking-tight">DigitalVillage</span>
+              <span className="font-bold text-xl text-slate-800 tracking-tight">DigitalRW</span>
             </div>
-
-            <a href="#" className="text-xs font-semibold text-slate-500 hover:text-slate-800 flex items-center gap-1.5 transition-colors">
-              <User className="w-4 h-4" />
-              Sign Up
-            </a>
           </div>
 
           <motion.div
@@ -268,7 +263,7 @@ export default function LoginPage() {
           </motion.div>
 
           <div className="mt-auto pt-12 flex items-center justify-between text-[10px] font-semibold text-slate-400">
-            <span>© 2026 DigitalVillage Inc.</span>
+            <span>© 2026 DigitalRW Inc.</span>
             <div className="flex gap-4">
               <a href="#" className="hover:text-slate-600 transition-colors">Contact Us</a>
               <span className="flex items-center gap-1 cursor-pointer hover:text-slate-600 transition-colors">
