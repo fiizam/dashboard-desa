@@ -19,8 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id">
-      <body className={`${inter.className} min-h-screen antialiased bg-background text-foreground selection:bg-primary/20 selection:text-primary`}>
+    <html lang="id" suppressHydrationWarning>
+      <body suppressHydrationWarning className={`${inter.className} min-h-screen antialiased bg-background text-foreground selection:bg-primary/20 selection:text-primary`}>
         <NextTopLoader color="#2563eb" showSpinner={false} />
         <ThemeProvider />
         <QueryProvider>

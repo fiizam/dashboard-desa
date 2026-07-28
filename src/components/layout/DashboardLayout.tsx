@@ -57,7 +57,7 @@ export function DashboardLayout({ children, userRole }: { children: ReactNode, u
   const isDashboard = pathname === '/'
 
   return (
-    <div className="min-h-screen bg-[#FDF8F3] dark:bg-background flex font-sans text-slate-800 dark:text-foreground">
+    <div suppressHydrationWarning className="min-h-screen bg-[#FDF8F3] dark:bg-background flex font-sans text-slate-800 dark:text-foreground">
       <Sidebar userRole={userRole} />
       
       <div 
@@ -83,7 +83,7 @@ export function DashboardLayout({ children, userRole }: { children: ReactNode, u
             transition={{ duration: 0.5, ease: "easeOut" }}
             className="flex items-center gap-3 sm:gap-4 flex-1 min-w-0"
           >
-            <div className="flex flex-col min-w-0">
+            <div suppressHydrationWarning className="flex flex-col min-w-0">
               <h1 className="text-base sm:text-lg font-bold text-slate-800 dark:text-foreground leading-tight truncate">{t.dashboard.greeting} {user?.name?.split(' ')[0] || userRole}</h1>
               <p className="text-[10px] sm:text-xs text-slate-500 dark:text-muted-foreground hidden sm:block truncate">{t.dashboard.subtitle}</p>
               <p className="text-[10px] text-slate-500 dark:text-muted-foreground sm:hidden truncate">{userRole}</p>
