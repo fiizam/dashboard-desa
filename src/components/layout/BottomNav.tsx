@@ -3,7 +3,7 @@
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import { LayoutGrid, Users, Wallet, ClipboardList, IdCard } from 'lucide-react'
+import { LayoutDashboard, Users, Wallet, ClipboardList, IdCard } from 'lucide-react'
 import { useTranslation } from '@/lib/i18n'
 
 export function BottomNav({ userRole }: { userRole: string }) {
@@ -11,7 +11,7 @@ export function BottomNav({ userRole }: { userRole: string }) {
   const t = useTranslation()
 
   const menuItems = [
-    { label: t.bottomNav.beranda, href: '/', icon: LayoutGrid, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
+    { label: t.bottomNav.beranda, href: '/', icon: LayoutDashboard, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
     { label: t.bottomNav.keuangan, href: '/keuangan', icon: Wallet, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Bendahara'] },
     { label: t.bottomNav.warga, href: '/kependudukan', icon: IdCard, roles: ['Super Admin', 'Ketua RW', 'Sekretaris'] },
     { label: t.bottomNav.master, href: '/master', icon: Users, roles: ['Super Admin', 'Ketua RW'] },
