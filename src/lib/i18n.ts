@@ -11,7 +11,7 @@ const translations = {
       pengaturan: "Pengaturan"
     },
     bottomNav: { 
-      beranda: "Beranda", 
+      beranda: "Dashboard", 
       keuangan: "Keuangan", 
       warga: "Warga", 
       master: "Master", 
@@ -140,7 +140,7 @@ const translations = {
       pengaturan: "Settings"
     },
     bottomNav: { 
-      beranda: "Home", 
+      beranda: "Dashboard", 
       keuangan: "Finances", 
       warga: "Residents", 
       master: "Master", 
