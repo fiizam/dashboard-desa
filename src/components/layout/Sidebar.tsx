@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { 
-  LayoutDashboard, Users, Wallet, FileText, Settings, 
-  Pin, PinOff, Search, LogOut, X, Shield
+  Compass, Users, Banknote, ScrollText, Settings, 
+  Pin, PinOff, Search, LogOut, X, Layers
 } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
@@ -36,11 +36,11 @@ export function Sidebar({ userRole }: { userRole: string }) {
   const isExpanded = isPinned || isHovered
 
   const menuItems = [
-    { label: t.sidebar.dashboard, href: '/', icon: LayoutDashboard, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
-    { label: t.sidebar.keuangan, href: '/keuangan', icon: Wallet, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Bendahara'] },
+    { label: t.sidebar.dashboard, href: '/', icon: Compass, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
+    { label: t.sidebar.keuangan, href: '/keuangan', icon: Banknote, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Bendahara'] },
     { label: t.sidebar.kependudukan, href: '/kependudukan', icon: Users, roles: ['Super Admin', 'Ketua RW', 'Sekretaris'] },
-    { label: t.sidebar.masterData, href: '/master', icon: Shield, roles: ['Super Admin', 'Ketua RW'] },
-    { label: t.sidebar.laporan, href: '/laporan', icon: FileText, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
+    { label: t.sidebar.masterData, href: '/master', icon: Layers, roles: ['Super Admin', 'Ketua RW'] },
+    { label: t.sidebar.laporan, href: '/laporan', icon: ScrollText, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
     { label: t.sidebar.pengaturan, href: '/settings', icon: Settings, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
   ]
 
