@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { 
-  LayoutDashboard, Users, Wallet, ClipboardList, Settings, 
-  Pin, PinOff, Search, LogOut, X, Database
+  LayoutGrid, Users, Wallet, ClipboardList, Settings, 
+  Pin, PinOff, Search, LogOut, X, IdCard
 } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
@@ -36,10 +36,10 @@ export function Sidebar({ userRole }: { userRole: string }) {
   const isExpanded = isPinned || isHovered
 
   const menuItems = [
-    { label: t.sidebar.dashboard, href: '/', icon: LayoutDashboard, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
+    { label: t.sidebar.dashboard, href: '/', icon: LayoutGrid, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
     { label: t.sidebar.keuangan, href: '/keuangan', icon: Wallet, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Bendahara'] },
-    { label: t.sidebar.kependudukan, href: '/kependudukan', icon: Users, roles: ['Super Admin', 'Ketua RW', 'Sekretaris'] },
-    { label: t.sidebar.masterData, href: '/master', icon: Database, roles: ['Super Admin', 'Ketua RW'] },
+    { label: t.sidebar.kependudukan, href: '/kependudukan', icon: IdCard, roles: ['Super Admin', 'Ketua RW', 'Sekretaris'] },
+    { label: t.sidebar.masterData, href: '/master', icon: Users, roles: ['Super Admin', 'Ketua RW'] },
     { label: t.sidebar.laporan, href: '/laporan', icon: ClipboardList, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
     { label: t.sidebar.pengaturan, href: '/settings', icon: Settings, roles: ['Super Admin', 'Ketua RW', 'Wakil Ketua RW', 'Sekretaris', 'Bendahara'] },
   ]
