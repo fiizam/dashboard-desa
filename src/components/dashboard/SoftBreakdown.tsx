@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic'
 const SoftBreakdownChart = dynamic(() => import('./SoftBreakdownChart').then(mod => mod.SoftBreakdownChart), { ssr: false, loading: () => <div className="w-full h-full animate-pulse bg-secondary/30 rounded-xl" /> })
 
 const data = [
-  { name: 'Pemdes', val1: 40, val2: 20, val3: 10, val4: 5 },
+  { name: 'Pengurus RW', val1: 40, val2: 20, val3: 10, val4: 5 },
   { name: 'Pembangunan', val1: 20, val2: 40, val3: 15, val4: 5 },
   { name: 'Pembinaan', val1: 10, val2: 15, val3: 40, val4: 2 },
   { name: 'Pemberdayaan', val1: 5, val2: 10, val3: 5, val4: 50 },
@@ -42,7 +42,7 @@ export function SoftBreakdown() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-blue-500" />
-                <span className="text-sm font-medium text-slate-600 dark:text-muted-foreground">Pemdes</span>
+                <span className="text-sm font-medium text-slate-600 dark:text-muted-foreground">Pengurus RW</span>
               </div>
               <span className="font-bold text-slate-800 dark:text-foreground">48</span>
             </div>

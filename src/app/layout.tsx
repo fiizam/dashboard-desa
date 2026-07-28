@@ -9,8 +9,8 @@ import { Toaster } from 'sonner';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Digital Village Dashboard",
-  description: "Enterprise Financial Dashboard for Village Administration",
+  title: "Digital RW Dashboard",
+  description: "Enterprise Financial Dashboard for RW Administration",
 };
 
 export default function RootLayout({

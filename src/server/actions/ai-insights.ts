@@ -44,7 +44,7 @@ export async function getAiInsights() {
     insights.push({
       type: 'danger',
       title: 'Terdapat Pos Belanja Overbudget',
-      message: `${overbudgetItems.length} pos belanja terpantau melebihi anggaran yang ditetapkan. Sistem menyarankan revisi APBDes atau pembatasan transaksi.`
+      message: `${overbudgetItems.length} pos belanja terpantau melebihi anggaran yang ditetapkan. Sistem menyarankan revisi APBRW atau pembatasan transaksi.`
     })
   }
 
@@ -53,7 +53,7 @@ export async function getAiInsights() {
     insights.push({
       type: 'success',
       title: 'Likuiditas Kas Sangat Baik',
-      message: 'Pendapatan telah mencapai lebih dari 80% dari total rencana belanja. Kas desa berada dalam kondisi sangat sehat.'
+      message: 'Pendapatan telah mencapai lebih dari 80% dari total rencana belanja. Kas RW berada dalam kondisi sangat sehat.'
     })
   }
 

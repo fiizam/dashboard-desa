@@ -16,7 +16,7 @@ export async function generateFinancialInsights() {
   const genAI = new GoogleGenerativeAI(apiKey)
   const model = genAI.getGenerativeModel({ model: "gemini-3.1-flash-lite" })
 
-  // Get APBDes and transactions
+  // Get APBRW and transactions
   const apbdes = await prisma.apbdes.findFirst({
     where: { status: 'ACTIVE' },
     include: {
@@ -25,7 +25,7 @@ export async function generateFinancialInsights() {
     }
   })
 
-  if (!apbdes) return { response: "Belum ada data APBDes aktif untuk dianalisis." }
+  if (!apbdes) return { response: "Belum ada data APBRW aktif untuk dianalisis." }
 
   const totalPendapatan = apbdes.pendapatans.reduce((sum, p) => sum + p.realisasi, 0)
   const totalAnggaranBelanja = apbdes.belanjas.reduce((sum, b) => sum + b.anggaran, 0)
@@ -33,8 +33,8 @@ export async function generateFinancialInsights() {
 
   // Construct prompt
   const prompt = `
-Anda adalah Digital Village AI, seorang Konsultan Keuangan Desa yang ahli, profesional, analitis, dan berwibawa.
-Berikut adalah data keuangan (APBDes) desa saat ini:
+Anda adalah Digital RW AI, seorang Konsultan Keuangan RW yang ahli, profesional, analitis, dan berwibawa.
+Berikut adalah data keuangan (APBRW) RW saat ini:
 - Total Pendapatan Terealisasi: Rp ${totalPendapatan.toLocaleString('id-ID')}
 - Total Anggaran Belanja: Rp ${totalAnggaranBelanja.toLocaleString('id-ID')}
 - Total Realisasi Belanja (dana terpakai): Rp ${totalRealisasiBelanja.toLocaleString('id-ID')}
@@ -43,9 +43,9 @@ Detail Pos Belanja:
 ${apbdes.belanjas.map(b => `- ${b.uraian}: Anggaran Rp ${b.anggaran.toLocaleString('id-ID')}, Realisasi Rp ${b.realisasi.toLocaleString('id-ID')}`).join('\n')}
 
 Tugas Anda:
-1. Analisis kesehatan keuangan desa secara singkat berdasarkan angka di atas.
+1. Analisis kesehatan keuangan RW secara singkat berdasarkan angka di atas.
 2. Identifikasi potensi masalah (contoh: defisit jika belanja > pendapatan, penyerapan rendah, atau overbudget).
-3. Berikan saran strategis dan praktis yang bisa segera dieksekusi oleh Pemerintah Desa.
+3. Berikan saran strategis dan praktis yang bisa segera dieksekusi oleh Pengurus RW.
 4. Tulis menggunakan format Markdown yang rapi (bold, daftar peluru, header level 3). Gunakan gaya bahasa konsultan profesional namun mudah dipahami.
 `
 

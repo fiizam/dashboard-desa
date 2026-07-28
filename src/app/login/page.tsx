@@ -122,7 +122,7 @@ export default function LoginPage() {
 
             <div className="flex-1 p-5 pt-12 flex flex-col">
               <div className="flex items-center justify-between mb-4">
-                <span className="text-[10px] text-white/50">APBDes 2026</span>
+                <span className="text-[10px] text-white/50">APBRW 2026</span>
                 <span className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center">
                   <Wallet className="w-3 h-3 text-white/70" />
                 </span>
