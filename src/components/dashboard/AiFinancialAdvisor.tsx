@@ -53,7 +53,7 @@ export function AiFinancialAdvisor() {
   }
 
   return (
-    <div className="fixed bottom-24 lg:bottom-10 right-4 lg:right-10 z-[100] flex flex-col items-end pointer-events-none">
+    <div className="fixed bottom-[120px] lg:bottom-10 right-4 lg:right-10 z-[100] flex flex-col items-end pointer-events-none" style={{ marginBottom: 'env(safe-area-inset-bottom)' }}>
       
       <AnimatePresence>
         {isOpen && (

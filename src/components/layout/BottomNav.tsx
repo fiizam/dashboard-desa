@@ -22,12 +22,12 @@ export function BottomNav({ userRole }: { userRole: string }) {
   const visibleMenus = menuItems.filter(m => m.roles.includes(userRole))
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 lg:hidden pb-[env(safe-area-inset-bottom)] flex justify-center pointer-events-none">
+    <div className="fixed bottom-0 left-0 right-0 z-50 lg:hidden px-4 flex justify-center pointer-events-none" style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 16px)' }}>
       <motion.nav 
         initial={{ y: 100, opacity: 0 }}
-        animate={{ y: -20, opacity: 1 }}
+        animate={{ y: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 260, damping: 20 }}
-        className="pointer-events-auto w-[92vw] max-w-[420px] flex items-center p-1.5 h-[70px] bg-white/70 dark:bg-[#111111]/70 backdrop-blur-2xl rounded-[28px] shadow-[0_8px_40px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_40px_rgba(0,0,0,0.4)] border border-slate-200/50 dark:border-white/10"
+        className="pointer-events-auto w-full max-w-[420px] flex items-center p-1.5 h-[70px] bg-white/70 dark:bg-[#111111]/70 backdrop-blur-2xl rounded-[28px] shadow-[0_8px_40px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_40px_rgba(0,0,0,0.4)] border border-slate-200/50 dark:border-white/10"
       >
         {visibleMenus.map((item) => {
           const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))
@@ -37,7 +37,7 @@ export function BottomNav({ userRole }: { userRole: string }) {
               key={item.href}
               href={item.href}
               className={`relative flex flex-1 flex-col items-center justify-center h-full transition-all duration-300 z-10 ${
-                isActive ? 'text-white dark:text-slate-900' : 'text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300'
+                isActive ? 'text-white dark:text-slate-900' : 'text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-white'
               }`}
             >
               {isActive && (
