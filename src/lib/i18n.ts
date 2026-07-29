@@ -11,7 +11,7 @@ const translations = {
       pengaturan: "Pengaturan"
     },
     bottomNav: { 
-      beranda: "Dashboard", 
+      beranda: "Beranda", 
       keuangan: "Keuangan", 
       warga: "Warga", 
       master: "Master", 
@@ -26,7 +26,7 @@ const translations = {
     dashboard: {
       greeting: "Halo,",
       subtitle: "Sistem Keuangan RW siap digunakan.",
-      aiAdvisorTitle: "Digital RW AI",
+      aiAdvisorTitle: "Digital RWEE AI",
       aiAdvisorSubtitle: "Asisten Finansial Pintar",
       aiAdvisorTooltip: "Tanya AI Advisor",
       aiAdvisorAnalyzing: "Menganalisis APBRW...",
@@ -61,7 +61,7 @@ const translations = {
       reportAsset: "Laporan Aset RW", reportAssetDesc: "Daftar inventaris dan aset tetap RW.",
       reportTax: "Laporan Pajak", reportTaxDesc: "Penyetoran pajak PPN dan PPh transaksi RW.",
       customReport: "Pembuat Laporan Kustom", reportType: "Jenis Laporan", startDate: "Periode Mulai", endDate: "Periode Akhir", exportOfficial: "Export PDF Laporan Resmi",
-      officialDoc: "Dokumen Resmi:", printNotice: "Tahun Anggaran {year}. Laporan ini dicetak secara otomatis dari sistem Digital RW.", typeIncome: "Pendapatan", typeExpense: "Belanja"
+      officialDoc: "Dokumen Resmi:", printNotice: "Tahun Anggaran {year}. Laporan ini dicetak secara otomatis dari sistem Digital RWEE.", typeIncome: "Pendapatan", typeExpense: "Belanja"
     },
     warga: {
       title: "Data Kependudukan", subtitle: "Kelola Kartu Keluarga dan Demografi Warga RW.",
@@ -140,7 +140,7 @@ const translations = {
       pengaturan: "Settings"
     },
     bottomNav: { 
-      beranda: "Dashboard", 
+      beranda: "Home", 
       keuangan: "Finances", 
       warga: "Residents", 
       master: "Master", 
@@ -155,7 +155,7 @@ const translations = {
     dashboard: {
       greeting: "Hello,",
       subtitle: "RW Financial System is ready.",
-      aiAdvisorTitle: "Digital RW AI",
+      aiAdvisorTitle: "Digital RWEE AI",
       aiAdvisorSubtitle: "Smart Financial Assistant",
       aiAdvisorTooltip: "Ask AI Advisor",
       aiAdvisorAnalyzing: "Analyzing APBRW...",
@@ -190,7 +190,7 @@ const translations = {
       reportAsset: "RW Asset Report", reportAssetDesc: "List of inventory and fixed assets of the village.",
       reportTax: "Tax Report", reportTaxDesc: "VAT and Income Tax deposit for RW transactions.",
       customReport: "Custom Report Builder", reportType: "Report Type", startDate: "Start Date", endDate: "End Date", exportOfficial: "Export Official PDF Report",
-      officialDoc: "Official Document:", printNotice: "Fiscal Year {year}. This report is automatically printed from the Digital RW system.", typeIncome: "Income", typeExpense: "Expense"
+      officialDoc: "Official Document:", printNotice: "Fiscal Year {year}. This report is automatically printed from the Digital RWEE system.", typeIncome: "Income", typeExpense: "Expense"
     },
     warga: {
       title: "Population Data", subtitle: "Manage Family Cards and Demographics of RW Residents.",

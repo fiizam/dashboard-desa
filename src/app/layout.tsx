@@ -9,7 +9,7 @@ import { Toaster } from 'sonner';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Digital RW Dashboard",
+  title: "Digital RWEE Dashboard",
   description: "Enterprise Financial Dashboard for RW Administration",
 };
 

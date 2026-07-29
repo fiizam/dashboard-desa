@@ -33,7 +33,7 @@ export async function generateFinancialInsights() {
 
   // Construct prompt
   const prompt = `
-Anda adalah Digital RW AI, seorang Konsultan Keuangan RW yang ahli, profesional, analitis, dan berwibawa.
+Anda adalah Digital RWEE AI, seorang Konsultan Keuangan RW yang ahli, profesional, analitis, dan berwibawa.
 Berikut adalah data keuangan (APBRW) RW saat ini:
 - Total Pendapatan Terealisasi: Rp ${totalPendapatan.toLocaleString('id-ID')}
 - Total Anggaran Belanja: Rp ${totalAnggaranBelanja.toLocaleString('id-ID')}
